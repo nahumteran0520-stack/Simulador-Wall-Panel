@@ -93,7 +93,7 @@ body {
     align-items: center;
     position: relative;
     background-image: url('Base.jpg');
-    background-size: cover;
+    background-size: cover; /* Mantiene la proporción en PC */
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -223,6 +223,12 @@ body {
 @media (max-width: 768px) {
     body {
         flex-direction: column;
+    }
+
+    /* Ajuste clave para ver todo el panorama sin recortes en celulares */
+    .room-scene {
+        background-size: contain; 
+        background-color: #121212; 
     }
 
     /* El catálogo pasa a ser un panel flotante retráctil por encima */
