@@ -117,25 +117,12 @@ body {
 .central-panel {
     position: absolute;
     background-color: #ffffff;
-    background-size: cover;
+    background-size: auto; /* Muestra la imagen en su tamaño real y nítido */
+    background-repeat: repeat; /* La repite como patrón natural si el panel es grande */
     background-position: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     z-index: 1;
     transition: all 0.3s ease;
-}
-
-/* Modo Vertical (más alto y angosto) */
-.central-panel.vertical {
-    width: 36%;
-    height: 75%;
-    top: 15%;
-}
-
-/* Modo Horizontal (más ancho y bajo, rodeado de WPC) */
-.central-panel.horizontal {
-    width: 58%;
-    height: 48%;
-    top: 22%; /* Se ajusta para dejar espacio arriba y abajo para los listones WPC */
 }
 
 /* Capa Frontal con la TV y el Mueble recortados (Capa 2: Al frente) */
