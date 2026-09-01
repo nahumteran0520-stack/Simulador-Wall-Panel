@@ -26,7 +26,6 @@ body {
 #home-screen.active {
     justify-content: center;
     align-items: center;
-    /* Cambia 'fondo-portada.jpg' por el nombre exacto de la imagen que quieras usar */
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('fondo-portada.jpg');
     background-size: cover;
     background-position: center;
@@ -34,15 +33,14 @@ body {
 }
 
 .home-content {
-    background-color: rgba(26, 26, 26, 0.85); /* Tarjeta semitransparente elegante */
+    background-color: rgba(26, 26, 26, 0.85);
     border: 1px solid #333;
     padding: 40px;
     border-radius: 12px;
     text-align: center;
     max-width: 600px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px); /* Efecto difuminado moderno */
-}
+    backdrop-filter: blur(5px);
 }
 
 .home-content h1 {
@@ -263,7 +261,7 @@ body {
 #simulator-viewport {
     flex: 1;
     position: relative;
-    background: #f0f0f0;
+    background: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,10 +278,10 @@ body {
     align-items: center;
     position: relative;
     background-image: url('Base.jpg');
-    background-size: contain; /* <-- Cambiamos de cover a contain para que se vea completa */
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #1a1a1a; /* Fondo elegante para los espacios que sobren en los lados */
+    background-color: #1a1a1a;
 }
 
 .full-background-wall {
@@ -311,10 +309,11 @@ body {
     border-radius: 3px;
 }
 
-.wall-led-light.left-long { left: 15%; top: 22.5%; height: 64%; }
-.wall-led-light.left-short { left: 21%; top: 33%; height: 53%; }
-.wall-led-light.right-long { right: 15%; top: 22.5%; height: 64%; }
-.wall-led-light.right-short { right: 21%; top: 33%; height: 53%; }
+/* Medidas precisas para las luces apoyadas en el suelo */
+.wall-led-light.left-long { left: 15%; top: 19%; height: 65%; }
+.wall-led-light.left-short { left: 21%; top: 29%; height: 55%; }
+.wall-led-light.right-long { right: 15%; top: 19%; height: 65%; }
+.wall-led-light.right-short { right: 21%; top: 29%; height: 55%; }
 
 .central-panel {
     position: absolute;
