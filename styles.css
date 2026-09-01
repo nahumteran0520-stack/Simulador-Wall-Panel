@@ -101,7 +101,7 @@ body {
     transition: background-image 0.3s ease;
 }
 
-/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS (Más separadas) --- */
+/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS (Nacen desde abajo y mejor separadas) --- */
 .wall-led-light {
     position: absolute;
     width: 6px; 
@@ -113,29 +113,30 @@ body {
     border-radius: 3px;
 }
 
-/* Posiciones separadas hacia los extremos de la pared */
+/* Lado Izquierdo (Larga más al extremo, Corta más cerca del centro) */
 .wall-led-light.left-long {
-    left: 17%;
-    top: 25%;
-    height: 50%; 
+    left: 15%;
+    top: 20%;
+    height: 65%; 
 }
 
 .wall-led-light.left-short {
-    left: 22%;
-    top: 38%;
-    height: 35%; 
-}
-
-.wall-led-light.right-long {
-    right: 17%;
-    top: 25%;
+    left: 21%;
+    top: 35%;
     height: 50%; 
 }
 
+/* Lado Derecho (Larga más al extremo, Corta más cerca del centro) */
+.wall-led-light.right-long {
+    right: 15%;
+    top: 20%;
+    height: 65%; 
+}
+
 .wall-led-light.right-short {
-    right: 22%;
-    top: 38%;
-    height: 35%; 
+    right: 21%;
+    top: 35%;
+    height: 50%; 
 }
 
 /* Panel Central de Mármol */
