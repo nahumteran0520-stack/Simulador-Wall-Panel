@@ -101,39 +101,39 @@ body {
     transition: background-image 0.3s ease;
 }
 
-/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS --- */
+/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS (Más separadas) --- */
 .wall-led-light {
     position: absolute;
     width: 6px; 
     background-color: transparent;
-    z-index: 6; /* Asegura que estén visibles sobre las capas */
+    z-index: 6; 
     pointer-events: none;
     transition: all 0.3s ease;
     opacity: 0; 
     border-radius: 3px;
 }
 
-/* Posiciones ajustadas y proporcionales */
+/* Posiciones separadas hacia los extremos de la pared */
 .wall-led-light.left-long {
-    left: 27%;
+    left: 17%;
     top: 25%;
     height: 50%; 
 }
 
 .wall-led-light.left-short {
-    left: 32%;
+    left: 22%;
     top: 38%;
     height: 35%; 
 }
 
 .wall-led-light.right-long {
-    right: 27%;
+    right: 17%;
     top: 25%;
     height: 50%; 
 }
 
 .wall-led-light.right-short {
-    right: 32%;
+    right: 22%;
     top: 38%;
     height: 35%; 
 }
