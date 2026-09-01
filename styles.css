@@ -143,11 +143,15 @@ body {
     z-index: 5; 
 }
 
-/* Efecto de Luz LED Profunda y Brillante detrás del Panel Central */
+/* Efecto de Luz LED Profesional, Nítida y Amarilla Natural detrás del Panel Central */
 .central-panel.led-warm {
-    box-shadow: 0 0 35px 15px rgba(255, 165, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 4px 2px rgba(255, 220, 100, 0.95), 
+                0 0 25px 8px rgba(255, 195, 50, 0.7), 
+                0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .central-panel.led-cool {
-    box-shadow: 0 0 35px 15px rgba(240, 248, 255, 0.9), 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.95), 
+                0 0 25px 8px rgba(220, 240, 255, 0.8), 
+                0 10px 30px rgba(0, 0, 0, 0.4);
 }
