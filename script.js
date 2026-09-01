@@ -1,20 +1,12 @@
-// Variables de Estado Global
-let currentTexture = 'none';
-let currentOrientation = 'vertical';
-
 /**
- * Cambia la textura central usando los archivos de imagen exactos
- * @param {string} type - 'blanco', 'gris', 'negro' o 'none'
+ * Cambia la textura del panel central (Mármol)
  */
-function changeTexture(type) {
-    currentTexture = type;
+function changeTexture(type, eventElement) {
     const panel = document.getElementById('centralPanel');
 
-    // Actualizar clases activas de los botones de textura
+    // Manejo de clases activas para el grupo de mármol
     document.querySelectorAll('.tex-btn').forEach(btn => btn.classList.remove('active'));
-    if (type !== 'none') {
-        event.target.classList.add('active');
-    }
+    if (eventElement) eventElement.classList.add('active');
 
     if (type === 'blanco') {
         panel.style.backgroundImage = "url('blanco.jpg')";
@@ -29,26 +21,43 @@ function changeTexture(type) {
 }
 
 /**
- * Cambia la orientación del panel central (Vertical u Horizontal)
- * @param {string} orientation - 'vertical' o 'horizontal'
+ * Cambia la orientación del panel central
  */
-function setOrientation(orientation) {
-    currentOrientation = orientation;
+function setOrientation(orientation, eventElement) {
     const panel = document.getElementById('centralPanel');
 
-    // Actualizar botones de orientación
     document.querySelectorAll('.orient-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (eventElement) eventElement.classList.add('active');
 
     if (orientation === 'vertical') {
         panel.classList.remove('horizontal');
         panel.classList.add('vertical');
-    } else if (orientation === 'horizontal') {
+    } else {
         panel.classList.remove('vertical');
         panel.classList.add('horizontal');
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Simulador configurado con éxito. Listo para los Wall Panels laterales.");
-});
+/**
+ * Cambia los Wall Panels laterales (WPC)
+ */
+function changeSidePanel(type, eventElement) {
+    const sideLeft = document.getElementById('sideLeft');
+    const sideRight = document.getElementById('sideRight');
+
+    document.querySelectorAll('.wpc-btn').forEach(btn => btn.classList.remove('active'));
+    if (eventElement) eventElement.classList.add('active');
+
+    if (type === 'wpc1') {
+        // Ejemplo de ruta para tu futuro wall panel 1
+        sideLeft.style.backgroundImage = "url('wpc1.jpg')";
+        sideRight.style.backgroundImage = "url('wpc1.jpg')";
+    } else if (type === 'wpc2') {
+        // Ejemplo de ruta para tu futuro wall panel 2
+        sideLeft.style.backgroundImage = "url('wpc2.jpg')";
+        sideRight.style.backgroundImage = "url('wpc2.jpg')";
+    } else {
+        sideLeft.style.backgroundImage = 'none';
+        sideRight.style.backgroundImage = 'none';
+    }
+}
