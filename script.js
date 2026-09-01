@@ -61,4 +61,19 @@ function updatePanelBackground() {
 
     // Aplica la textura de mármol correspondiente
     panel.style.backgroundImage = `url('${filename}.jpg')`;
+}function toggleLed(ledType, btn) {
+    document.querySelectorAll('.led-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const panel = document.getElementById('centralPanel');
+    
+    // Remueve los efectos anteriores
+    panel.classList.remove('led-warm', 'led-cool');
+    
+    // Aplica el efecto correspondiente
+    if (ledType === 'warm') {
+        panel.classList.add('led-warm');
+    } else if (ledType === 'cool') {
+        panel.classList.add('led-cool');
+    }
 }
