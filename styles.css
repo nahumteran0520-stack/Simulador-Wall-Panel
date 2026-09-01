@@ -271,6 +271,7 @@ body {
     height: 100vh;
 }
 
+/* --- ESCENA ADAPTABLE PARA QUE SE VEA TODA LA IMAGEN --- */
 .room-scene {
     width: 100%;
     height: 100%;
@@ -279,9 +280,10 @@ body {
     align-items: center;
     position: relative;
     background-image: url('Base.jpg');
-    background-size: cover;
+    background-size: contain; /* <-- Cambiamos de cover a contain para que se vea completa */
     background-position: center;
     background-repeat: no-repeat;
+    background-color: #1a1a1a; /* Fondo elegante para los espacios que sobren en los lados */
 }
 
 .full-background-wall {
