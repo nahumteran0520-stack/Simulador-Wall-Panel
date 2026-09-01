@@ -119,19 +119,20 @@ body {
     background-color: #ffffff;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     z-index: 1;
     transition: all 0.3s ease;
 }
 
-/* Modo Vertical */
+/* Modo Vertical (Estilizado) */
 .central-panel.vertical {
     width: 34%;
     height: 72%;
     top: 16%;
 }
 
-/* Modo Horizontal (Reducido de tamaño y con rotación fluida para las vetas) */
+/* Modo Horizontal (Reducido y proporcionado) */
 .central-panel.horizontal {
     width: 52%;
     height: 42%;
