@@ -41,12 +41,23 @@
                 </div>
             </div>
 
+            <!-- SEPARADAS: Iluminación LED del Panel Central -->
             <div class="catalog-category">
-                <label>Iluminación LED</label>
+                <label>Luces Panel Central</label>
                 <div class="catalog-options">
-                    <button class="catalog-btn led-btn active" onclick="toggleLed('none', this)">Sin Luces</button>
-                    <button class="catalog-btn led-btn" onclick="toggleLed('warm', this)">Luz Cálida</button>
-                    <button class="catalog-btn led-btn" onclick="toggleLed('cool', this)">Luz Fría</button>
+                    <button class="catalog-btn panel-led-btn active" onclick="togglePanelLed('none', this)">Apagadas</button>
+                    <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('warm', this)">Cálida</button>
+                    <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('cool', this)">Fría</button>
+                </div>
+            </div>
+
+            <!-- SEPARADAS: Iluminación LED de los Costados (Wall Panels) -->
+            <div class="catalog-category">
+                <label>Luces Laterales (WPC)</label>
+                <div class="catalog-options">
+                    <button class="catalog-btn side-led-btn active" onclick="toggleSideLed('none', this)">Apagadas</button>
+                    <button class="catalog-btn side-led-btn" onclick="toggleSideLed('warm', this)">Cálida</button>
+                    <button class="catalog-btn side-led-btn" onclick="toggleSideLed('cool', this)">Fría</button>
                 </div>
             </div>
 
@@ -60,10 +71,10 @@
             <div class="full-background-wall" id="fullBackgroundWall"></div>
             
             <!-- Líneas de Luz LED Verticales en los Costados -->
-            <div class="wall-led-light left-long"></div>
-            <div class="wall-led-light left-short"></div>
-            <div class="wall-led-light right-long"></div>
-            <div class="wall-led-light right-short"></div>
+            <div class="wall-led-light left-long" id="leftLong"></div>
+            <div class="wall-led-light left-short" id="leftShort"></div>
+            <div class="wall-led-light right-long" id="rightLong"></div>
+            <div class="wall-led-light right-short" id="rightShort"></div>
 
             <!-- Panel Central de Mármol -->
             <div class="central-panel vertical" id="centralPanel"></div>
