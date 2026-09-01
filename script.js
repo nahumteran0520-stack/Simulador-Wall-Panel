@@ -96,4 +96,9 @@ function toggleSideLed(ledType, btn) {
             light.classList.add('side-led-cool');
         }
     });
+    // --- Control del menú desplegable en Móvil ---
+function toggleMobileCatalog() {
+    const sidebar = document.getElementById('catalog-sidebar');
+    sidebar.classList.toggle('mobile-open');
+}
 }
