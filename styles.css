@@ -309,11 +309,10 @@ body {
     border-radius: 3px;
 }
 
-.wall-led-light.left-long { left: 15%; top: 18.5%; height: 65%; }
-.wall-led-light.left-short { left: 21%; top: 28.5%; height: 55%; }
-.wall-led-light.right-long { right: 15%; top: 18.5%; height: 65%; }
-.wall-led-light.right-short { right: 21%; top: 28.5%; height: 55%; }
-
+.wall-led-light.left-long { left: 15%; top: 19%; height: 66%; }
+.wall-led-light.left-short { left: 21%; top: 29%; height: 55%; }
+.wall-led-light.right-long { right: 15%; top: 19%; height: 66%; }
+.wall-led-light.right-short { right: 21%; top: 29%; height: 55%; }
 .central-panel {
     position: absolute;
     background-color: #ffffff;
