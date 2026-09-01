@@ -1,13 +1,33 @@
-// Variable global para recordar la textura actual y la orientación
-let currentTexture = 'blanco'; 
-let currentOrientation = 'vertical'; // 'vertical' u 'horizontal'
+// Variables globales para recordar el estado actual
+let currentTexture = 'blanco'; // Textura central por defecto
+let currentOrientation = 'vertical'; // Orientación central por defecto
+
+// Nueva función para cambiar la pared de fondo completa
+function changeBackgroundWall(wallType, btn) {
+    // Manejo visual de los botones activos
+    document.querySelectorAll('.wpc-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const backgroundWall = document.getElementById('fullBackgroundWall');
+    
+    if (wallType === 'none') {
+        backgroundWall.style.backgroundImage = 'none';
+        backgroundWall.style.backgroundColor = 'transparent'; // O un color de pintura si prefieres
+    } else {
+        // Carga la textura de listones WPC seleccionada (ej. wpc1.jpg o wpc2.jpg)
+        // Se repetirá horizontalmente para cubrir toda la pared
+        backgroundWall.style.backgroundImage = `url('${wallType}.jpg')`;
+    }
+}
+
+// --- Funciones existentes del panel central (Mármol) ---
 
 function changeTexture(textureName, btn) {
     document.querySelectorAll('.tex-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
     currentTexture = textureName;
-    updatePanelBackground();
+    updatePanelBackground(); // Actualiza el panel central respetando la orientación
 }
 
 function setOrientation(orientation, btn) {
@@ -20,7 +40,7 @@ function setOrientation(orientation, btn) {
     panel.classList.remove('vertical', 'horizontal');
     panel.classList.add(orientation);
     
-    updatePanelBackground();
+    updatePanelBackground(); // Actualiza el panel central respetando la orientación actual
 }
 
 function updatePanelBackground() {
@@ -28,16 +48,18 @@ function updatePanelBackground() {
     
     if (currentTexture === 'none') {
         panel.style.backgroundImage = 'none';
+        panel.style.backgroundColor = '#ffffff'; // Fondo blanco si no hay mármol
         return;
     }
+    
+    panel.style.backgroundColor = '#ffffff'; // Asegura fondo blanco
 
-    // Si está en horizontal, añade '-h' al nombre del archivo (ej. gris-h.jpg); si está en vertical, usa el normal (ej. gris.jpg)
+    // Determina el sufijo "-h" si es horizontal, sino usa la normal
     let filename = currentTexture;
     if (currentOrientation === 'horizontal') {
         filename = currentTexture + '-h'; 
     }
 
+    // Aplica la textura de mármol correspondiente
     panel.style.backgroundImage = `url('${filename}.jpg')`;
 }
-
-// Opcional: si tienes funciones adicionales para los paneles laterales WPC, puedes agregarlas justo debajo de esto sin ningún problema.
