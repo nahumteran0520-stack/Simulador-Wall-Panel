@@ -73,15 +73,23 @@ function togglePanelLed(ledType, btn) {
     }
 }
 
-// --- Control independiente para las Luces Laterales (WPC) ---
+// --- Control independiente y directo para las Luces Laterales (WPC) ---
 function toggleSideLed(ledType, btn) {
     document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
-    const sideLights = document.querySelectorAll('.wall-led-light');
+    // Obtenemos cada una de las 4 luces por su ID exacto
+    const lights = [
+        document.getElementById('leftLong'),
+        document.getElementById('leftShort'),
+        document.getElementById('rightLong'),
+        document.getElementById('rightShort')
+    ];
     
-    sideLights.forEach(light => {
+    lights.forEach(light => {
+        if (!light) return;
         light.classList.remove('side-led-warm', 'side-led-cool');
+        
         if (ledType === 'warm') {
             light.classList.add('side-led-warm');
         } else if (ledType === 'cool') {
