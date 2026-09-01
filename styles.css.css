@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Contenedor principal de la escena */
+#simulator-viewport {
+    flex: 1;
+    position: relative;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Escena de la sala con pared blanca base */
+.room-scene {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #ffffff;
+}
+
+/* Panel central dinámico */
+.central-panel {
+    width: 50%;
+    height: 80%;
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease-in-out;
+}
+
+/* Pantalla de Televisión */
+.tv-screen {
+    width: 45%;
+    height: 40%;
+    background-color: #000000;
+    border-radius: 4px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 4px solid #1a1a1a;
+}
+
+/* Mueble flotante simétrico y sin rodapié debajo */
+.floating-cabinet {
+    position: absolute;
+    bottom: 22%;
+    width: 55%;
+    height: 7%;
+    background-color: #d2b48c;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Panel de control inferior */
+#control-panel {
+    height: 100px;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid #333;
+}
+
+.control-btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.control-btn:hover {
+    background-color: #555;
+}
+
+.control-btn:active {
+    transform: scale(0.98);
+}
