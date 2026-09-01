@@ -89,19 +89,53 @@ body {
 /* PARED DE FONDO COMPLETA (Wall Panel WPC) */
 .full-background-wall {
     position: absolute;
-    /* --- AJUSTA ESTOS 4 VALORES PARA CUBRIR EL BORDE BLANCO --- */
-    top: 8.5%;    /* Bájalo a 8% o súbelo a 9% para ajustar el margen del techo */
-    left: 8.5%;   /* Ajusta el margen izquierdo */
-    width: 83%;   /* Aumenta a 84% si falta cubrir la derecha */
-    height: 82%;  /* Aumenta a 83% o 84% si falta llegar al piso */
-    /* ---------------------------------------------------------- */
-    
+    top: 8.5%;    
+    left: 8.5%;   
+    width: 83%;   
+    height: 82%;  
     background-color: transparent; 
     background-size: auto 100%; 
     background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
     transition: background-image 0.3s ease;
+}
+
+/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS --- */
+.wall-led-light {
+    position: absolute;
+    width: 5px; 
+    background-color: transparent;
+    z-index: 2; 
+    pointer-events: none;
+    transition: all 0.3s ease;
+    opacity: 0; 
+    border-radius: 2px;
+}
+
+/* Posiciones y alturas (Dos por lado: una larga y otra hasta la mitad) */
+.wall-led-light.left-long {
+    left: 22%;
+    top: 15%;
+    height: 70%; 
+}
+
+.wall-led-light.left-short {
+    left: 28%;
+    top: 35%;
+    height: 50%; 
+}
+
+.wall-led-light.right-long {
+    right: 22%;
+    top: 15%;
+    height: 70%; 
+}
+
+.wall-led-light.right-short {
+    right: 28%;
+    top: 35%;
+    height: 50%; 
 }
 
 /* Panel Central de Mármol */
@@ -112,7 +146,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    z-index: 1; 
+    z-index: 3; 
     transition: all 0.3s ease;
 }
 
@@ -143,15 +177,30 @@ body {
     z-index: 5; 
 }
 
-/* Efecto de Luz LED Profesional, Nítida y Amarilla Natural detrás del Panel Central */
+/* --- EFECTOS LED NÍTIDOS (Panel Central + Costados) --- */
+
+/* Luz Cálida (Amarillo natural elegante y bordes bien definidos) */
 .central-panel.led-warm {
     box-shadow: 0 0 4px 2px rgba(255, 220, 100, 0.95), 
                 0 0 25px 8px rgba(255, 195, 50, 0.7), 
                 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+body.led-warm-active .wall-led-light {
+    background-color: #fff3cd;
+    box-shadow: 0 0 6px 2px rgba(255, 220, 100, 0.9), 0 0 20px 6px rgba(255, 195, 50, 0.6);
+    opacity: 1;
+}
+
+/* Luz Fría (Blanco puro brillante) */
 .central-panel.led-cool {
     box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.95), 
                 0 0 25px 8px rgba(220, 240, 255, 0.8), 
                 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.led-cool-active .wall-led-light {
+    background-color: #ffffff;
+    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.9), 0 0 20px 6px rgba(220, 240, 255, 0.7);
+    opacity: 1;
 }
