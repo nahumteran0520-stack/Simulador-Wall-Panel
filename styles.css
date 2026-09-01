@@ -339,15 +339,16 @@ body {
     box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* --- LUCES LATERALES CON MÁS FIRMEZA Y NÚCLEO CENTRAL BRILLANTE --- */
 .wall-led-light.side-led-warm {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,230,140,0.9)) !important;
-    box-shadow: 0 0 10px 4px rgba(255, 255, 200, 0.95), 0 0 25px 8px rgba(255, 215, 100, 0.7) !important;
+    background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(255, 240, 180, 0.9), 0 0 30px 10px rgba(255, 215, 100, 0.7) !important;
     opacity: 1 !important;
 }
 
 .wall-led-light.side-led-cool {
-    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(200,230,255,0.9)) !important;
-    box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8) !important;
+    background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(220, 240, 255, 0.9), 0 0 30px 10px rgba(180, 220, 255, 0.8) !important;
     opacity: 1 !important;
 }
 
