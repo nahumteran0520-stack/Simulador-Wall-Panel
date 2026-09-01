@@ -70,7 +70,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Importante para que el fondo no se desborde */
+    overflow: hidden;
 }
 
 .room-scene {
@@ -80,56 +80,52 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* La imagen base (piso, techo, paredes laterales) ahora es el fondo del contenedor */
     background-image: url('Base.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* NUEVA CAPA DE PARED DE FONDO COMPLETA */
+/* PARED DE FONDO COMPLETA (Wall Panel WPC) */
 .full-background-wall {
     position: absolute;
-    /* Se posiciona para cubrir exactamente el espacio de la pared blanca original */
-    top: 12%; /* Ajustado para el borde superior de la pared */
-    left: 10%; /* Ajustado para el borde izquierdo de la pared */
-    width: 80%; /* Ancho total de la pared visible */
-    height: 76%; /* Alto total de la pared visible */
-    background-color: transparent; /* Por defecto sin textura */
-    background-size: auto 100%; /* Mantiene los listones WPC nítidos verticalmente */
-    background-repeat: repeat-x; /* Repite la textura WPC horizontalmente por toda la pared */
+    top: 12%; 
+    left: 10%; 
+    width: 80%; 
+    height: 76%; 
+    background-color: transparent; 
+    background-size: auto 100%; /* Mantiene los listones verticales nítidos */
+    background-repeat: repeat-x; /* Se repite horizontalmente por toda la pared */
     background-position: center;
-    z-index: 0; /* Fondo absoluto detrás de todo */
+    z-index: 0; 
     transition: background-image 0.3s ease;
 }
 
-/* Panel Central de Mármol (Capa 2: Delante de la pared WPC) */
+/* Panel Central de Mármol */
 .central-panel {
     position: absolute;
     background-color: #ffffff;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra más intensa para separarlo de la pared */
-    z-index: 1; /* Por delante de la pared, detrás de la TV */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1; 
     transition: all 0.3s ease;
 }
 
-/* Modo Vertical */
 .central-panel.vertical {
     width: 34%;
     height: 72%;
     top: 16%;
 }
 
-/* Modo Horizontal (Centrado con la TV) */
 .central-panel.horizontal {
     width: 52%;
     height: 42%;
     top: 30%;
 }
 
-/* Capa Frontal con la TV y el Mueble recortados (Capa 3: Al frente de todo) */
+/* Capa Frontal con la TV y el Mueble */
 .foreground-overlay {
     position: absolute;
     top: 0;
@@ -141,5 +137,5 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     pointer-events: none;
-    z-index: 5; /* Siempre al frente */
+    z-index: 5; 
 }
