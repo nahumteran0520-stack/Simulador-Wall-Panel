@@ -3,91 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Interactivo Wall Panel</title>
+    <title>Simulador y Calculadora - Wall Panel</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Botón flotante exclusivo para móviles -->
-    <button id="mobile-toggle-btn" onclick="toggleMobileCatalog()">🎨 Menú de Catálogo</button>
-
-    <aside id="catalog-sidebar">
-        <div class="catalog-section">
-            <div class="catalog-header-row">
-                <h2>Catálogo de Acabados</h2>
-                <button id="close-catalog-btn" onclick="toggleMobileCatalog()">✕</button>
-            </div>
-            
-            <div class="catalog-category">
-                <label>Panel Central (Mármol)</label>
-                <div class="catalog-options">
-                    <button class="catalog-btn tex-btn active" onclick="changeTexture('blanco', this)">Blanco</button>
-                    <button class="catalog-btn tex-btn" onclick="changeTexture('gris', this)">Gris</button>
-                    <button class="catalog-btn tex-btn" onclick="changeTexture('negro', this)">Negro</button>
-                    <button class="catalog-btn tex-btn" onclick="changeTexture('none', this)">Liso</button>
+    <!-- ================= 1. PORTADA DE INICIO ================= -->
+    <div id="home-screen" class="screen active">
+        <div class="home-hero">
+            <div class="home-content">
+                <h1>Diseña y Calcula tus Wall Panels</h1>
+                <p>Transforma tus espacios con estilo moderno y descubre la cantidad exacta de material que necesitas.</p>
+                <div class="home-buttons">
+                    <button class="main-action-btn primary" onclick="switchScreen('simulator')">🚀 Comenzar Simulador</button>
+                    <button class="main-action-btn secondary" onclick="switchScreen('calculator')">🧮 Calculadora de Materiales</button>
                 </div>
             </div>
-
-            <div class="catalog-category">
-                <label>Orientación del Centro</label>
-                <div class="catalog-options">
-                    <button class="catalog-btn orient-btn active" onclick="setOrientation('vertical', this)">Vertical</button>
-                    <button class="catalog-btn orient-btn" onclick="setOrientation('horizontal', this)">Horizontal</button>
-                </div>
-            </div>
-
-            <div class="catalog-category">
-                <label>Pared (Wall Panels WPC)</label>
-                <div class="catalog-options">
-                    <button class="catalog-btn wpc-btn active" onclick="changeBackgroundWall('wpcarena', this)">Arena</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcgris', this)">Gris</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcnegro', this)">Negro</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcwengue', this)">Wengué</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcblanco', this)">Blanco</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcmaderanegro', this)">Madera Negro</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcmarron', this)">Marron</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('none', this)">Pared Lisa (Pintura)</button>
-                </div>
-            </div>
-
-            <div class="catalog-category">
-                <label>Luces Panel Central</label>
-                <div class="catalog-options">
-                    <button class="catalog-btn panel-led-btn active" onclick="togglePanelLed('none', this)">Apagadas</button>
-                    <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('warm', this)">Cálida</button>
-                    <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('cool', this)">Fría</button>
-                </div>
-            </div>
-
-            <div class="catalog-category">
-                <label>Luces Laterales (WPC)</label>
-                <div class="catalog-options">
-                    <button class="catalog-btn side-led-btn active" onclick="toggleSideLed('none', this)">Apagadas</button>
-                    <button class="catalog-btn side-led-btn" onclick="toggleSideLed('warm', this)">Cálida</button>
-                    <button class="catalog-btn side-led-btn" onclick="toggleSideLed('cool', this)">Fría</button>
-                </div>
-            </div>
-
         </div>
-    </aside>
+    </div>
 
-    <div id="simulator-viewport">
-        <div class="room-scene" id="roomScene">
+    <!-- ================= 2. CALCULADORA DE MATERIALES ================= -->
+    <div id="calculator-screen" class="screen">
+        <div class="calc-container">
+            <button class="back-home-btn" onclick="switchScreen('home')">← Volver al Inicio</button>
+            <h2>Calculadora de Wall Panels (PVC)</h2>
+            <p class="calc-subtitle">Medida estándar de la lámina: <strong>1.22 m x 2.44 m</strong> (Área: ~2.98 m²)</p>
             
-            <!-- Pared de Fondo WPC -->
-            <div class="full-background-wall" id="fullBackgroundWall"></div>
-            
-            <!-- Líneas de Luz LED Verticales en los Costados con sus IDs -->
-            <div class="wall-led-light left-long" id="leftLong"></div>
-            <div class="wall-led-light left-short" id="leftShort"></div>
-            <div class="wall-led-light right-long" id="rightLong"></div>
-            <div class="wall-led-light right-short" id="rightShort"></div>
+            <div class="calc-form">
+                <div class="input-group">
+                    <label for="wallHeight">Alto de la pared (metros):</label>
+                    <input type="number" id="wallHeight" step="0.01" placeholder="Ej. 2.60">
+                </div>
+                <div class="input-group">
+                    <label for="wallWidth">Ancho de la pared (metros):</label>
+                    <input type="number" id="wallWidth" step="0.01" placeholder="Ej. 3.50">
+                </div>
+                <button class="calc-btn" onclick="calculatePanels()">Calcular Láminas</button>
+            </div>
 
-            <!-- Panel Central de Mármol -->
-            <div class="central-panel vertical" id="centralPanel"></div>
+            <div id="calc-results" class="calc-results hidden">
+                <h3>Resultado de tu cotización:</h3>
+                <p>Área total de la pared: <span id="res-area">0</span> m²</p>
+                <p>Láminas exactas necesarias: <span id="res-panels">0</span></p>
+                <div class="highlight-box">
+                    <p>💡 <strong>Recomendación con cortes (10% extra):</strong></p>
+                    <h2 id="res-panels-extra">0 piezas</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <!-- Capa Frontal con TV y Mueble -->
-            <div class="foreground-overlay"></div>
+    <!-- ================= 3. SIMULADOR (Tu proyecto anterior) ================= -->
+    <div id="simulator-screen" class="screen">
+        <!-- Botón para regresar al inicio desde el simulador -->
+        <button id="sim-back-btn" onclick="switchScreen('home')">🏠 Inicio</button>
+
+        <!-- Botón flotante exclusivo para móviles -->
+        <button id="mobile-toggle-btn" onclick="toggleMobileCatalog()">🎨 Menú de Catálogo</button>
+
+        <aside id="catalog-sidebar">
+            <div class="catalog-section">
+                <div class="catalog-header-row">
+                    <h2>Catálogo de Acabados</h2>
+                    <button id="close-catalog-btn" onclick="toggleMobileCatalog()">✕</button>
+                </div>
+                
+                <div class="catalog-category">
+                    <label>Panel Central (Mármol)</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn tex-btn active" onclick="changeTexture('blanco', this)">Blanco</button>
+                        <button class="catalog-btn tex-btn" onclick="changeTexture('gris', this)">Gris</button>
+                        <button class="catalog-btn tex-btn" onclick="changeTexture('negro', this)">Negro</button>
+                        <button class="catalog-btn tex-btn" onclick="changeTexture('none', this)">Liso</button>
+                    </div>
+                </div>
+
+                <div class="catalog-category">
+                    <label>Orientación del Centro</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn orient-btn active" onclick="setOrientation('vertical', this)">Vertical</button>
+                        <button class="catalog-btn orient-btn" onclick="setOrientation('horizontal', this)">Horizontal</button>
+                    </div>
+                </div>
+
+                <div class="catalog-category">
+                    <label>Pared (Wall Panels WPC)</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn wpc-btn active" onclick="changeBackgroundWall('wpcarena', this)">Arena</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcgris', this)">Gris</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcnegro', this)">Negro</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcwengue', this)">Wengué</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcblanco', this)">Blanco</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcmaderanegro', this)">Madera Negro</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcmarron', this)">Marron</button>
+                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('none', this)">Pared Lisa (Pintura)</button>
+                    </div>
+                </div>
+
+                <div class="catalog-category">
+                    <label>Luces Panel Central</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn panel-led-btn active" onclick="togglePanelLed('none', this)">Apagadas</button>
+                        <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('warm', this)">Cálida</button>
+                        <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('cool', this)">Fría</button>
+                    </div>
+                </div>
+
+                <div class="catalog-category">
+                    <label>Luces Laterales (WPC)</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn side-led-btn active" onclick="toggleSideLed('none', this)">Apagadas</button>
+                        <button class="catalog-btn side-led-btn" onclick="toggleSideLed('warm', this)">Cálida</button>
+                        <button class="catalog-btn side-led-btn" onclick="toggleSideLed('cool', this)">Fría</button>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <div id="simulator-viewport">
+            <div class="room-scene" id="roomScene">
+                <div class="full-background-wall" id="fullBackgroundWall"></div>
+                <div class="wall-led-light left-long" id="leftLong"></div>
+                <div class="wall-led-light left-short" id="leftShort"></div>
+                <div class="wall-led-light right-long" id="rightLong"></div>
+                <div class="wall-led-light right-short" id="rightShort"></div>
+                <div class="central-panel vertical" id="centralPanel"></div>
+                <div class="foreground-overlay"></div>
+            </div>
         </div>
     </div>
 
