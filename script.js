@@ -2,9 +2,9 @@
 let currentTexture = 'blanco'; // Textura central por defecto
 let currentOrientation = 'vertical'; // Orientación central por defecto
 
-// Nueva función para cambiar la pared de fondo completa
+// Nueva función para cambiar la pared de fondo completa (WPC)
 function changeBackgroundWall(wallType, btn) {
-    // Manejo visual de los botones activos
+    // Manejo visual de los botones activos en el menú
     document.querySelectorAll('.wpc-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
@@ -12,15 +12,14 @@ function changeBackgroundWall(wallType, btn) {
     
     if (wallType === 'none') {
         backgroundWall.style.backgroundImage = 'none';
-        backgroundWall.style.backgroundColor = 'transparent'; // O un color de pintura si prefieres
+        backgroundWall.style.backgroundColor = '#ffffff'; // Pared lisa pintada de blanco por defecto
     } else {
-        // Carga la textura de listones WPC seleccionada (ej. wpc1.jpg o wpc2.jpg)
-        // Se repetirá horizontalmente para cubrir toda la pared
+        // Carga la textura de listones WPC (ej. wpcarena.jpg) y la repite horizontalmente
         backgroundWall.style.backgroundImage = `url('${wallType}.jpg')`;
     }
 }
 
-// --- Funciones existentes del panel central (Mármol) ---
+// --- Funciones del panel central (Mármol) ---
 
 function changeTexture(textureName, btn) {
     document.querySelectorAll('.tex-btn').forEach(b => b.classList.remove('active'));
