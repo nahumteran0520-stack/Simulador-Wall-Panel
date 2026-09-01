@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador y Calculadora - Wall Panel</title>
+    <title>Simulador y Calculadora - Wall Panel & Acabados</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,8 +26,8 @@
     <div id="calculator-screen" class="screen">
         <div class="calc-container">
             <button class="back-home-btn" onclick="switchScreen('home')">← Volver al Inicio</button>
-            <h2>Calculadora de Wall Panels (PVC)</h2>
-            <p class="calc-subtitle">Medida estándar de la lámina: <strong>1.22 m x 2.44 m</strong> (Área: ~2.98 m²)</p>
+            <h2>Calculadora de Materiales</h2>
+            <p class="calc-subtitle">Diseño: 1 Lámina central de PVC (2.97 m²) + Wall Panels WPC (0.46 m² c/u)</p>
             
             <div class="calc-form">
                 <div class="input-group">
@@ -38,22 +38,23 @@
                     <label for="wallWidth">Ancho de la pared (metros):</label>
                     <input type="number" id="wallWidth" step="0.01" placeholder="Ej. 3.50">
                 </div>
-                <button class="calc-btn" onclick="calculatePanels()">Calcular Láminas</button>
+                <button class="calc-btn" onclick="calculatePanels()">Calcular Materiales</button>
             </div>
 
             <div id="calc-results" class="calc-results hidden">
                 <h3>Resultado de tu cotización:</h3>
                 <p>Área total de la pared: <span id="res-area">0</span> m²</p>
-                <p>Láminas exactas necesarias: <span id="res-panels">0</span></p>
+                <p id="res-panels" style="color: #4da6ff; margin: 10px 0;">-</p>
                 <div class="highlight-box">
-                    <p>💡 <strong>Recomendación con cortes (10% extra):</strong></p>
-                    <h2 id="res-panels-extra">0 piezas</h2>
+                    <p>💡 <strong>Total sugerido (con 5% extra para cortes):</strong></p>
+                    <p style="margin: 5px 0; font-size: 13px; color: #ddd;">• 1 Lámina de PVC Central</p>
+                    <h2 id="res-panels-extra" style="font-size: 20px;">0 piezas</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= 3. SIMULADOR (Tu proyecto anterior) ================= -->
+    <!-- ================= 3. SIMULADOR ================= -->
     <div id="simulator-screen" class="screen">
         <!-- Botón para regresar al inicio desde el simulador -->
         <button id="sim-back-btn" onclick="switchScreen('home')">🏠 Inicio</button>
