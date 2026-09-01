@@ -101,7 +101,7 @@ body {
     transition: background-image 0.3s ease;
 }
 
-/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS (Nacen desde abajo y mejor separadas) --- */
+/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS (Más finas y definidas) --- */
 .wall-led-light {
     position: absolute;
     width: 6px; 
@@ -113,7 +113,7 @@ body {
     border-radius: 3px;
 }
 
-/* Lado Izquierdo (Larga más al extremo, Corta más cerca del centro) */
+/* Posiciones actuales mantenidas */
 .wall-led-light.left-long {
     left: 15%;
     top: 20%;
@@ -126,7 +126,6 @@ body {
     height: 50%; 
 }
 
-/* Lado Derecho (Larga más al extremo, Corta más cerca del centro) */
 .wall-led-light.right-long {
     right: 15%;
     top: 20%;
@@ -194,16 +193,16 @@ body {
                 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* 2. Luces Laterales (WPC): Luz Cálida */
+/* 2. Luces Laterales (WPC): Luz Cálida (Difuminación reducida y más fina) */
 .wall-led-light.side-led-warm {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,230,140,0.9)) !important;
-    box-shadow: 0 0 10px 4px rgba(255, 255, 200, 0.95), 0 0 25px 8px rgba(255, 215, 100, 0.7) !important;
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,235,160,0.95)) !important;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 220, 0.9), 0 0 12px 3px rgba(255, 215, 100, 0.5) !important;
     opacity: 1 !important;
 }
 
-/* 2. Luces Laterales (WPC): Luz Fría */
+/* 2. Luces Laterales (WPC): Luz Fría (Difuminación reducida y más fina) */
 .wall-led-light.side-led-cool {
-    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(200,230,255,0.9)) !important;
-    box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8) !important;
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(210,240,255,0.95)) !important;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.9), 0 0 12px 3px rgba(220, 240, 255, 0.6) !important;
     opacity: 1 !important;
 }
