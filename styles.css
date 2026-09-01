@@ -132,11 +132,11 @@ body {
     top: 16%;
 }
 
-/* Modo Horizontal (Reducido y proporcionado) */
+/* Modo Horizontal (Bajado para centrarse perfectamente con la TV) */
 .central-panel.horizontal {
     width: 52%;
     height: 42%;
-    top: 25%;
+    top: 30%; /* Aumentamos este valor para moverlo hacia abajo */
 }
 
 /* Capa Frontal con la TV y el Mueble recortados (Capa 2: Al frente) */
