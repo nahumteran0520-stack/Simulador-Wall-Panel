@@ -101,7 +101,7 @@ body {
     transition: background-image 0.3s ease;
 }
 
-/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS --- */
+/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS (Alineación corregida) --- */
 .wall-led-light {
     position: absolute;
     width: 6px; 
@@ -113,29 +113,29 @@ body {
     border-radius: 3px;
 }
 
-/* Posiciones exactas */
+/* Posiciones ajustadas y proporcionales */
 .wall-led-light.left-long {
-    left: 33.5%;
-    top: 15%;
-    height: 60%; 
+    left: 27%;
+    top: 25%;
+    height: 50%; 
 }
 
 .wall-led-light.left-short {
-    left: 41.5%;
-    top: 32%;
-    height: 43%; 
+    left: 32%;
+    top: 38%;
+    height: 35%; 
 }
 
 .wall-led-light.right-long {
-    right: 33.5%;
-    top: 15%;
-    height: 60%; 
+    right: 27%;
+    top: 25%;
+    height: 50%; 
 }
 
 .wall-led-light.right-short {
-    right: 41.5%;
-    top: 32%;
-    height: 43%; 
+    right: 32%;
+    top: 38%;
+    height: 35%; 
 }
 
 /* Panel Central de Mármol */
@@ -196,13 +196,3 @@ body {
 /* 2. Luces Laterales (WPC): Luz Cálida */
 .wall-led-light.side-led-warm {
     background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,230,140,0.9));
-    box-shadow: 0 0 8px 3px rgba(255, 255, 200, 0.9), 0 0 20px 6px rgba(255, 215, 100, 0.5);
-    opacity: 1;
-}
-
-/* 2. Luces Laterales (WPC): Luz Fría */
-.wall-led-light.side-led-cool {
-    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(200,230,255,0.9));
-    box-shadow: 0 0 8px 3px rgba(255, 255, 255, 0.9), 0 0 20px 6px rgba(220, 240, 255, 0.7);
-    opacity: 1;
-}
