@@ -8,12 +8,10 @@
 </head>
 <body>
 
-    <!-- Barra Lateral de Catálogo -->
     <aside id="catalog-sidebar">
         <div class="catalog-section">
             <h2>Catálogo de Acabados</h2>
             
-            <!-- Panel Central (Mármol) -->
             <div class="catalog-category">
                 <label>Panel Central (Mármol)</label>
                 <div class="catalog-options">
@@ -24,7 +22,6 @@
                 </div>
             </div>
 
-            <!-- Orientación -->
             <div class="catalog-category">
                 <label>Orientación del Centro</label>
                 <div class="catalog-options">
@@ -33,42 +30,42 @@
                 </div>
             </div>
 
-            <!-- Wall Panels (WPC) - Fondo Completo -->
-<div class="catalog-category">
-    <label>Pared (Wall Panels WPC)</label>
-    <div class="catalog-options">
-        <button class="catalog-btn wpc-btn active" onclick="changeBackgroundWall('wpcarena', this)">Madera Arena</button>
-        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcgris', this)">Gris Moderno</button>
-        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcnegro', this)">Negro Elegante</button>
-        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcwengue', this)">Wengué</button>
-        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('none', this)">Pared Lisa (Pintura)</button>
-        <!-- Control de Luces LED -->
-<div class="catalog-category">
-    <label>Iluminación LED</label>
-    <div class="catalog-options">
-        <button class="catalog-btn led-btn active" onclick="toggleLed('none', this)">Sin Luces</button>
-        <button class="catalog-btn led-btn" onclick="toggleLed('warm', this)">Luz Cálida</button>
-        <button class="catalog-btn led-btn" onclick="toggleLed('cool', this)">Luz Fría</button>
-    </div>
-</div>
+            <div class="catalog-category">
+                <label>Pared (Wall Panels WPC)</label>
+                <div class="catalog-options">
+                    <button class="catalog-btn wpc-btn active" onclick="changeBackgroundWall('wpcarena', this)">Madera Arena</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcgris', this)">Gris Moderno</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcnegro', this)">Negro Elegante</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcwengue', this)">Wengué</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('none', this)">Pared Lisa (Pintura)</button>
+                </div>
+            </div>
+
+            <div class="catalog-category">
+                <label>Iluminación LED</label>
+                <div class="catalog-options">
+                    <button class="catalog-btn led-btn active" onclick="toggleLed('none', this)">Sin Luces</button>
+                    <button class="catalog-btn led-btn" onclick="toggleLed('warm', this)">Luz Cálida</button>
+                    <button class="catalog-btn led-btn" onclick="toggleLed('cool', this)">Luz Fría</button>
+                </div>
+            </div>
+
         </div>
     </aside>
 
-    <!-- Escena del Simulador Visual -->
     <div id="simulator-viewport">
         <div class="room-scene" id="roomScene">
             
-            <!-- 1. PARED DE FONDO COMPLETA (Capa 1: Al fondo de todo) -->
             <div class="full-background-wall" id="fullBackgroundWall"></div>
             
-            <!-- 2. Panel central al fondo (Capa 2: Delante de la pared WPC) -->
             <div class="central-panel vertical" id="centralPanel"></div>
 
-            <!-- 3. Capa superior con la TV y el Mueble recortados (Capa 3: Al frente) -->
             <div class="foreground-overlay"></div>
         </div>
     </div>
 
     <script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>
