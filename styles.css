@@ -142,3 +142,11 @@ body {
     pointer-events: none;
     z-index: 5; 
 }
+/* Efecto de Luz LED detrás del Panel Central */
+.central-panel.led-warm {
+    box-shadow: 0 0 25px 8px rgba(255, 183, 77, 0.6), 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.central-panel.led-cool {
+    box-shadow: 0 0 25px 8px rgba(135, 206, 250, 0.6), 0 10px 30px rgba(0, 0, 0, 0.2);
+}
