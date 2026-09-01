@@ -23,18 +23,22 @@ function changeTexture(type, eventElement) {
 /**
  * Cambia la orientación del panel central
  */
-function setOrientation(orientation, eventElement) {
-    const panel = document.getElementById('centralPanel');
+function setOrientation(orientation, btn) {
+    // Manejo visual de los botones activos
+    document.querySelectorAll('.orient-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-    document.querySelectorAll('.orient-btn').forEach(btn => btn.classList.remove('active'));
-    if (eventElement) eventElement.classList.add('active');
+    const panel = document.getElementById('centralPanel');
+    
+    // Quitamos ambas clases primero
+    panel.classList.remove('vertical', 'horizontal');
 
     if (orientation === 'vertical') {
-        panel.classList.remove('horizontal');
         panel.classList.add('vertical');
+        panel.style.transform = 'rotate(0deg)'; // Sin rotación en vertical
     } else {
-        panel.classList.remove('vertical');
         panel.classList.add('horizontal');
+        panel.style.transform = 'rotate(90deg)'; // Rota la textura completa 90 grados en horizontal
     }
 }
 
