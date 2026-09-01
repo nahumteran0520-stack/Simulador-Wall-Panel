@@ -84,7 +84,7 @@ body {
     align-items: center;
 }
 
-/* Escena de la sala */
+/* Escena de la sala usando tu imagen base */
 .room-scene {
     width: 100%;
     height: 100%;
@@ -92,7 +92,10 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #ffffff;
+    background-image: url('Base.jpg'); /* Carga tu imagen base de la habitación */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Paneles laterales (Wall Panels WPC) */
