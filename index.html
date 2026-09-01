@@ -3,50 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador Wall Panel - Centro y Costados</title>
+    <title>Catálogo Interactivo Wall Panel</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Escena del Simulador -->
+    <aside id="catalog-sidebar">
+        <div class="catalog-section">
+            <h2>Catálogo de Acabados</h2>
+            
+            <div class="catalog-category">
+                <label>Panel Central (Mármol)</label>
+                <div class="catalog-options">
+                    <button class="catalog-btn tex-btn active" onclick="changeTexture('blanco', this)">Blanco</button>
+                    <button class="catalog-btn tex-btn" onclick="changeTexture('gris', this)">Gris</button>
+                    <button class="catalog-btn tex-btn" onclick="changeTexture('negro', this)">Negro</button>
+                    <button class="catalog-btn tex-btn" onclick="changeTexture('none', this)">Liso</button>
+                </div>
+            </div>
+
+            <div class="catalog-category">
+                <label>Orientación del Centro</label>
+                <div class="catalog-options">
+                    <button class="catalog-btn orient-btn active" onclick="setOrientation('vertical', this)">Vertical</button>
+                    <button class="catalog-btn orient-btn" onclick="setOrientation('horizontal', this)">Horizontal</button>
+                </div>
+            </div>
+
+            <div class="catalog-category">
+                <label>Costados (Wall Panels)</label>
+                <div class="catalog-options">
+                    <button class="catalog-btn wpc-btn" onclick="changeSidePanel('wpc1', this)">Madera Clara</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeSidePanel('wpc2', this)">Madera Oscura</button>
+                    <button class="catalog-btn wpc-btn active" onclick="changeSidePanel('none', this)">Pared Lisa</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <div id="simulator-viewport">
         <div class="room-scene" id="roomScene">
-            <!-- Paneles laterales (Para los WPC que estás descargando) -->
             <div class="side-panel-left" id="sideLeft"></div>
             
-            <!-- Panel Central con el Mármol y la TV -->
             <div class="central-panel vertical" id="centralPanel">
                 <div class="tv-screen"></div>
             </div>
 
-            <!-- Panel lateral derecho -->
             <div class="side-panel-right" id="sideRight"></div>
 
-            <!-- Mueble flotante -->
             <div class="floating-cabinet" id="floatingCabinet"></div>
-        </div>
-    </div>
-
-    <!-- Panel de Control Inferior -->
-    <div id="control-panel">
-        <!-- Controles para el Mármol Central -->
-        <div class="control-group">
-            <span>Diseño Centro (Mármol)</span>
-            <div class="button-row">
-                <button class="control-btn tex-btn" onclick="changeTexture('blanco')">Blanco</button>
-                <button class="control-btn tex-btn" onclick="changeTexture('gris')">Gris</button>
-                <button class="control-btn tex-btn" onclick="changeTexture('negro')">Negro</button>
-                <button class="control-btn tex-btn" onclick="changeTexture('none')">Ninguno</button>
-            </div>
-        </div>
-
-        <!-- Controles de Orientación -->
-        <div class="control-group">
-            <span>Orientación Panel</span>
-            <div class="button-row">
-                <button class="control-btn orient-btn active" onclick="setOrientation('vertical')">Vertical</button>
-                <button class="control-btn orient-btn" onclick="setOrientation('horizontal')">Horizontal</button>
-            </div>
         </div>
     </div>
 
