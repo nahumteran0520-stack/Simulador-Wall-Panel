@@ -4,13 +4,183 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
     color: #ffffff;
-    display: flex;
     height: 100vh;
     overflow: hidden;
 }
 
+/* --- CONTROL DE PANTALLAS --- */
+.screen {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.screen.active {
+    display: flex;
+}
+
+#home-screen.active {
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+}
+
+.home-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.home-content h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.home-content p {
+    font-size: 16px;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.home-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.main-action-btn {
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.main-action-btn.primary {
+    background-color: #007acc;
+    color: white;
+}
+
+.main-action-btn.secondary {
+    background-color: #333;
+    color: white;
+}
+
+.main-action-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* --- CALCULADORA DE MATERIALES ESTILOS --- */
+#calculator-screen.active {
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    overflow-y: auto;
+}
+
+.calc-container {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    position: relative;
+}
+
+.back-home-btn {
+    background: none;
+    border: none;
+    color: #007acc;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.calc-container h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.calc-subtitle {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+.calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group label {
+    font-size: 13px;
+    color: #ccc;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+}
+
+.calc-btn {
+    background-color: #007acc;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.calc-btn:hover { background-color: #005999; }
+
+.calc-results {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.calc-results.hidden { display: none; }
+
+.highlight-box {
+    background-color: #15222e;
+    border: 1px solid #007acc;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* --- SIMULADOR PANTALLA --- */
+#simulator-screen.active {
+    display: flex;
+    flex-direction: row;
+}
+
 #catalog-sidebar {
     width: 320px;
+    min-width: 320px;
     background-color: #1a1a1a;
     border-right: 1px solid #333;
     display: flex;
@@ -19,14 +189,30 @@ body {
     gap: 25px;
     overflow-y: auto;
     z-index: 10;
+    height: 100vh;
 }
 
-.catalog-section h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: #e0e0e0;
+.catalog-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #333;
     padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.catalog-header-row h2 {
+    font-size: 18px;
+    color: #e0e0e0;
+}
+
+#close-catalog-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .catalog-category {
@@ -71,6 +257,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    height: 100vh;
 }
 
 .room-scene {
@@ -86,7 +273,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* PARED DE FONDO COMPLETA (Wall Panel WPC) */
 .full-background-wall {
     position: absolute;
     top: 8.5%;    
@@ -101,7 +287,6 @@ body {
     transition: background-image 0.3s ease;
 }
 
-/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS --- */
 .wall-led-light {
     position: absolute;
     width: 6px; 
@@ -113,31 +298,11 @@ body {
     border-radius: 3px;
 }
 
-.wall-led-light.left-long {
-    left: 15%;
-    top: 20%;
-    height: 65%; 
-}
+.wall-led-light.left-long { left: 15%; top: 20%; height: 65%; }
+.wall-led-light.left-short { left: 21%; top: 35%; height: 50%; }
+.wall-led-light.right-long { right: 15%; top: 20%; height: 65%; }
+.wall-led-light.right-short { right: 21%; top: 35%; height: 50%; }
 
-.wall-led-light.left-short {
-    left: 21%;
-    top: 35%;
-    height: 50%; 
-}
-
-.wall-led-light.right-long {
-    right: 15%;
-    top: 20%;
-    height: 65%; 
-}
-
-.wall-led-light.right-short {
-    right: 21%;
-    top: 35%;
-    height: 50%; 
-}
-
-/* Panel Central de Mármol */
 .central-panel {
     position: absolute;
     background-color: #ffffff;
@@ -149,19 +314,9 @@ body {
     transition: all 0.3s ease;
 }
 
-.central-panel.vertical {
-    width: 34%;
-    height: 72%;
-    top: 16%;
-}
+.central-panel.vertical { width: 34%; height: 72%; top: 16%; }
+.central-panel.horizontal { width: 52%; height: 42%; top: 30%; }
 
-.central-panel.horizontal {
-    width: 52%;
-    height: 42%;
-    top: 30%;
-}
-
-/* Capa Frontal con la TV y el Mueble */
 .foreground-overlay {
     position: absolute;
     top: 0;
@@ -176,17 +331,12 @@ body {
     z-index: 5; 
 }
 
-/* --- EFECTOS LED INDEPENDIENTES --- */
 .central-panel.led-warm {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 220, 0.95), 
-                0 0 25px 8px rgba(255, 225, 120, 0.65), 
-                0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 6px 3px rgba(255, 255, 220, 0.95), 0 0 25px 8px rgba(255, 225, 120, 0.65), 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .central-panel.led-cool {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 
-                0 0 25px 8px rgba(220, 240, 255, 0.8), 
-                0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .wall-led-light.side-led-warm {
@@ -200,15 +350,46 @@ body {
     box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8) !important;
     opacity: 1 !important;
 }
-/* --- CONTROL DE PANTALLAS (Vistas) --- */
-.screen {
-    display: none;
-    width: 100%;
-    height: 100vh;
+
+#sim-back-btn {
+    position: absolute;
+    top: 15px;
+    left: 340px;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
-.screen.active {
-    display: flex;
-    width: 100%;
-    height: 100vh;
+#mobile-toggle-btn {
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    #catalog-sidebar {
+        position: absolute;
+        left: -320px;
+        transition: left 0.3s ease;
+        height: 100%;
+        z-index: 1000;
+    }
+    #catalog-sidebar.mobile-open { left: 0; }
+    #mobile-toggle-btn { display: block; }
+    #close-catalog-btn { display: block; }
+    #sim-back-btn { left: 155px; }
 }
