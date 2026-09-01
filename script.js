@@ -1,8 +1,7 @@
 // Variables globales para recordar el estado actual
-let currentTexture = 'blanco'; // Textura central por defecto
-let currentOrientation = 'vertical'; // Orientación central por defecto
+let currentTexture = 'blanco'; 
+let currentOrientation = 'vertical'; 
 
-// Función para cambiar la pared de fondo completa (WPC)
 function changeBackgroundWall(wallType, btn) {
     document.querySelectorAll('.wpc-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -59,23 +58,34 @@ function updatePanelBackground() {
     panel.style.backgroundImage = `url('${filename}.jpg')`;
 }
 
-// --- Función de Iluminación LED (Panel Central + Laterales) ---
-function toggleLed(ledType, btn) {
-    document.querySelectorAll('.led-btn').forEach(b => b.classList.remove('active'));
+// --- Control independiente para el Panel Central ---
+function togglePanelLed(ledType, btn) {
+    document.querySelectorAll('.panel-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
     const panel = document.getElementById('centralPanel');
-    
-    // Remueve efectos anteriores tanto del panel central como del body
     panel.classList.remove('led-warm', 'led-cool');
-    document.body.classList.remove('led-warm-active', 'led-cool-active');
     
-    // Aplica el efecto correspondiente
     if (ledType === 'warm') {
         panel.classList.add('led-warm');
-        document.body.classList.add('led-warm-active');
     } else if (ledType === 'cool') {
         panel.classList.add('led-cool');
-        document.body.classList.add('led-cool-active');
     }
+}
+
+// --- Control independiente para las Luces Laterales (WPC) ---
+function toggleSideLed(ledType, btn) {
+    document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const sideLights = document.querySelectorAll('.wall-led-light');
+    
+    sideLights.forEach(light => {
+        light.classList.remove('side-led-warm', 'side-led-cool');
+        if (ledType === 'warm') {
+            light.classList.add('side-led-warm');
+        } else if (ledType === 'cool') {
+            light.classList.add('side-led-cool');
+        }
+    });
 }
