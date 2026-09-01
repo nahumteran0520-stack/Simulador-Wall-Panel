@@ -78,7 +78,6 @@ function toggleSideLed(ledType, btn) {
     document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
-    // Obtenemos cada una de las 4 luces por su ID exacto
     const lights = [
         document.getElementById('leftLong'),
         document.getElementById('leftShort'),
@@ -103,6 +102,7 @@ function toggleMobileCatalog() {
     const sidebar = document.getElementById('catalog-sidebar');
     sidebar.classList.toggle('mobile-open');
 }
+
 // --- Control de cambio de pantallas (Inicio, Calculadora, Simulador) ---
 function switchScreen(screenName) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -116,7 +116,7 @@ function switchScreen(screenName) {
     }
 }
 
-// --- Lógica de cálculo de láminas de PVC (1.22 x 2.44) ---
+// --- Lógica de cálculo combinada: 1 Lámina PVC + Wall Panels (0.46 m²) ---
 function calculatePanels() {
     const heightInput = document.getElementById('wallHeight').value;
     const widthInput = document.getElementById('wallWidth').value;
@@ -132,19 +132,28 @@ function calculatePanels() {
     // 1. Calcular el área total de la pared en metros cuadrados
     const totalArea = height * width;
 
-    // 2. Área de una lámina estándar (1.22m x 2.44m = 2.9776 m²)
-    const panelArea = 1.22 * 2.44;
+    // 2. Área fija que cubre 1 lámina de PVC central (2.97 m²)
+    const pvcSheetArea = 2.97;
 
-    // 3. Cantidad exacta de láminas dividiendo el área
-    const exactPanels = totalArea / panelArea;
-    const roundedPanels = Math.ceil(exactPanels); // Redondeo hacia arriba
+    if (totalArea <= pvcSheetArea) {
+        alert('La pared es muy pequeña para esta configuración (debe ser mayor al área de la lámina central de PVC de 2.97 m²).');
+        return;
+    }
 
-    // 4. Aplicar un 10% extra recomendado por desperdicio de cortes
-    const panelsWithWaste = Math.ceil(roundedPanels * 1.10);
+    // 3. Área restante que se cubrirá con Wall Panels
+    const remainingArea = totalArea - pvcSheetArea;
 
-    // Mostrar los resultados en pantalla
+    // 4. Cada Wall Panel cubre 0.46 m²
+    const wallPanelCoverage = 0.46;
+    const exactWallPanels = remainingArea / wallPanelCoverage;
+    const roundedWallPanels = Math.ceil(exactWallPanels); // Redondeo hacia arriba
+
+    // 5. Aplicar un 10% extra recomendado por desperdicio de cortes
+    const panelsWithWaste = Math.ceil(roundedWallPanels * 1.10);
+
+    // Mostrar los resultados en la interfaz
     document.getElementById('res-area').textContent = totalArea.toFixed(2);
-    document.getElementById('res-panels').textContent = roundedPanels;
+    document.getElementById('res-panels').textContent = `1 Lámina PVC Central (2.97 m²) + ${roundedWallPanels} Wall Panels (${remainingArea.toFixed(2)} m² restantes)`;
     document.getElementById('res-panels-extra').textContent = panelsWithWaste + ' piezas';
 
     // Mostrar el contenedor de resultados
