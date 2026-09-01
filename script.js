@@ -2,9 +2,8 @@
 let currentTexture = 'blanco'; // Textura central por defecto
 let currentOrientation = 'vertical'; // Orientación central por defecto
 
-// Nueva función para cambiar la pared de fondo completa (WPC)
+// Función para cambiar la pared de fondo completa (WPC)
 function changeBackgroundWall(wallType, btn) {
-    // Manejo visual de los botones activos en el menú
     document.querySelectorAll('.wpc-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
@@ -12,9 +11,8 @@ function changeBackgroundWall(wallType, btn) {
     
     if (wallType === 'none') {
         backgroundWall.style.backgroundImage = 'none';
-        backgroundWall.style.backgroundColor = '#ffffff'; // Pared lisa pintada de blanco por defecto
+        backgroundWall.style.backgroundColor = '#ffffff'; 
     } else {
-        // Carga la textura de listones WPC (ej. wpcarena.jpg) y la repite horizontalmente
         backgroundWall.style.backgroundImage = `url('${wallType}.jpg')`;
     }
 }
@@ -26,7 +24,7 @@ function changeTexture(textureName, btn) {
     btn.classList.add('active');
     
     currentTexture = textureName;
-    updatePanelBackground(); // Actualiza el panel central respetando la orientación
+    updatePanelBackground(); 
 }
 
 function setOrientation(orientation, btn) {
@@ -39,7 +37,7 @@ function setOrientation(orientation, btn) {
     panel.classList.remove('vertical', 'horizontal');
     panel.classList.add(orientation);
     
-    updatePanelBackground(); // Actualiza el panel central respetando la orientación actual
+    updatePanelBackground(); 
 }
 
 function updatePanelBackground() {
@@ -47,33 +45,37 @@ function updatePanelBackground() {
     
     if (currentTexture === 'none') {
         panel.style.backgroundImage = 'none';
-        panel.style.backgroundColor = '#ffffff'; // Fondo blanco si no hay mármol
+        panel.style.backgroundColor = '#ffffff'; 
         return;
     }
     
-    panel.style.backgroundColor = '#ffffff'; // Asegura fondo blanco
+    panel.style.backgroundColor = '#ffffff'; 
 
-    // Determina el sufijo "-h" si es horizontal, sino usa la normal
     let filename = currentTexture;
     if (currentOrientation === 'horizontal') {
         filename = currentTexture + '-h'; 
     }
 
-    // Aplica la textura de mármol correspondiente
     panel.style.backgroundImage = `url('${filename}.jpg')`;
-}function toggleLed(ledType, btn) {
+}
+
+// --- Función de Iluminación LED (Panel Central + Laterales) ---
+function toggleLed(ledType, btn) {
     document.querySelectorAll('.led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
     const panel = document.getElementById('centralPanel');
     
-    // Remueve los efectos anteriores
+    // Remueve efectos anteriores tanto del panel central como del body
     panel.classList.remove('led-warm', 'led-cool');
+    document.body.classList.remove('led-warm-active', 'led-cool-active');
     
     // Aplica el efecto correspondiente
     if (ledType === 'warm') {
         panel.classList.add('led-warm');
+        document.body.classList.add('led-warm-active');
     } else if (ledType === 'cool') {
         panel.classList.add('led-cool');
+        document.body.classList.add('led-cool-active');
     }
 }
