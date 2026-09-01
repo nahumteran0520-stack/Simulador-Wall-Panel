@@ -117,24 +117,25 @@ body {
 .central-panel {
     position: absolute;
     background-color: #ffffff;
-    background-size: 100% 100%; /* Estira la textura exactamente para que cubra todo el panel nítida sin zoom excesivo */
-    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     z-index: 1;
     transition: all 0.3s ease;
 }
 
+/* Modo Vertical */
 .central-panel.vertical {
-    width: 36%;
-    height: 75%;
-    top: 15%;
+    width: 34%;
+    height: 72%;
+    top: 16%;
 }
 
+/* Modo Horizontal (Reducido de tamaño y con rotación fluida para las vetas) */
 .central-panel.horizontal {
-    width: 58%;
-    height: 48%;
-    top: 22%;
+    width: 52%;
+    height: 42%;
+    top: 25%;
 }
 
 /* Capa Frontal con la TV y el Mueble recortados (Capa 2: Al frente) */
