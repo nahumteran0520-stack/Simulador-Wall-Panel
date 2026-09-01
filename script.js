@@ -116,7 +116,7 @@ function switchScreen(screenName) {
     }
 }
 
-// --- Lógica de cálculo combinada: 1 Lámina PVC + Wall Panels (0.46 m²) ---
+// --- Lógica de cálculo combinada: 1 Lámina PVC + Wall Panels (0.46 m²) con 5% de desperdicio ---
 function calculatePanels() {
     const heightInput = document.getElementById('wallHeight').value;
     const widthInput = document.getElementById('wallWidth').value;
@@ -148,8 +148,8 @@ function calculatePanels() {
     const exactWallPanels = remainingArea / wallPanelCoverage;
     const roundedWallPanels = Math.ceil(exactWallPanels); // Redondeo hacia arriba
 
-    // 5. Aplicar un 10% extra recomendado por desperdicio de cortes
-    const panelsWithWaste = Math.ceil(roundedWallPanels * 1.10);
+    // 5. Aplicar un 5% extra recomendado por desperdicio de cortes
+    const panelsWithWaste = Math.ceil(roundedWallPanels * 1.05);
 
     // Mostrar los resultados en la interfaz
     document.getElementById('res-area').textContent = totalArea.toFixed(2);
