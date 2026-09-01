@@ -74,7 +74,7 @@ body {
     background-color: #223a4c;
 }
 
-/* Contenedor principal de la escena visual */
+/* Contenedor principal de la escena */
 #simulator-viewport {
     flex: 1;
     position: relative;
@@ -84,7 +84,7 @@ body {
     align-items: center;
 }
 
-/* Escena de la sala usando tu imagen base */
+/* Escena de la sala con la imagen base limpia de fondo */
 .room-scene {
     width: 100%;
     height: 100%;
@@ -92,73 +92,61 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-image: url('Base.jpg'); /* Carga tu imagen base de la habitación */
+    background-image: url('Base.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Paneles laterales (Wall Panels WPC) */
+/* Paneles laterales WPC (Capa 1: Al fondo) */
 .side-panel-left, .side-panel-right {
     position: absolute;
-    top: 0;
-    width: 25%;
-    height: 100%;
+    top: 15%;
+    width: 22%;
+    height: 65%;
     background-color: transparent;
     background-size: cover;
     background-position: center;
+    z-index: 1;
     transition: background-image 0.3s ease;
 }
-.side-panel-left { left: 0; }
-.side-panel-right { right: 0; }
+.side-panel-left { left: 18%; }
+.side-panel-right { right: 18%; }
 
-/* Panel Central Dinámico */
+/* Panel Central de Mármol (Capa 1: Al fondo) */
 .central-panel {
-    width: 50%;
-    height: 85%;
+    position: absolute;
+    width: 40%;
+    height: 70%;
     background-color: #ffffff;
     background-size: cover;
     background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: width 0.4s ease, height 0.4s ease, background-image 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    transition: all 0.3s ease;
 }
 
 .central-panel.vertical {
-    width: 45%;
-    height: 90%;
-}
-
-.central-panel.horizontal {
-    width: 65%;
+    width: 36%;
     height: 75%;
 }
 
-/* Televisor */
-.tv-screen {
-    width: 45%;
-    height: 40%;
-    background-color: #000000;
-    border-radius: 4px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    border: 4px solid #1a1a1a;
-    z-index: 2;
+.central-panel.horizontal {
+    width: 50%;
+    height: 60%;
 }
 
-/* Mueble flotante */
-.floating-cabinet {
+/* Capa Frontal con la TV y el Mueble recortados (Capa 2: Al frente) */
+.foreground-overlay {
     position: absolute;
-    bottom: 20%;
-    width: 55%;
-    height: 7%;
-    background-color: #d2b48c;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('mueble-tv.png');
     background-size: cover;
     background-position: center;
-    border-radius: 4px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-    z-index: 3;
+    background-repeat: no-repeat;
+    pointer-events: none; /* Permite hacer clic a través de ella si hiciera falta */
+    z-index: 5; /* Siempre por encima de los paneles */
 }
