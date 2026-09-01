@@ -8,10 +8,12 @@
 </head>
 <body>
 
+    <!-- Barra Lateral de Catálogo -->
     <aside id="catalog-sidebar">
         <div class="catalog-section">
             <h2>Catálogo de Acabados</h2>
             
+            <!-- Panel Central (Mármol) -->
             <div class="catalog-category">
                 <label>Panel Central (Mármol)</label>
                 <div class="catalog-options">
@@ -22,6 +24,7 @@
                 </div>
             </div>
 
+            <!-- Orientación -->
             <div class="catalog-category">
                 <label>Orientación del Centro</label>
                 <div class="catalog-options">
@@ -30,6 +33,7 @@
                 </div>
             </div>
 
+            <!-- Wall Panels Laterales (WPC) -->
             <div class="catalog-category">
                 <label>Costados (Wall Panels)</label>
                 <div class="catalog-options">
@@ -41,17 +45,20 @@
         </div>
     </aside>
 
+    <!-- Escena del Simulador Visual -->
     <div id="simulator-viewport">
         <div class="room-scene" id="roomScene">
+            <!-- 1. Paneles laterales al fondo -->
             <div class="side-panel-left" id="sideLeft"></div>
             
-            <div class="central-panel vertical" id="centralPanel">
-                <div class="tv-screen"></div>
-            </div>
+            <!-- 2. Panel central al fondo -->
+            <div class="central-panel vertical" id="centralPanel"></div>
 
+            <!-- 3. Paneles laterales derechos al fondo -->
             <div class="side-panel-right" id="sideRight"></div>
 
-            <div class="floating-cabinet" id="floatingCabinet"></div>
+            <!-- 4. Capa superior con la TV y el Mueble recortados -->
+            <div class="foreground-overlay"></div>
         </div>
     </div>
 
