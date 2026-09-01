@@ -9,11 +9,72 @@ body {
     background-color: #121212;
     color: #ffffff;
     display: flex;
-    flex-direction: column;
     height: 100vh;
+    overflow: hidden;
 }
 
-/* Contenedor principal de la escena */
+/* Barra lateral del Catálogo */
+#catalog-sidebar {
+    width: 320px;
+    background-color: #1a1a1a;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 25px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.catalog-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+}
+
+.catalog-category {
+    margin-bottom: 15px;
+}
+
+.catalog-category label {
+    font-size: 13px;
+    color: #aaa;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.catalog-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.catalog-btn {
+    padding: 10px;
+    background-color: #2a2a2a;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.catalog-btn:hover {
+    background-color: #3a3a3a;
+}
+
+.catalog-btn.active {
+    border-color: #007acc;
+    background-color: #223a4c;
+}
+
+/* Contenedor principal de la escena visual */
 #simulator-viewport {
     flex: 1;
     position: relative;
@@ -21,10 +82,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
-/* Escena completa de la sala */
+/* Escena de la sala */
 .room-scene {
     width: 100%;
     height: 100%;
@@ -32,24 +92,24 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #ffffff; /* Pared blanca general */
+    background-color: #ffffff;
 }
 
-/* Zona de los costados (Preparada para los Wall Panels que estás descargando) */
+/* Paneles laterales (Wall Panels WPC) */
 .side-panel-left, .side-panel-right {
     position: absolute;
     top: 0;
     width: 25%;
     height: 100%;
-    background-color: transparent; /* Aquí cargarán los WPC laterales */
+    background-color: transparent;
     background-size: cover;
     background-position: center;
-    transition: background 0.3s ease;
+    transition: background-image 0.3s ease;
 }
 .side-panel-left { left: 0; }
 .side-panel-right { right: 0; }
 
-/* Panel central (Donde van las láminas de mármol blanco, gris o negro) */
+/* Panel Central Dinámico */
 .central-panel {
     width: 50%;
     height: 85%;
@@ -65,7 +125,6 @@ body {
     transition: width 0.4s ease, height 0.4s ease, background-image 0.3s ease;
 }
 
-/* Clases dinámicas para la orientación del panel central */
 .central-panel.vertical {
     width: 45%;
     height: 90%;
@@ -76,7 +135,7 @@ body {
     height: 75%;
 }
 
-/* Pantalla de Televisión centrada sobre el panel */
+/* Televisor */
 .tv-screen {
     width: 45%;
     height: 40%;
@@ -87,7 +146,7 @@ body {
     z-index: 2;
 }
 
-/* Mueble flotante simétrico */
+/* Mueble flotante */
 .floating-cabinet {
     position: absolute;
     bottom: 20%;
@@ -99,59 +158,4 @@ body {
     border-radius: 4px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
     z-index: 3;
-}
-
-/* Panel de Control Inferior Dividido por Secciones */
-#control-panel {
-    height: 110px;
-    background-color: #1e1e1e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    border-top: 1px solid #333;
-    padding: 0 20px;
-}
-
-.control-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.control-group span {
-    font-size: 12px;
-    color: #aaa;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.button-row {
-    display: flex;
-    gap: 8px;
-}
-
-.control-btn {
-    padding: 8px 14px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 13px;
-    transition: background 0.2s, transform 0.1s;
-}
-
-.control-btn:hover {
-    background-color: #555;
-}
-
-.control-btn.active {
-    background-color: #007acc;
-}
-
-.control-btn:active {
-    transform: scale(0.96);
 }
