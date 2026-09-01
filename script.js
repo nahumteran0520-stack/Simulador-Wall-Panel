@@ -103,3 +103,50 @@ function toggleMobileCatalog() {
     const sidebar = document.getElementById('catalog-sidebar');
     sidebar.classList.toggle('mobile-open');
 }
+// --- Control de cambio de pantallas (Inicio, Calculadora, Simulador) ---
+function switchScreen(screenName) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    
+    if (screenName === 'home') {
+        document.getElementById('home-screen').classList.add('active');
+    } else if (screenName === 'calculator') {
+        document.getElementById('calculator-screen').classList.add('active');
+    } else if (screenName === 'simulator') {
+        document.getElementById('simulator-screen').classList.add('active');
+    }
+}
+
+// --- Lógica de cálculo de láminas de PVC (1.22 x 2.44) ---
+function calculatePanels() {
+    const heightInput = document.getElementById('wallHeight').value;
+    const widthInput = document.getElementById('wallWidth').value;
+
+    const height = parseFloat(heightInput);
+    const width = parseFloat(widthInput);
+
+    if (isNaN(height) || isNaN(width) || height <= 0 || width <= 0) {
+        alert('Por favor, ingresa medidas válidas mayores a cero.');
+        return;
+    }
+
+    // 1. Calcular el área total de la pared en metros cuadrados
+    const totalArea = height * width;
+
+    // 2. Área de una lámina estándar (1.22m x 2.44m = 2.9776 m²)
+    const panelArea = 1.22 * 2.44;
+
+    // 3. Cantidad exacta de láminas dividiendo el área
+    const exactPanels = totalArea / panelArea;
+    const roundedPanels = Math.ceil(exactPanels); // Redondeo hacia arriba
+
+    // 4. Aplicar un 10% extra recomendado por desperdicio de cortes
+    const panelsWithWaste = Math.ceil(roundedPanels * 1.10);
+
+    // Mostrar los resultados en pantalla
+    document.getElementById('res-area').textContent = totalArea.toFixed(2);
+    document.getElementById('res-panels').textContent = roundedPanels;
+    document.getElementById('res-panels-extra').textContent = panelsWithWaste + ' piezas';
+
+    // Mostrar el contenedor de resultados
+    document.getElementById('calc-results').classList.remove('hidden');
+}
