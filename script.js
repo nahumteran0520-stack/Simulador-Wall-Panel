@@ -1,4 +1,3 @@
-// Variables globales para recordar el estado actual
 let currentTexture = 'blanco'; 
 let currentOrientation = 'vertical'; 
 
@@ -15,8 +14,6 @@ function changeBackgroundWall(wallType, btn) {
         backgroundWall.style.backgroundImage = `url('${wallType}.jpg')`;
     }
 }
-
-// --- Funciones del panel central (Mármol) ---
 
 function changeTexture(textureName, btn) {
     document.querySelectorAll('.tex-btn').forEach(b => b.classList.remove('active'));
@@ -58,7 +55,6 @@ function updatePanelBackground() {
     panel.style.backgroundImage = `url('${filename}.jpg')`;
 }
 
-// --- Control independiente para el Panel Central ---
 function togglePanelLed(ledType, btn) {
     document.querySelectorAll('.panel-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -73,7 +69,6 @@ function togglePanelLed(ledType, btn) {
     }
 }
 
-// --- Control independiente y directo para las Luces Laterales (WPC) ---
 function toggleSideLed(ledType, btn) {
     document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -97,13 +92,11 @@ function toggleSideLed(ledType, btn) {
     });
 }
 
-// --- Control del menú desplegable en Móvil ---
 function toggleMobileCatalog() {
     const sidebar = document.getElementById('catalog-sidebar');
     sidebar.classList.toggle('mobile-open');
 }
 
-// --- Control de cambio de pantallas (Inicio, Calculadora, Simulador) ---
 function switchScreen(screenName) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     
@@ -116,7 +109,6 @@ function switchScreen(screenName) {
     }
 }
 
-// --- Lógica de cálculo combinada: 1 Lámina PVC + Wall Panels (0.46 m²) con 5% de desperdicio ---
 function calculatePanels() {
     const heightInput = document.getElementById('wallHeight').value;
     const widthInput = document.getElementById('wallWidth').value;
@@ -129,10 +121,7 @@ function calculatePanels() {
         return;
     }
 
-    // 1. Calcular el área total de la pared en metros cuadrados
     const totalArea = height * width;
-
-    // 2. Área fija que cubre 1 lámina de PVC central (2.97 m²)
     const pvcSheetArea = 2.97;
 
     if (totalArea <= pvcSheetArea) {
@@ -140,22 +129,16 @@ function calculatePanels() {
         return;
     }
 
-    // 3. Área restante que se cubrirá con Wall Panels
     const remainingArea = totalArea - pvcSheetArea;
-
-    // 4. Cada Wall Panel cubre 0.46 m²
     const wallPanelCoverage = 0.46;
     const exactWallPanels = remainingArea / wallPanelCoverage;
-    const roundedWallPanels = Math.ceil(exactWallPanels); // Redondeo hacia arriba
+    const roundedWallPanels = Math.ceil(exactWallPanels); 
 
-    // 5. Aplicar un 5% extra recomendado por desperdicio de cortes
     const panelsWithWaste = Math.ceil(roundedWallPanels * 1.05);
 
-    // Mostrar los resultados en la interfaz
     document.getElementById('res-area').textContent = totalArea.toFixed(2);
-    document.getElementById('res-panels').textContent = `1 Lámina PVC Central (2.97 m²) + ${roundedWallPanels} Wall Panels (${remainingArea.toFixed(2)} m² restantes)`;
+    document.getElementById('res-panels').textContent = `1 Lámina de PVC Central (2.97 m²) + ${roundedWallPanels} Wall Panels (${remainingArea.toFixed(2)} m² restantes)`;
     document.getElementById('res-panels-extra').textContent = panelsWithWaste + ' piezas';
 
-    // Mostrar el contenedor de resultados
     document.getElementById('calc-results').classList.remove('hidden');
 }
