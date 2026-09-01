@@ -33,13 +33,13 @@
                 </div>
             </div>
 
-            <!-- Wall Panels Laterales (WPC) -->
+            <!-- Wall Panels (WPC) - Fondo Completo -->
             <div class="catalog-category">
-                <label>Costados (Wall Panels)</label>
+                <label>Pared (Wall Panels WPC)</label>
                 <div class="catalog-options">
-                    <button class="catalog-btn wpc-btn" onclick="changeSidePanel('wpc1', this)">Madera Clara</button>
-                    <button class="catalog-btn wpc-btn" onclick="changeSidePanel('wpc2', this)">Madera Oscura</button>
-                    <button class="catalog-btn wpc-btn active" onclick="changeSidePanel('none', this)">Pared Lisa</button>
+                    <button class="catalog-btn wpc-btn active" onclick="changeBackgroundWall('wpc1', this)">Madera Clara</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpc2', this)">Madera Oscura</button>
+                    <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('none', this)">Pared Lisa (Pintura)</button>
                 </div>
             </div>
         </div>
@@ -48,16 +48,15 @@
     <!-- Escena del Simulador Visual -->
     <div id="simulator-viewport">
         <div class="room-scene" id="roomScene">
-            <!-- 1. Paneles laterales al fondo -->
-            <div class="side-panel-left" id="sideLeft"></div>
             
-            <!-- 2. Panel central al fondo -->
+            <!-- 1. NUEVA PARED DE FONDO COMPLETA (Capa 1: Al fondo de todo) -->
+            <!-- Esta capa cubrirá toda la pared visible detrás de los muebles -->
+            <div class="full-background-wall" id="fullBackgroundWall"></div>
+            
+            <!-- 2. Panel central al fondo (Capa 2: Delante de la pared WPC) -->
             <div class="central-panel vertical" id="centralPanel"></div>
 
-            <!-- 3. Paneles laterales derechos al fondo -->
-            <div class="side-panel-right" id="sideRight"></div>
-
-            <!-- 4. Capa superior con la TV y el Mueble recortados -->
+            <!-- 3. Capa superior con la TV y el Mueble recortados (Capa 3: Al frente) -->
             <div class="foreground-overlay"></div>
         </div>
     </div>
