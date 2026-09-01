@@ -1,453 +1,229 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
+/* ==========================================
+   ESTILOS GENERALES Y PANTALLAS
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #0f0f0f;
     color: #ffffff;
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
 }
 
-#catalog-sidebar {
-    width: 320px;
-    background-color: #1a1a1a;
-    border-right: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 25px;
-    overflow-y: auto;
-    z-index: 10;
-    transition: transform 0.3s ease;
-}
-
-.catalog-section h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: #e0e0e0;
-    border-bottom: 1px solid #333;
-    padding-bottom: 8px;
-}
-
-.catalog-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#close-catalog-btn, #mobile-toggle-btn {
-    display: none; /* Oculto por defecto en PC */
-}
-
-.catalog-category {
-    margin-bottom: 15px;
-}
-
-.catalog-category label {
-    font-size: 13px;
-    color: #aaa;
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.catalog-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.catalog-btn {
-    padding: 10px;
-    background-color: #2a2a2a;
-    color: white;
-    border: 2px solid transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.catalog-btn:hover { background-color: #3a3a3a; }
-.catalog-btn.active { border-color: #007acc; background-color: #223a4c; }
-
-#simulator-viewport {
-    flex: 1;
-    position: relative;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.room-scene {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-image: url('Base.jpg');
-    background-size: cover; /* Mantiene la proporción en PC */
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* PARED DE FONDO COMPLETA (Wall Panel WPC) */
-.full-background-wall {
-    position: absolute;
-    top: 8.5%;    
-    left: 8.5%;   
-    width: 83%;   
-    height: 82%;  
-    background-color: transparent; 
-    background-size: auto 100%; 
-    background-repeat: repeat-x; 
-    background-position: center;
-    z-index: 0; 
-    transition: background-image 0.3s ease;
-}
-
-/* --- LÍNEAS DE LUZ LED VERTICALES EN LOS COSTADOS --- */
-.wall-led-light {
-    position: absolute;
-    width: 6px; 
-    background-color: transparent;
-    z-index: 6; 
-    pointer-events: none;
-    transition: all 0.3s ease;
-    opacity: 0; 
-    border-radius: 3px;
-}
-
-.wall-led-light.left-long {
-    left: 15%;
-    top: 20%;
-    height: 65%; 
-}
-
-.wall-led-light.left-short {
-    left: 21%;
-    top: 35%;
-    height: 50%; 
-}
-
-.wall-led-light.right-long {
-    right: 15%;
-    top: 20%;
-    height: 65%; 
-}
-
-.wall-led-light.right-short {
-    right: 21%;
-    top: 35%;
-    height: 50%; 
-}
-
-/* Panel Central de Mármol */
-.central-panel {
-    position: absolute;
-    background-color: #ffffff;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    z-index: 3; 
-    transition: all 0.3s ease;
-}
-
-.central-panel.vertical {
-    width: 34%;
-    height: 72%;
-    top: 16%;
-}
-
-.central-panel.horizontal {
-    width: 52%;
-    height: 42%;
-    top: 30%;
-}
-
-/* Capa Frontal con la TV y el Mueble */
-.foreground-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('mueble-tv.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: 5; 
-}
-
-/* --- EFECTOS LED INDEPENDIENTES --- */
-.central-panel.led-warm {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 220, 0.95), 
-                0 0 25px 8px rgba(255, 225, 120, 0.65), 
-                0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.central-panel.led-cool {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 
-                0 0 25px 8px rgba(220, 240, 255, 0.8), 
-                0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.wall-led-light.side-led-warm {
-    background: linear-gradient(to bottom, #ffffff, #ffe89e, #ffffff) !important;
-    box-shadow: 0 0 3px 1px #ffffff, 
-                0 0 8px 3px rgba(255, 230, 140, 0.9), 
-                0 0 18px 5px rgba(255, 200, 80, 0.5) !important;
-    opacity: 1 !important;
-}
-
-.wall-led-light.side-led-cool {
-    background: linear-gradient(to bottom, #ffffff, #d0f0ff, #ffffff) !important;
-    box-shadow: 0 0 3px 1px #ffffff, 
-                0 0 8px 3px rgba(210, 240, 255, 0.9), 
-                0 0 18px 5px rgba(180, 220, 255, 0.6) !important;
-    opacity: 1 !important;
-}
-
-/* ========================================== */
-/*           ADAPTACIÓN MÓVIL (RESPONSIVE)    */
-/* ========================================== */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
-    /* Ajuste clave para ver todo el panorama sin recortes en celulares */
-    .room-scene {
-        background-size: contain; 
-        background-color: #121212; 
-    }
-
-    /* El catálogo pasa a ser un panel flotante retráctil por encima */
-    #catalog-sidebar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 70vh;
-        background-color: rgba(26, 26, 26, 0.98);
-        backdrop-filter: blur(10px);
-        border-top: 2px solid #007acc;
-        border-right: none;
-        transform: translateY(100%); /* Oculto por defecto abajo */
-        z-index: 1000;
-        border-radius: 20px 20px 0 0;
-    }
-
-    /* Clase para mostrar el menú cuando se presione el botón */
-    #catalog-sidebar.mobile-open {
-        transform: translateY(0);
-    }
-
-    #simulator-viewport {
-        width: 100%;
-        height: 100vh;
-    }
-
-    /* Botón flotante para abrir el menú en la esquina inferior */
-    #mobile-toggle-btn {
-        display: block;
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #007acc;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 30px;
-        font-size: 15px;
-        font-weight: bold;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        z-index: 999;
-        cursor: pointer;
-    }
-
-    /* Botón de cerrar dentro del panel lateral */
-    #close-catalog-btn {
-        display: inline-block;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 5px 10px;
-    }
-}
-/* ========================================== */
-/*     ESTILOS DE NAVEGACIÓN ENTRE PANTALLAS  */
-/* ========================================== */
 .screen {
-    display: none;
-    width: 100vw;
-    height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
 }
 
 .screen.active {
     display: flex;
+    opacity: 1;
+    z-index: 10;
 }
 
-/* --- Portada de Inicio --- */
+/* ==========================================
+   1. PORTADA DE INICIO PROFESIONAL
+   ========================================== */
 #home-screen {
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('Base.jpg');
-    background-size: cover;
-    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none; /* Se controla con la clase .active */
     justify-content: center;
     align-items: center;
-    text-align: center;
-    z-index: 2000;
+    background-color: #111;
+    /* Imagen de portada personalizada con filtro oscuro elegante */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.80)), url('portada.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+}
+
+#home-screen.active {
+    display: flex;
 }
 
 .home-hero {
-    max-width: 700px;
-    padding: 30px;
+    text-align: center;
+    padding: 40px;
+    max-width: 800px;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
-.home-hero h1 {
-    font-size: 38px;
-    margin-bottom: 15px;
+.home-content h1 {
+    font-size: 3rem;
     color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.home-hero p {
-    font-size: 16px;
+.home-content p {
+    font-size: 1.2rem;
     color: #cccccc;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+    line-height: 1.6;
 }
 
 .home-buttons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
+/* Botones de acción principales mejorados */
 .main-action-btn {
-    padding: 14px 28px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 30px;
-    border: none;
+    padding: 16px 30px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 .main-action-btn.primary {
-    background-color: #007acc;
-    color: white;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #ffffff;
 }
 
 .main-action-btn.primary:hover {
-    background-color: #005999;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #0056b3, #003f8a);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
 }
 
 .main-action-btn.secondary {
-    background-color: #2a2a2a;
-    color: white;
-    border: 1px solid #444;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .main-action-btn.secondary:hover {
-    background-color: #3a3a3a;
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.1);
 }
 
-/* --- Calculadora de Materiales --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==========================================
+   2. CALCULADORA DE MATERIALES
+   ========================================== */
 #calculator-screen {
-    background-color: #121212;
+    background-color: #1a1a1a;
     justify-content: center;
     align-items: center;
-    z-index: 1500;
     overflow-y: auto;
     padding: 20px;
 }
 
 .calc-container {
-    background-color: #1a1a1a;
-    padding: 35px;
-    border-radius: 15px;
-    border: 1px solid #333;
+    background: #242424;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
 }
 
-.calc-container h2 {
-    font-size: 22px;
-    margin-bottom: 5px;
+.back-home-btn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.back-home-btn:hover {
     color: #fff;
 }
 
+.calc-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
 .calc-subtitle {
-    font-size: 13px;
     color: #aaa;
+    font-size: 0.95rem;
     margin-bottom: 25px;
 }
 
 .input-group {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
 .input-group label {
     display: block;
-    font-size: 14px;
-    color: #ccc;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #ddd;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
-    background-color: #2a2a2a;
+    padding: 12px 15px;
+    background: #181818;
     border: 1px solid #444;
     border-radius: 8px;
-    color: white;
-    font-size: 16px;
+    color: #fff;
+    font-size: 1rem;
 }
 
 .input-group input:focus {
-    border-color: #007acc;
+    border-color: #007bff;
     outline: none;
 }
 
 .calc-btn {
     width: 100%;
-    padding: 12px;
-    background-color: #007acc;
+    padding: 14px;
+    background: #007bff;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    margin-top: 10px;
     transition: background 0.2s;
 }
 
 .calc-btn:hover {
-    background-color: #005999;
+    background: #0056b3;
 }
 
 .calc-results {
-    margin-top: 25px;
+    margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #333;
     text-align: left;
@@ -458,55 +234,172 @@ body {
 }
 
 .calc-results h3 {
-    font-size: 16px;
-    color: #007acc;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
 }
 
 .calc-results p {
-    font-size: 14px;
+    margin: 6px 0;
     color: #ccc;
-    margin-bottom: 6px;
 }
 
 .highlight-box {
-    background-color: #223a4c;
-    border: 1px solid #007acc;
-    padding: 12px;
-    border-radius: 8px;
     margin-top: 15px;
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
     text-align: center;
 }
 
 .highlight-box h2 {
     color: #4da6ff;
-    font-size: 24px;
     margin-top: 5px;
 }
 
-.back-home-btn, #sim-back-btn {
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+
+/* ==========================================
+   3. SIMULADOR (Estructura visual)
+   ========================================== */
+#simulator-screen {
+    display: none;
+    flex-direction: row;
 }
 
-.back-home-btn:hover, #sim-back-btn:hover {
-    color: #fff;
+#simulator-screen.active {
+    display: flex;
 }
 
 #sim-back-btn {
     position: absolute;
     top: 20px;
     left: 20px;
-    z-index: 99;
-    background-color: rgba(0,0,0,0.7);
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 1px solid #444;
+    z-index: 100;
+    padding: 10px 18px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+#mobile-toggle-btn {
+    display: none;
+}
+
+#catalog-sidebar {
+    width: 320px;
+    background: #181818;
+    border-right: 1px solid #2a2a2a;
+    overflow-y: auto;
+    z-index: 50;
+    padding: 20px;
+}
+
+.catalog-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#close-catalog-btn {
+    display: none;
+}
+
+.catalog-category {
+    margin-bottom: 20px;
+}
+
+.catalog-category label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.catalog-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.catalog-btn {
+    padding: 10px;
+    background: #252525;
+    border: 1px solid #333;
+    color: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.catalog-btn:hover {
+    background: #333;
+    color: white;
+}
+
+.catalog-btn.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+#simulator-viewport {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #121212;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-scene {
+    width: 800px;
+    height: 500px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    background: #000;
+}
+
+.full-background-wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Luces y panel central del simulador */
+.wall-led-light {
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.central-panel {
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width: 40%;
+    height: 70%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.foreground-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
