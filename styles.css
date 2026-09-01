@@ -34,7 +34,7 @@ body, html {
 }
 
 /* ==========================================
-   1. PORTADA DE INICIO PROFESIONAL
+   1. PORTADA DE INICIO (Ajustada y elegante)
    ========================================== */
 #home-screen {
     position: fixed;
@@ -46,9 +46,9 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #111;
-    /* Imagen de portada personalizada con filtro oscuro elegante */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.80)), url('portada.jpg');
-    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('portada.jpg');
+    background-size: 500px auto; /* Controla el tamaño de la imagen */
+    background-repeat: no-repeat;
     background-position: center;
     z-index: 1000;
 }
@@ -61,6 +61,11 @@ body, html {
     text-align: center;
     padding: 40px;
     max-width: 800px;
+    background: rgba(15, 15, 15, 0.85); /* Caja semitransparente para legibilidad */
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -259,11 +264,17 @@ body, html {
 
 
 /* ==========================================
-   3. SIMULADOR (Estructura visual)
+   3. SIMULADOR (Corrección de diseño lateral)
    ========================================== */
 #simulator-screen {
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     flex-direction: row;
+    overflow: hidden;
 }
 
 #simulator-screen.active {
@@ -290,6 +301,8 @@ body, html {
 
 #catalog-sidebar {
     width: 320px;
+    min-width: 320px;
+    height: 100%;
     background: #181818;
     border-right: 1px solid #2a2a2a;
     overflow-y: auto;
@@ -352,6 +365,7 @@ body, html {
 
 #simulator-viewport {
     flex-grow: 1;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
