@@ -8,9 +8,15 @@
 </head>
 <body>
 
+    <!-- Botón flotante exclusivo para móviles -->
+    <button id="mobile-toggle-btn" onclick="toggleMobileCatalog()">🎨 Menú de Catálogo</button>
+
     <aside id="catalog-sidebar">
         <div class="catalog-section">
-            <h2>Catálogo de Acabados</h2>
+            <div class="catalog-header-row">
+                <h2>Catálogo de Acabados</h2>
+                <button id="close-catalog-btn" onclick="toggleMobileCatalog()">✕</button>
+            </div>
             
             <div class="catalog-category">
                 <label>Panel Central (Mármol)</label>
