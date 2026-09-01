@@ -1,34 +1,54 @@
+// Variables de Estado Global
+let currentTexture = 'none';
+let currentOrientation = 'vertical';
+
 /**
- * Función encargada de alternar los acabados y texturas del panel central
- * @param {string} type - Tipo de textura ('marble', 'wpc', 'plain')
+ * Cambia la textura central usando los archivos de imagen exactos
+ * @param {string} type - 'blanco', 'gris', 'negro' o 'none'
  */
 function changeTexture(type) {
+    currentTexture = type;
     const panel = document.getElementById('centralPanel');
 
-    switch (type) {
-        case 'marble':
-            panel.style.backgroundColor = '#ffffff';
-            // Reemplaza con la ruta de tu textura de mármol
-            panel.style.backgroundImage = "url('assets/marble-texture.jpg')";
-            break;
-            
-        case 'wpc':
-            panel.style.backgroundColor = '#8b5a2b';
-            // Reemplaza con la ruta de tu textura WPC / Listones de madera
-            panel.style.backgroundImage = "url('assets/wpc-slats.jpg')";
-            break;
-            
-        case 'plain':
-            panel.style.backgroundImage = 'none';
-            panel.style.backgroundColor = '#ffffff'; // Pared blanca lisa
-            break;
-            
-        default:
-            console.warn('Tipo de textura no reconocido');
+    // Actualizar clases activas de los botones de textura
+    document.querySelectorAll('.tex-btn').forEach(btn => btn.classList.remove('active'));
+    if (type !== 'none') {
+        event.target.classList.add('active');
+    }
+
+    if (type === 'blanco') {
+        panel.style.backgroundImage = "url('blanco.jpg')";
+    } else if (type === 'gris') {
+        panel.style.backgroundImage = "url('Gris.jpg')";
+    } else if (type === 'negro') {
+        panel.style.backgroundImage = "url('Negro.jpg')";
+    } else {
+        panel.style.backgroundImage = 'none';
+        panel.style.backgroundColor = '#ffffff';
     }
 }
 
-// Opcional: Inicializador o eventos extra si se requiere carga dinámica
+/**
+ * Cambia la orientación del panel central (Vertical u Horizontal)
+ * @param {string} orientation - 'vertical' o 'horizontal'
+ */
+function setOrientation(orientation) {
+    currentOrientation = orientation;
+    const panel = document.getElementById('centralPanel');
+
+    // Actualizar botones de orientación
+    document.querySelectorAll('.orient-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (orientation === 'vertical') {
+        panel.classList.remove('horizontal');
+        panel.classList.add('vertical');
+    } else if (orientation === 'horizontal') {
+        panel.classList.remove('vertical');
+        panel.classList.add('horizontal');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Simulador de Wall Panel cargado correctamente.");
+    console.log("Simulador configurado con éxito. Listo para los Wall Panels laterales.");
 });
