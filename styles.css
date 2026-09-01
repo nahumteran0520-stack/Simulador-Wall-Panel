@@ -89,13 +89,16 @@ body {
 /* PARED DE FONDO COMPLETA (Wall Panel WPC) */
 .full-background-wall {
     position: absolute;
-    top: 12%; 
-    left: 10%; 
-    width: 80%; 
-    height: 76%; 
+    /* --- AJUSTA ESTOS 4 VALORES PARA CUBRIR EL BORDE BLANCO --- */
+    top: 8.5%;    /* Bájalo a 8% o súbelo a 9% para ajustar el margen del techo */
+    left: 8.5%;   /* Ajusta el margen izquierdo */
+    width: 83%;   /* Aumenta a 84% si falta cubrir la derecha */
+    height: 82%;  /* Aumenta a 83% o 84% si falta llegar al piso */
+    /* ---------------------------------------------------------- */
+    
     background-color: transparent; 
-    background-size: auto 100%; /* Mantiene los listones verticales nítidos */
-    background-repeat: repeat-x; /* Se repite horizontalmente por toda la pared */
+    background-size: auto 100%; 
+    background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
     transition: background-image 0.3s ease;
