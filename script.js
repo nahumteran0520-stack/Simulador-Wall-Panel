@@ -150,7 +150,7 @@ function calculatePanels() {
     document.getElementById('calc-results').classList.remove('hidden');
 }
 // --- CONFIGURACIÓN DE GOOGLE SHEETS ---
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwN4ZJe2ZJ3tBU2VFbCouyhLrTz1W0vtnvAMvAtNSQsRu3630BgpnaDk8eNUZk4vCDtwQ/exec";
+const WEB_APP_URL = "TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI";
 
 function registrarAccionEnSheet(accion, producto = "N/A") {
     fetch(WEB_APP_URL, {
@@ -166,23 +166,46 @@ function registrarAccionEnSheet(accion, producto = "N/A") {
     }).catch(error => console.error("Error al registrar estadística:", error));
 }
 
-// Escuchadores de eventos para registrar la interacción del usuario
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Registrar cuando abren la Calculadora
+    // 1. REGISTRAR CALCULADORA
+    // Captura cuando el usuario hace clic en el botón de calcular (dentro del formulario de la calculadora)
+    const formCalculadora = document.querySelector(".calc-form");
+    if (formCalculadora) {
+        formCalculadora.addEventListener("submit", () => {
+            registrarAccionEnSheet("Uso de Calculadora", "Cálculo de Materiales");
+        });
+    }
+
+    // O alternativamente si prefieres registrar cuando hacen clic para abrir la pantalla de calculadora:
+    // Asegúrate de cambiar '#btn-abrir-calculadora' por el selector real de tu botón de inicio
     document.querySelector("#btn-abrir-calculadora")?.addEventListener("click", () => {
-        registrarAccionEnSheet("Uso de Calculadora");
+        registrarAccionEnSheet("Uso de Calculadora", "Apertura de Calculadora");
     });
 
-    // 2. Registrar cuando abren el Simulador
-    document.querySelector("#btn-abrir-simulador")?.addEventListener("click", () => {
-        registrarAccionEnSheet("Uso de Simulador");
-    });
-
-    // 3. Registrar qué Wall Panel o lámina eligen dentro del catálogo
+    // 2. REGISTRAR SIMULADOR Y DIFERENCIAR TIPO DE PANEL (Wall Panel vs SPC)
     document.querySelectorAll(".catalog-btn").forEach(boton => {
         boton.addEventListener("click", (e) => {
             let nombreProducto = e.target.innerText.trim();
-            registrarAccionEnSheet("Selección en Simulador", nombreProducto);
+            
+            // Buscamos la categoría superior (por ejemplo, el texto del label o título de la sección)
+            let categoriaContainer = e.target.closest(".catalog-category");
+            let tipoPanel = "Wall Panel"; // Valor por defecto
+            
+            if (categoriaContainer) {
+                let labelCategoria = categoriaContainer.querySelector("label");
+                if (labelCategoria) {
+                    let textoLabel = labelCategoria.innerText.toLowerCase();
+                    if (textoLabel.includes("spc") || textoLabel.includes("marmol") || textoLabel.includes("piedra")) {
+                        tipoPanel = "Panel SPC";
+                    } else {
+                        tipoPanel = "Wall Panel";
+                    }
+                }
+            }
+
+            // Guardamos combinando el tipo y el nombre (Ej: "Panel SPC - Gris" o "Wall Panel - Wengué")
+            let productoCompleto = `${tipoPanel}: ${nombreProducto}`;
+            registrarAccionEnSheet("Selección en Simulador", productoCompleto);
         });
     });
 });
