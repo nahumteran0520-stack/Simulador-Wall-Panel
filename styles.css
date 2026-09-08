@@ -438,14 +438,15 @@ body {
         overflow: hidden; 
     }
 
-    /* --- TAMAÑO ESTABLE Y PROPORCIONAL PARA MÓVIL (Evita que crezca de más) --- */
+    /* --- RELLENO VERTICAL DUPLICADO (Cubre todo el alto sin deformar) --- */
     .full-background-wall {
-        top: 6% !important;
-        left: 10% !important;
-        width: 80% !important;
-        height: 88% !important;
-        background-size: 100% 100% !important;
-        background-position: center !important;
+        top: 0 !important;
+        left: 5% !important;
+        width: 90% !important;
+        height: 100% !important;
+        background-size: 100% auto !important; /* Estira el ancho pero repite o expande el alto de forma natural */
+        background-repeat: repeat-y !important;  /* Duplica/repite la textura hacia abajo */
+        background-position: top center !important;
     }
 
     .wall-led-light {
@@ -453,13 +454,13 @@ body {
         border-radius: 1.5px !important;
     }
 
-    /* Posicionamiento controlado de las luces */
-    .wall-led-light.left-long { left: 14% !important; top: 18% !important; height: 70% !important; }
-    .wall-led-light.left-short { left: 20% !important; top: 28% !important; height: 55% !important; }
-    .wall-led-light.right-long { right: 14% !important; top: 18% !important; height: 70% !important; }
-    .wall-led-light.right-short { right: 20% !important; top: 28% !important; height: 55% !important; }
+    /* Luces ajustadas para la pantalla completa vertical */
+    .wall-led-light.left-long { left: 12% !important; top: 10% !important; height: 80% !important; }
+    .wall-led-light.left-short { left: 18% !important; top: 20% !important; height: 65% !important; }
+    .wall-led-light.right-long { right: 12% !important; top: 10% !important; height: 80% !important; }
+    .wall-led-light.right-short { right: 18% !important; top: 20% !important; height: 65% !important; }
 
-    /* --- CORRECCIÓN DE COLORES LED (Separar Frío de Cálido) --- */
+    /* --- LUCES LED CÁLIDAS Y FRÍAS CORRECTAS --- */
     .wall-led-light.side-led-warm {
         background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
         box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
