@@ -438,15 +438,28 @@ body {
         overflow: hidden; 
     }
 
-    /* --- RELLENO VERTICAL PROPORCIONADO (Lamas WPC más finas y ordenadas desde abajo) --- */
+    /* --- CORRECCIÓN 1: Fondo general sin parches ni repeticiones feas --- */
     .full-background-wall {
         top: 0 !important;
         left: 5% !important;
         width: 90% !important;
         height: 100% !important;
-        background-size: 60px auto !important; /* Ancho fijo reducido para que las lamas se vean más finas y a escala */
-        background-repeat: repeat !important;  /* Repite la textura en mosaico natural */
-        background-position: bottom center !important; /* Asegura que el patrón nazca desde la base */
+        background-size: cover !important; /* Estira la textura de forma uniforme en todo el alto y ancho móvil */
+        background-repeat: no-repeat !important;  
+        background-position: center center !important;
+    }
+
+    /* --- CORRECCIÓN 2: Panel central horizontal con proporciones correctas --- */
+    .central-panel.horizontal {
+        width: 75% !important;  /* Un poco más ancho para equilibrar el espacio horizontal */
+        height: 52% !important; /* Más alto para que se luzca bien tanto arriba como abajo de la TV */
+        top: 24% !important;    /* Centrado vertical perfecto en la pantalla del celular */
+    }
+
+    .central-panel.vertical { 
+        width: 38% !important; 
+        height: 75% !important; 
+        top: 15% !important; 
     }
 
     .wall-led-light {
@@ -454,13 +467,13 @@ body {
         border-radius: 1.5px !important;
     }
 
-    /* Luces LED móviles ajustadas para que comiencen desde abajo (apoyadas en la base) */
+    /* Luces LED móviles ajustadas desde la base */
     .wall-led-light.left-long { left: 12% !important; top: 18% !important; height: 72% !important; }
     .wall-led-light.left-short { left: 18% !important; top: 28% !important; height: 62% !important; }
     .wall-led-light.right-long { right: 12% !important; top: 18% !important; height: 72% !important; }
     .wall-led-light.right-short { right: 18% !important; top: 28% !important; height: 62% !important; }
 
-    /* --- LUCES LED CÁLIDAS Y FRÍAS CORRECTAS --- */
+    /* --- LUCES LED CÁLIDAS Y FRÍAS --- */
     .wall-led-light.side-led-warm {
         background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
         box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
