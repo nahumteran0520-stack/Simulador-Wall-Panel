@@ -1,4 +1,4 @@
-** { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -428,7 +428,6 @@ body {
         font-size: 12px;
     }
 
-    /* Zoom hacia atrás solo en celulares para ver la imagen completa */
     .room-scene {
         background-size: contain; 
         background-color: #0b0b0b; 
@@ -438,10 +437,30 @@ body {
         overflow: auto; 
     }
 
-    /* --- LUCES MÁS DELGADAS EXCLUSIVAMENTE PARA MÓVIL --- */
+    /* --- CORRECCIÓN DEFINITIVA MÓVIL: PANELES Y LUCES DE BORDE A BORDE --- */
+    .full-background-wall {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-size: cover !important;
+    }
+
     .wall-led-light {
         width: 3px !important;
         border-radius: 1.5px !important;
+    }
+
+    .wall-led-light.left-long,
+    .wall-led-light.right-long {
+        top: 10% !important;
+        height: 85% !important;
+    }
+
+    .wall-led-light.left-short,
+    .wall-led-light.right-short {
+        top: 20% !important;
+        height: 70% !important;
     }
 
     .wall-led-light.side-led-warm, 
@@ -450,9 +469,9 @@ body {
     }
 }
 
-/* --- AVISO DE ROTACIÓN PARA MÓVILES (Fuera de cualquier media query para asegurar lectura) --- */
+/* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
 #rotate-device-warning {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -491,7 +510,6 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-/* Condición clave para mostrar el aviso solo en móviles verticales dentro del simulador */
 @media (max-width: 768px) and (orientation: portrait) {
     body.in-simulator #rotate-device-warning {
         display: flex !important;
