@@ -15,8 +15,8 @@
                 <h1>Diseña y Calcula tus Wall Panels</h1>
                 <p>Transforma tus espacios con estilo moderno y descubre la cantidad exacta de material que necesitas.</p>
                 <div class="home-buttons">
-                    <button class="main-action-btn primary" onclick="switchScreen('simulator')"> Comenzar Simulador</button>
-                    <button class="main-action-btn secondary" onclick="switchScreen('calculator')"> Calculadora de Materiales</button>
+                    <button class="main-action-btn primary" onclick="switchScreen('simulator')">🚀 Comenzar Simulador</button>
+                    <button class="main-action-btn secondary" onclick="switchScreen('calculator')">📊 Calculadora de Materiales</button>
                 </div>
             </div>
         </div>
@@ -56,6 +56,13 @@
 
     <!-- ================= 3. SIMULADOR ================= -->
     <div id="simulator-screen" class="screen">
+        <!-- Aviso para rotar dispositivo en móviles -->
+        <div id="rotate-device-warning">
+            <div class="rotate-icon">📱 🔄</div>
+            <h3>Gira tu dispositivo</h3>
+            <p>Para una mejor experiencia y ver la sala completa con todos los paneles, por favor coloca tu celular en horizontal.</p>
+        </div>
+
         <button id="sim-back-btn" onclick="switchScreen('home')">🏠 Inicio</button>
         <button id="mobile-toggle-btn" onclick="toggleMobileCatalog()">🎨 Menú de Catálogo</button>
 
