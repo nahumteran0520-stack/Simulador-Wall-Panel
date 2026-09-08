@@ -438,15 +438,15 @@ body {
         overflow: hidden; 
     }
 
-    /* --- RELLENO VERTICAL DUPLICADO (Cubre todo el alto sin deformar) --- */
+    /* --- RELLENO VERTICAL PROPORCIONADO (Lamas WPC más finas y ordenadas desde abajo) --- */
     .full-background-wall {
         top: 0 !important;
         left: 5% !important;
         width: 90% !important;
         height: 100% !important;
-        background-size: 100% auto !important; /* Estira el ancho pero repite o expande el alto de forma natural */
-        background-repeat: repeat-y !important;  /* Duplica/repite la textura hacia abajo */
-        background-position: top center !important;
+        background-size: 60px auto !important; /* Ancho fijo reducido para que las lamas se vean más finas y a escala */
+        background-repeat: repeat !important;  /* Repite la textura en mosaico natural */
+        background-position: bottom center !important; /* Asegura que el patrón nazca desde la base */
     }
 
     .wall-led-light {
@@ -454,11 +454,11 @@ body {
         border-radius: 1.5px !important;
     }
 
-    /* Luces ajustadas para la pantalla completa vertical */
-    .wall-led-light.left-long { left: 12% !important; top: 10% !important; height: 80% !important; }
-    .wall-led-light.left-short { left: 18% !important; top: 20% !important; height: 65% !important; }
-    .wall-led-light.right-long { right: 12% !important; top: 10% !important; height: 80% !important; }
-    .wall-led-light.right-short { right: 18% !important; top: 20% !important; height: 65% !important; }
+    /* Luces LED móviles ajustadas para que comiencen desde abajo (apoyadas en la base) */
+    .wall-led-light.left-long { left: 12% !important; top: 18% !important; height: 72% !important; }
+    .wall-led-light.left-short { left: 18% !important; top: 28% !important; height: 62% !important; }
+    .wall-led-light.right-long { right: 12% !important; top: 18% !important; height: 72% !important; }
+    .wall-led-light.right-short { right: 18% !important; top: 28% !important; height: 62% !important; }
 
     /* --- LUCES LED CÁLIDAS Y FRÍAS CORRECTAS --- */
     .wall-led-light.side-led-warm {
@@ -473,6 +473,7 @@ body {
         opacity: 1 !important;
     }
 }
+
 /* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
 #rotate-device-warning {
     display: none;
