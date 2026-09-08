@@ -444,27 +444,27 @@ body {
         overflow: hidden; 
     }
 
-    /* --- WALL PANEL DE FONDO: Cubre todo el espacio correctamente sin verse chico --- */
-   .full-background-wall {
-      .full-background-wall {
-    position: absolute;
-    top: 11%;    
-    left: 8.5%;   
-    width: 83%;   
-    height: 100%;  
-    background-color: transparent; 
-    background-size: auto 100%; 
-    background-repeat: repeat-x; 
-    background-position: center;
-    z-index: 0; 
-    transition: background-image 0.3s ease;
-}
+    /* --- WALL PANEL DE FONDO EN MÓVIL --- */
+    .full-background-wall {
+        position: absolute;
+        top: 11%;    
+        left: 8.5%;   
+        width: 83%;   
+        height: 100%;  
+        background-color: transparent; 
+        background-size: auto 100%; 
+        background-repeat: repeat-x; 
+        background-position: center;
+        z-index: 0; 
+        transition: background-image 0.3s ease;
+    }
+
     .wall-led-light {
         width: 3px !important;
         border-radius: 1.5px !important;
     }
 
-    /* Luces LED intactas en su posición actual */
+    /* Luces LED móviles */
     .wall-led-light.left-long { left: 15% !important; top: 21% !important; height: 65% !important; }
     .wall-led-light.left-short { left: 20% !important; top: 31% !important; height: 55% !important; }
     .wall-led-light.right-long { right: 15% !important; top: 21% !important; height: 65% !important; }
