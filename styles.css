@@ -438,28 +438,28 @@ body {
         overflow: hidden; 
     }
 
-    /* --- CORRECCIÓN 1: Fondo general sin parches ni repeticiones feas --- */
+    /* --- 1. FONDO: Lamas más finas y estilizadas (patrón repetido en mosaico) --- */
     .full-background-wall {
         top: 0 !important;
-        left: 5% !important;
-        width: 90% !important;
+        left: 10% !important;
+        width: 80% !important;
         height: 100% !important;
-        background-size: cover !important; /* Estira la textura de forma uniforme en todo el alto y ancho móvil */
-        background-repeat: no-repeat !important;  
-        background-position: center center !important;
+        background-size: 55px auto !important; /* Ancho más estrecho para multiplicar las lamas y que no se vean gruesas */
+        background-repeat: repeat !important;  
+        background-position: center bottom !important;
     }
 
-    /* --- CORRECCIÓN 2: Panel central horizontal con proporciones correctas --- */
+    /* --- 2. PANEL HORIZONTAL: Menos ancho a los lados, bien proporcionado arriba y abajo --- */
     .central-panel.horizontal {
-        width: 75% !important;  /* Un poco más ancho para equilibrar el espacio horizontal */
-        height: 52% !important; /* Más alto para que se luzca bien tanto arriba como abajo de la TV */
-        top: 24% !important;    /* Centrado vertical perfecto en la pantalla del celular */
+        width: 58% !important;  /* Reducido para que no sobresalga tanto a los lados */
+        height: 48% !important; /* Mantiene un excelente espacio superior e inferior con respecto a la TV */
+        top: 26% !important;    
     }
 
     .central-panel.vertical { 
-        width: 38% !important; 
-        height: 75% !important; 
-        top: 15% !important; 
+        width: 35% !important; 
+        height: 72% !important; 
+        top: 16% !important; 
     }
 
     .wall-led-light {
@@ -467,11 +467,11 @@ body {
         border-radius: 1.5px !important;
     }
 
-    /* Luces LED móviles ajustadas desde la base */
-    .wall-led-light.left-long { left: 12% !important; top: 18% !important; height: 72% !important; }
-    .wall-led-light.left-short { left: 18% !important; top: 28% !important; height: 62% !important; }
-    .wall-led-light.right-long { right: 12% !important; top: 18% !important; height: 72% !important; }
-    .wall-led-light.right-short { right: 18% !important; top: 28% !important; height: 62% !important; }
+    /* --- 3. LUCES LED: Ancladas desde abajo (desde la base del mueble) --- */
+    .wall-led-light.left-long { left: 18% !important; top: 22% !important; height: 68% !important; }
+    .wall-led-light.left-short { left: 23% !important; top: 32% !important; height: 58% !important; }
+    .wall-led-light.right-long { right: 18% !important; top: 22% !important; height: 68% !important; }
+    .wall-led-light.right-short { right: 23% !important; top: 32% !important; height: 58% !important; }
 
     /* --- LUCES LED CÁLIDAS Y FRÍAS --- */
     .wall-led-light.side-led-warm {
