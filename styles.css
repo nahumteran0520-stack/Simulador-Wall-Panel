@@ -451,14 +451,14 @@ body {
 
     /* --- 2. PANEL HORIZONTAL: Menos ancho a los lados, bien proporcionado arriba y abajo --- */
     .central-panel.horizontal {
-        width: 58% !important;  /* Reducido para que no sobresalga tanto a los lados */
+        width: 48% !important;  /* Reducido para que no sobresalga tanto a los lados */
         height: 48% !important; /* Mantiene un excelente espacio superior e inferior con respecto a la TV */
         top: 26% !important;    
     }
 
     .central-panel.vertical { 
         width: 35% !important; 
-        height: 72% !important; 
+        height: 78% !important; 
         top: 16% !important; 
     }
 
@@ -468,10 +468,10 @@ body {
     }
 
     /* --- 3. LUCES LED: Ancladas desde abajo (desde la base del mueble) --- */
-    .wall-led-light.left-long { left: 18% !important; top: 22% !important; height: 68% !important; }
-    .wall-led-light.left-short { left: 23% !important; top: 32% !important; height: 58% !important; }
-    .wall-led-light.right-long { right: 18% !important; top: 22% !important; height: 68% !important; }
-    .wall-led-light.right-short { right: 23% !important; top: 32% !important; height: 58% !important; }
+    .wall-led-light.left-long { left: 19% !important; top: 23% !important; height: 68% !important; }
+    .wall-led-light.left-short { left: 25% !important; top: 33% !important; height: 58% !important; }
+    .wall-led-light.right-long { right: 19% !important; top: 23% !important; height: 68% !important; }
+    .wall-led-light.right-short { right: 25% !important; top: 33% !important; height: 58% !important; }
 
     /* --- LUCES LED CÁLIDAS Y FRÍAS --- */
     .wall-led-light.side-led-warm {
