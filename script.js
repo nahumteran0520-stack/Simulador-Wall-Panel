@@ -152,7 +152,7 @@ function calculatePanels() {
 }
 
 // --- CONFIGURACIÓN DE GOOGLE SHEETS ---
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxVpNtWpEnVzW8TlXpGedz6vhJesJ3xa7FjqAlfYKGIrASCLcqgUI5I6WkzaZ9zfr4MLA/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwN4ZJe2ZJ3tBU2VFbCouyhLrTz1W0vtnvAMvAtNSQsRu3630BgpnaDk8eNUZk4vCDtwQ/exec";
 
 function registrarAccionEnSheet(accion, producto = "N/A") {
     fetch(WEB_APP_URL, {
