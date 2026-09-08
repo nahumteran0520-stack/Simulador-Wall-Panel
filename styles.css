@@ -438,4 +438,52 @@ body {
     #simulator-viewport {
         overflow: auto; 
     }
+
+/* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
+#rotate-device-warning {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(18, 18, 18, 0.95);
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+#rotate-device-warning .rotate-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    animation: rotateIconAnim 2s infinite ease-in-out;
+}
+
+#rotate-device-warning h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#rotate-device-warning p {
+    font-size: 14px;
+    color: #aaa;
+    max-width: 280px;
+}
+
+@keyframes rotateIconAnim {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Condición para mostrar el aviso solo en móviles verticales dentro del simulador */
+@media (max-width: 768px) and (orientation: portrait) {
+    /* Si estás en el simulador activo y en vertical, mostramos el aviso */
+    body.in-simulator #rotate-device-warning {
+        display: flex;
+    }
 }
