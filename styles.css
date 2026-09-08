@@ -445,13 +445,13 @@ body {
     }
 
     /* --- WALL PANEL DE FONDO: Cubre todo el espacio correctamente sin verse chico --- */
-    .full-background-wall {
+   .full-background-wall {
         top: 0 !important;
         left: 0 !important;
         width: 100% !important;
         height: 100% !important;
-        background-size: cover !important;  /* Extiende la imagen para cubrir toda la pared de lado a lado */
-        background-repeat: no-repeat !important;  
+        background-size: 90px auto !important; /* Ajusta este número: si los quieres más finos baja a 70px, si los quieres más grandes súbelo a 110px */
+        background-repeat: repeat !important;  /* Multiplica el patrón para que no se vea gigante */
         background-position: center center !important;
     }
 
