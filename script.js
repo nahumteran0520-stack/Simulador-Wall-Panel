@@ -100,7 +100,6 @@ function toggleMobileCatalog() {
 function switchScreen(screenName) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     
-    // Control de la clase en el body para activar el aviso de rotación solo dentro del simulador
     if (screenName === 'simulator') {
         document.body.classList.add('in-simulator');
     } else {
@@ -118,6 +117,7 @@ function switchScreen(screenName) {
 
 function calculatePanels() {
     registrarAccionEnSheet("Uso de Calculadora", "Cálculo de Materiales");
+    
     const heightInput = document.getElementById('wallHeight').value;
     const widthInput = document.getElementById('wallWidth').value;
 
@@ -150,6 +150,7 @@ function calculatePanels() {
 
     document.getElementById('calc-results').classList.remove('hidden');
 }
+
 // --- CONFIGURACIÓN DE GOOGLE SHEETS ---
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwN4ZJe2ZJ3tBU2VFbCouyhLrTz1W0vtnvAMvAtNSQsRu3630BgpnaDk8eNUZk4vCDtwQ/exec";
 
@@ -168,45 +169,24 @@ function registrarAccionEnSheet(accion, producto = "N/A") {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. REGISTRAR CALCULADORA
-    // Captura cuando el usuario hace clic en el botón de calcular (dentro del formulario de la calculadora)
-    const formCalculadora = document.querySelector(".calc-form");
-    if (formCalculadora) {
-        formCalculadora.addEventListener("submit", () => {
-            registrarAccionEnSheet("Uso de Calculadora", "Cálculo de Materiales");
-        });
-    }
-
-    // O alternativamente si prefieres registrar cuando hacen clic para abrir la pantalla de calculadora:
-    // Asegúrate de cambiar '#btn-abrir-calculadora' por el selector real de tu botón de inicio
-    document.querySelector("#btn-abrir-calculadora")?.addEventListener("click", () => {
+    // 1. REGISTRAR APERTURA DE CALCULADORA (Desde el botón del menú principal si existe)
+    document.querySelector("button[onclick*=\"calculator\"]")?.addEventListener("click", () => {
         registrarAccionEnSheet("Uso de Calculadora", "Apertura de Calculadora");
     });
 
-    // 2. REGISTRAR SIMULADOR Y DIFERENCIAR TIPO DE PANEL (Wall Panel vs SPC)
-    document.querySelectorAll(".catalog-btn").forEach(boton => {
+    // 2. REGISTRAR PANEL SPC (Botones centrales de mármol con clase .tex-btn)
+    document.querySelectorAll(".tex-btn").forEach(boton => {
         boton.addEventListener("click", (e) => {
             let nombreProducto = e.target.innerText.trim();
-            
-            // Buscamos la categoría superior (por ejemplo, el texto del label o título de la sección)
-            let categoriaContainer = e.target.closest(".catalog-category");
-            let tipoPanel = "Wall Panel"; // Valor por defecto
-            
-            if (categoriaContainer) {
-                let labelCategoria = categoriaContainer.querySelector("label");
-                if (labelCategoria) {
-                    let textoLabel = labelCategoria.innerText.toLowerCase();
-                    if (textoLabel.includes("spc") || textoLabel.includes("marmol") || textoLabel.includes("piedra")) {
-                        tipoPanel = "Panel SPC";
-                    } else {
-                        tipoPanel = "Wall Panel";
-                    }
-                }
-            }
+            registrarAccionEnSheet("Selección en Simulador", `Panel SPC: ${nombreProducto}`);
+        });
+    });
 
-            // Guardamos combinando el tipo y el nombre (Ej: "Panel SPC - Gris" o "Wall Panel - Wengué")
-            let productoCompleto = `${tipoPanel}: ${nombreProducto}`;
-            registrarAccionEnSheet("Selección en Simulador", productoCompleto);
+    // 3. REGISTRAR WALL PANEL (Botones de pared WPC con clase .wpc-btn)
+    document.querySelectorAll(".wpc-btn").forEach(boton => {
+        boton.addEventListener("click", (e) => {
+            let nombreProducto = e.target.innerText.trim();
+            registrarAccionEnSheet("Selección en Simulador", `Wall Panel: ${nombreProducto}`);
         });
     });
 });
