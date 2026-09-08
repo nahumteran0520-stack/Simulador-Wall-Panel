@@ -439,20 +439,20 @@ body {
     }
 
     /* --- 1. FONDO: Lamas más finas y estilizadas (patrón repetido en mosaico) --- */
-    .full-background-wall {
-        top: 0 !important;
-        left: 10% !important;
-        width: 80% !important;
-        height: 100% !important;
-        background-size: 55px auto !important; /* Ancho más estrecho para multiplicar las lamas y que no se vean gruesas */
-        background-repeat: repeat !important;  
-        background-position: center bottom !important;
+   .full-background-wall {
+        top: 8.5% !important;
+        left: 8.5% !important;
+        width: 83% !important;
+        height: 82% !important;
+        background-size: auto 100% !important; 
+        background-repeat: no-repeat !important;  
+        background-position: center !important;
     }
 
     /* --- 2. PANEL HORIZONTAL: Menos ancho a los lados, bien proporcionado arriba y abajo --- */
     .central-panel.horizontal {
-        width: 48% !important;  /* Reducido para que no sobresalga tanto a los lados */
-        height: 48% !important; /* Mantiene un excelente espacio superior e inferior con respecto a la TV */
+        width: 49% !important;  /* Reducido para que no sobresalga tanto a los lados */
+        height: 50% !important; /* Mantiene un excelente espacio superior e inferior con respecto a la TV */
         top: 26% !important;    
     }
 
@@ -468,10 +468,10 @@ body {
     }
 
     /* --- 3. LUCES LED: Ancladas desde abajo (desde la base del mueble) --- */
-    .wall-led-light.left-long { left: 19% !important; top: 23% !important; height: 68% !important; }
-    .wall-led-light.left-short { left: 25% !important; top: 33% !important; height: 58% !important; }
-    .wall-led-light.right-long { right: 19% !important; top: 23% !important; height: 68% !important; }
-    .wall-led-light.right-short { right: 25% !important; top: 33% !important; height: 58% !important; }
+    .wall-led-light.left-long { left: 15% !important; top: 25% !important; height: 68% !important; }
+    .wall-led-light.left-short { left: 20% !important; top: 35% !important; height: 58% !important; }
+    .wall-led-light.right-long { right: 15% !important; top: 25% !important; height: 68% !important; }
+    .wall-led-light.right-short { right: 20% !important; top: 35% !important; height: 58% !important; }
 
     /* --- LUCES LED CÁLIDAS Y FRÍAS --- */
     .wall-led-light.side-led-warm {
