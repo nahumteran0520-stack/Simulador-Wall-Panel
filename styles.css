@@ -429,21 +429,23 @@ body {
     }
 
     .room-scene {
-        background-size: contain; 
+        background-size: 100% 100%; /* Evita recortes forzados y ajusta al total */
+        background-position: center;
         background-color: #0b0b0b; 
     }
     
     #simulator-viewport {
-        overflow: auto; 
+        overflow: hidden; 
     }
 
-    /* --- CORRECCIÓN: Mantener proporciones idénticas a PC pero adaptadas --- */
+    /* --- AJUSTE PROPORCIONAL SIN ZOOM EXCESIVO --- */
     .full-background-wall {
-        top: 8.5% !important;
-        left: 8.5% !important;
-        width: 83% !important;
-        height: 82% !important;
-        background-size: auto 100% !important;
+        top: 4% !important;        /* Reducimos el margen superior para ganar espacio */
+        left: 4% !important;       /* Reducimos el margen lateral para evitar barras negras */
+        width: 92% !important;     /* Aumentamos el ancho para que cubra más pantalla */
+        height: 92% !important;    /* Aumentamos el alto para eliminar los espacios sobrantes */
+        background-size: 100% 100% !important;
+        background-position: center !important;
     }
 
     .wall-led-light {
@@ -451,18 +453,17 @@ body {
         border-radius: 1.5px !important;
     }
 
-    /* Ajuste proporcional de las luces LED laterales acorde al nuevo tamaño */
-    .wall-led-light.left-long { left: 15% !important; top: 21% !important; height: 65% !important; }
-    .wall-led-light.left-short { left: 21% !important; top: 31% !important; height: 55% !important; }
-    .wall-led-light.right-long { right: 15% !important; top: 21% !important; height: 65% !important; }
-    .wall-led-light.right-short { right: 21% !important; top: 31% !important; height: 55% !important; }
+    /* Reubicación de luces adaptadas al nuevo margen del 92% */
+    .wall-led-light.left-long { left: 12% !important; top: 15% !important; height: 72% !important; }
+    .wall-led-light.left-short { left: 18% !important; top: 25% !important; height: 58% !important; }
+    .wall-led-light.right-long { right: 12% !important; top: 15% !important; height: 72% !important; }
+    .wall-led-light.right-short { right: 18% !important; top: 25% !important; height: 58% !important; }
 
     .wall-led-light.side-led-warm, 
     .wall-led-light.side-led-cool {
         box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
     }
 }
-
 /* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
 #rotate-device-warning {
     display: none;
