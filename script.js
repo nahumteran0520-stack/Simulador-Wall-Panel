@@ -100,6 +100,13 @@ function toggleMobileCatalog() {
 function switchScreen(screenName) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     
+    // Control de la clase en el body para activar el aviso de rotación solo dentro del simulador
+    if (screenName === 'simulator') {
+        document.body.classList.add('in-simulator');
+    } else {
+        document.body.classList.remove('in-simulator');
+    }
+
     if (screenName === 'home') {
         document.getElementById('home-screen').classList.add('active');
     } else if (screenName === 'calculator') {
