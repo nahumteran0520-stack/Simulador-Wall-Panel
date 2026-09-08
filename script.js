@@ -149,3 +149,40 @@ function calculatePanels() {
 
     document.getElementById('calc-results').classList.remove('hidden');
 }
+// --- CONFIGURACIÓN DE GOOGLE SHEETS ---
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwN4ZJe2ZJ3tBU2VFbCouyhLrTz1W0vtnvAMvAtNSQsRu3630BgpnaDk8eNUZk4vCDtwQ/exec";
+
+function registrarAccionEnSheet(accion, producto = "N/A") {
+    fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            accion: accion,
+            producto: producto
+        })
+    }).catch(error => console.error("Error al registrar estadística:", error));
+}
+
+// Escuchadores de eventos para registrar la interacción del usuario
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Registrar cuando abren la Calculadora
+    document.querySelector("#btn-abrir-calculadora")?.addEventListener("click", () => {
+        registrarAccionEnSheet("Uso de Calculadora");
+    });
+
+    // 2. Registrar cuando abren el Simulador
+    document.querySelector("#btn-abrir-simulador")?.addEventListener("click", () => {
+        registrarAccionEnSheet("Uso de Simulador");
+    });
+
+    // 3. Registrar qué Wall Panel o lámina eligen dentro del catálogo
+    document.querySelectorAll(".catalog-btn").forEach(boton => {
+        boton.addEventListener("click", (e) => {
+            let nombreProducto = e.target.innerText.trim();
+            registrarAccionEnSheet("Selección en Simulador", nombreProducto);
+        });
+    });
+});
