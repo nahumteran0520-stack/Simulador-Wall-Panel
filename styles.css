@@ -448,10 +448,10 @@ body {
    .full-background-wall {
       .full-background-wall {
     position: absolute;
-    top: 8.5%;    
+    top: 10%;    
     left: 8.5%;   
     width: 83%;   
-    height: 82%;  
+    height: 90%;  
     background-color: transparent; 
     background-size: auto 100%; 
     background-repeat: repeat-x; 
@@ -465,10 +465,10 @@ body {
     }
 
     /* Luces LED intactas en su posición actual */
-    .wall-led-light.left-long { left: 15% !important; top: 29% !important; height: 65% !important; }
-    .wall-led-light.left-short { left: 20% !important; top: 39% !important; height: 55% !important; }
-    .wall-led-light.right-long { right: 15% !important; top: 29% !important; height: 65% !important; }
-    .wall-led-light.right-short { right: 20% !important; top: 39% !important; height: 55% !important; }
+    .wall-led-light.left-long { left: 15% !important; top: 21% !important; height: 65% !important; }
+    .wall-led-light.left-short { left: 20% !important; top: 31% !important; height: 55% !important; }
+    .wall-led-light.right-long { right: 15% !important; top: 21% !important; height: 65% !important; }
+    .wall-led-light.right-short { right: 20% !important; top: 31% !important; height: 55% !important; }
 
     /* --- LUCES LED CÁLIDAS Y FRÍAS --- */
     .wall-led-light.side-led-warm {
