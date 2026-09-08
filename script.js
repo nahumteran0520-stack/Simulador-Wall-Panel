@@ -117,6 +117,7 @@ function switchScreen(screenName) {
 }
 
 function calculatePanels() {
+    registrarAccionEnSheet("Uso de Calculadora", "Cálculo de Materiales");
     const heightInput = document.getElementById('wallHeight').value;
     const widthInput = document.getElementById('wallWidth').value;
 
