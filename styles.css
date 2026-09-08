@@ -443,11 +443,26 @@ body {
     #simulator-viewport {
         overflow: hidden; 
     }
+    
+    /* Panel Vertical */
+    .central-panel.vertical { 
+        width: 30% !important;   /* Aquí editas el ancho */
+        height: 72% !important;  /* Aquí editas el alto */
+        top: 16% !important;     /* Aquí editas la posición vertical (arriba/abajo) */
+    }
+
+    /* Panel Horizontal */
+    .central-panel.horizontal { 
+        width: 56% !important;   /* Aquí editas el ancho para que no se vea ni muy delgado ni muy ancho */
+        height: 42% !important;  /* Aquí editas el alto para que guarde proporción con la TV */
+        top: 30% !important;     /* Aquí centras el panel verticalmente respecto a la pantalla */
+    }
+}
 
     /* --- WALL PANEL DE FONDO EN MÓVIL --- */
     .full-background-wall {
         position: absolute;
-        top: 11%;    
+        top: 14%;    
         left: 8.5%;   
         width: 83%;   
         height: 100%;  
@@ -465,10 +480,10 @@ body {
     }
 
     /* Luces LED móviles */
-    .wall-led-light.left-long { left: 15% !important; top: 21% !important; height: 65% !important; }
-    .wall-led-light.left-short { left: 20% !important; top: 31% !important; height: 55% !important; }
-    .wall-led-light.right-long { right: 15% !important; top: 21% !important; height: 65% !important; }
-    .wall-led-light.right-short { right: 20% !important; top: 31% !important; height: 55% !important; }
+    .wall-led-light.left-long { left: 15% !important; top: 26% !important; height: 65% !important; }
+    .wall-led-light.left-short { left: 20% !important; top: 36% !important; height: 55% !important; }
+    .wall-led-light.right-long { right: 15% !important; top: 26% !important; height: 65% !important; }
+    .wall-led-light.right-short { right: 20% !important; top: 36% !important; height: 55% !important; }
 
     /* --- LUCES LED CÁLIDAS Y FRÍAS --- */
     .wall-led-light.side-led-warm {
