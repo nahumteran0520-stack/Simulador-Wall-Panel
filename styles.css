@@ -398,7 +398,6 @@ body {
     font-weight: 600;
 }
 
-/* --- MEDIA QUERY EXCLUSIVA PARA MÓVILES (Zoom hacia atrás / contain) --- */
 @media (max-width: 768px) {
     #catalog-sidebar {
         position: fixed;
@@ -429,7 +428,7 @@ body {
         font-size: 12px;
     }
 
-    /* Aquí se aplica el zoom hacia atrás solo en celulares para ver la imagen completa */
+    /* Zoom hacia atrás solo en celulares para ver la imagen completa */
     .room-scene {
         background-size: contain; 
         background-color: #0b0b0b; 
@@ -437,6 +436,17 @@ body {
     
     #simulator-viewport {
         overflow: auto; 
+    }
+
+    /* --- LUCES MÁS DELGADAS EXCLUSIVAMENTE PARA MÓVIL --- */
+    .wall-led-light {
+        width: 3px !important;
+        border-radius: 1.5px !important;
+    }
+
+    .wall-led-light.side-led-warm, 
+    .wall-led-light.side-led-cool {
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
     }
 }
 
