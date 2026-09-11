@@ -296,12 +296,12 @@ body {
     width: 83%;   
     height: 82%;  
     background-color: transparent; 
-    background-size: cover; 
-    background-repeat: no-repeat; 
+    background-size: auto 100%; 
+    background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
     transition: background-image 0.3s ease;
-}
+   } 
 
 .wall-led-light {
     position: absolute;
