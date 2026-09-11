@@ -451,15 +451,15 @@ body {
     }
 
     .central-panel.horizontal { 
-        width: 60% !important;   
-        height: 38% !important;  
+        width: 40% !important;   
+        height: 56% !important;  
         top: 30% !important;     
     }
 
     /* WALL PANEL DE FONDO EN MÓVIL (Con cover para cobertura total) */
    .full-background-wall {
     position: absolute;
-    top: 9.5%;    
+    top: 12%;    
     left: 8.5%;   
     width: 83%;   
     height: 100%;  
