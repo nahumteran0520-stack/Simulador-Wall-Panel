@@ -462,7 +462,7 @@ body {
     top: 8.5%;    
     left: 8.5%;   
     width: 83%;   
-    height: 82%;  
+    height: 100%;  
     background-color: transparent; 
     background-size: auto 100%; 
     background-repeat: repeat-x; 
@@ -476,10 +476,10 @@ body {
         border-radius: 1.5px !important;
     }
 
-    .wall-led-light.left-long { left: 15% !important; top: 26% !important; height: 65% !important; }
-    .wall-led-light.left-short { left: 20% !important; top: 36% !important; height: 55% !important; }
-    .wall-led-light.right-long { right: 15% !important; top: 26% !important; height: 65% !important; }
-    .wall-led-light.right-short { right: 20% !important; top: 36% !important; height: 55% !important; }
+    .wall-led-light.left-long { left: 15% !important; top: 29% !important; height: 65% !important; }
+    .wall-led-light.left-short { left: 20% !important; top: 39% !important; height: 55% !important; }
+    .wall-led-light.right-long { right: 15% !important; top: 29% !important; height: 65% !important; }
+    .wall-led-light.right-short { right: 20% !important; top: 39 !important; height: 55% !important; }
 
     .wall-led-light.side-led-warm {
         background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
