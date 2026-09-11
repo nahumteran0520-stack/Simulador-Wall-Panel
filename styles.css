@@ -459,7 +459,7 @@ body {
     /* WALL PANEL DE FONDO EN MÓVIL (Con cover para cobertura total) */
    .full-background-wall {
     position: absolute;
-    top: 6%;    
+    top: 4%;    
     left: 8.5%;   
     width: 83%;   
     height: 100%;  
