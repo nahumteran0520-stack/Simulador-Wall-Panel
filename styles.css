@@ -457,19 +457,19 @@ body {
     }
 
     /* WALL PANEL DE FONDO EN MÓVIL (Con cover para cobertura total) */
-    .full-background-wall {
-        position: absolute;
-        top: 14%;    
-        left: 8.5%;   
-        width: 83%;   
-        height: 75%;  
-        background-color: transparent; 
-        background-size: cover; 
-        background-repeat: no-repeat; 
-        background-position: center;
-        z-index: 0; 
-        transition: background-image 0.3s ease;
-    }
+   .full-background-wall {
+    position: absolute;
+    top: 8.5%;    
+    left: 8.5%;   
+    width: 83%;   
+    height: 82%;  
+    background-color: transparent; 
+    background-size: auto 100%; 
+    background-repeat: repeat-x; 
+    background-position: center;
+    z-index: 0; 
+    transition: background-image 0.3s ease;
+}
 
     .wall-led-light {
         width: 3px !important;
