@@ -296,7 +296,7 @@ body {
     width: 83%;   
     height: 82%;  
     background-color: transparent; 
-    background-size: 180px 100%; /* <-- Cambia 'auto' por un valor fijo como 110px o 100px */
+    background-size: 220px 100%; /* <-- Cambia 'auto' por un valor fijo como 110px o 100px */
     background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
