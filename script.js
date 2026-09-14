@@ -21,21 +21,27 @@ function setWallWidth(mode, btn) {
     btn.classList.add('active');
 
     const backgroundWall = document.getElementById('fullBackgroundWall');
+    
+    // Elementos de luces derechas
     const rightLong = document.getElementById('rightLong');
     const rightShort = document.getElementById('rightShort');
     
+    // Removemos todas las clases de ancho primero
     backgroundWall.classList.remove('wall-width-full', 'wall-width-partial', 'wall-width-left-only');
     
     if (mode === 'full') {
         backgroundWall.classList.add('wall-width-full');
+        // Mostrar luces derechas
         if(rightLong) rightLong.style.display = 'block';
         if(rightShort) rightShort.style.display = 'block';
     } else if (mode === 'partial') {
         backgroundWall.classList.add('wall-width-partial');
+        // Mostrar luces derechas
         if(rightLong) rightLong.style.display = 'block';
         if(rightShort) rightShort.style.display = 'block';
     } else if (mode === 'left-only') {
         backgroundWall.classList.add('wall-width-left-only');
+        // Ocultar luces derechas porque no hay WPC de ese lado
         if(rightLong) rightLong.style.display = 'none';
         if(rightShort) rightShort.style.display = 'none';
     }
@@ -110,7 +116,6 @@ function togglePanelLed(ledType, btn) {
         if (ambientGlow) ambientGlow.classList.add('glow-cool');
     }
 }
-
 function toggleSideLed(ledType, btn) {
     document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -132,27 +137,6 @@ function toggleSideLed(ledType, btn) {
             light.classList.add('side-led-cool');
         }
     });
-}
-
-// Función para cambiar el color del mueble de TV
-function setFurnitureColor(colorStyle, btn) {
-    document.querySelectorAll('.furniture-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const overlay = document.querySelector('.foreground-overlay');
-    if (!overlay) return;
-
-    overlay.classList.remove('furniture-white', 'furniture-dark', 'furniture-wood');
-
-    if (colorStyle === 'white') {
-        overlay.classList.add('furniture-white');
-    } else if (colorStyle === 'dark') {
-        overlay.classList.add('furniture-dark');
-    } else if (colorStyle === 'wood') {
-        overlay.classList.add('furniture-wood');
-    }
-
-    registrarAccionEnSheet("Selección en Simulador", `Mueble TV: ${colorStyle}`);
 }
 
 function toggleMobileCatalog() {
@@ -232,10 +216,12 @@ function registrarAccionEnSheet(accion, producto = "N/A") {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. REGISTRAR APERTURA DE CALCULADORA
     document.querySelector("button[onclick*=\"calculator\"]")?.addEventListener("click", () => {
         registrarAccionEnSheet("Uso de Calculadora", "Apertura de Calculadora");
     });
 
+    // 2. REGISTRAR PANEL SPC
     document.querySelectorAll(".tex-btn").forEach(boton => {
         boton.addEventListener("click", (e) => {
             let nombreProducto = e.target.innerText.trim();
@@ -243,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // 3. REGISTRAR WALL PANEL
     document.querySelectorAll(".wpc-btn").forEach(boton => {
         boton.addEventListener("click", (e) => {
             let nombreProducto = e.target.innerText.trim();
