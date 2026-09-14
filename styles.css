@@ -310,25 +310,22 @@ body {
     width: 83%;
     height: 82%;
     pointer-events: none;
-    z-index: 2; /* Detrás del panel central (3) pero encima de la pared (0) */
+    z-index: 2;
     opacity: 0;
     transition: opacity 0.4s ease;
-    mix-blend-mode: darken; /* Solo oscurece píxeles claros de forma neutra sin cambiar tonos de color */
+    mix-blend-mode: darken;
 }
 
 .wall-ambient-glow.glow-warm {
     opacity: 1;
-    /* Degradado estrictamente en escala de grises (sombras puras) para no teñir de amarillo/marrón */
     background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 30%, rgba(100, 100, 100, 0.2) 65%, rgba(0, 0, 0, 0.45) 100%);
 }
 
 .wall-ambient-glow.glow-cool {
     opacity: 1;
-    /* Degradado estrictamente en escala de grises para luz fría/blanca */
     background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 30%, rgba(120, 120, 120, 0.2) 65%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-/* Clases para alternar el ancho manteniendo la altura completa */
 .wall-width-full {
     left: 8.5%;
     width: 83%;
@@ -355,7 +352,6 @@ body {
     border-radius: 3px;
 }
 
-/* Medidas precisas para las luces en PC */
 .wall-led-light.left-long { left: 15%; top: 21%; height: 65%; }
 .wall-led-light.left-short { left: 21%; top: 31%; height: 55%; }
 .wall-led-light.right-long { right: 15%; top: 21%; height: 65%; }
@@ -397,7 +393,6 @@ body {
     box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* --- LUCES LATERALES PC --- */
 .wall-led-light.side-led-warm {
     background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
     box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(255, 240, 180, 0.9), 0 0 30px 10px rgba(255, 215, 100, 0.7) !important;
