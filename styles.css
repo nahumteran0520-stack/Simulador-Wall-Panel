@@ -525,7 +525,6 @@ body {
         box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(220, 240, 255, 0.9), 0 0 15px 5px rgba(180, 220, 255, 0.6) !important;
         opacity: 1 !important;
     }
-}
 
 /* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
 #rotate-device-warning {
@@ -571,5 +570,21 @@ body {
 @media (max-width: 768px) and (orientation: portrait) {
     body.in-simulator #rotate-device-warning {
         display: flex !important;
-    }
+    }/* --- FILTROS DE COLOR PARA EL MUEBLE TV --- */
+.foreground-overlay {
+    transition: filter 0.3s ease, brightness 0.3s ease;
 }
+
+.furniture-white {
+    filter: brightness(1.8) grayscale(0.8) contrast(1.1);
+}
+
+.furniture-dark {
+    filter: brightness(0.4) contrast(1.3) sepia(0.3);
+}
+
+.furniture-wood {
+    filter: sepia(0.8) brightness(0.85) hue-rotate(-10deg) saturate(1.5);
+}
+}
+
