@@ -302,7 +302,7 @@ body {
     transition: all 0.3s ease;
 }
 
-/* --- EFECTO DE LUZ AMBIENTAL Y SOMBRAS EN LA PARED --- */
+/* --- EFECTO DE LUZ AMBIENTAL Y SOMBRAS EN LA PARED (NEUTRO) --- */
 .wall-ambient-glow {
     position: absolute;
     top: 8.5%;
@@ -313,29 +313,19 @@ body {
     z-index: 2; /* Detrás del panel central (3) pero encima de la pared (0) */
     opacity: 0;
     transition: opacity 0.4s ease;
-    mix-blend-mode: multiply; /* Evita que tiñe los colores y solo genera sombras y profundidad */
+    mix-blend-mode: darken; /* Solo oscurece píxeles claros de forma neutra sin cambiar tonos de color */
 }
 
 .wall-ambient-glow.glow-warm {
     opacity: 1;
-    /* Degradado enfocado puramente en sombras perimetrales y volumen, sin tinte amarillo central */
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 20%, rgba(120, 90, 40, 0.25) 60%, rgba(40, 25, 10, 0.65) 100%);
+    /* Degradado estrictamente en escala de grises (sombras puras) para no teñir de amarillo/marrón */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 30%, rgba(100, 100, 100, 0.2) 65%, rgba(0, 0, 0, 0.45) 100%);
 }
 
 .wall-ambient-glow.glow-cool {
     opacity: 1;
-    /* Degradado de sombras neutras/frías para luz blanca/azulada */
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 20%, rgba(50, 90, 120, 0.25) 60%, rgba(10, 25, 40, 0.65) 100%);
-}
-
-.wall-ambient-glow.glow-warm {
-    opacity: 1;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 235, 160, 0.9) 0%, rgba(190, 130, 40, 0.4) 40%, rgba(20, 10, 0, 0.85) 100%);
-}
-
-.wall-ambient-glow.glow-cool {
-    opacity: 1;
-    background: radial-gradient(circle at 50% 50%, rgba(220, 245, 255, 0.95) 0%, rgba(90, 160, 220, 0.45) 40%, rgba(5, 20, 40, 0.9) 100%);
+    /* Degradado estrictamente en escala de grises para luz fría/blanca */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 30%, rgba(120, 120, 120, 0.2) 65%, rgba(0, 0, 0, 0.45) 100%);
 }
 
 /* Clases para alternar el ancho manteniendo la altura completa */
