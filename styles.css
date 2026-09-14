@@ -502,7 +502,7 @@ body {
     top: 0%;    
     height: 100%;  
     background-color: transparent; 
-    background-size: 380px 100%; 
+    background-size: 180px 100%; 
     background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
@@ -524,7 +524,7 @@ body {
         box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
         opacity: 1 !important;
     }
-
+ 
     .wall-led-light.side-led-cool {
         background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
         box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(220, 240, 255, 0.9), 0 0 15px 5px rgba(180, 220, 255, 0.6) !important;
