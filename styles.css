@@ -286,21 +286,31 @@ body {
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #121212;
+    background-color: #ffffff; /* Color de pintura base por defecto */
+    transition: background-color 0.3s ease;
 }
 
 .full-background-wall {
     position: absolute;
     top: 8.5%;    
-    left: 8.5%;   
-    width: 83%;   
-    height: 82%;  
+    height: 82%;  /* ¡La altura se mantiene intacta como pediste! */
     background-color: transparent; 
-    background-size: 480px 100%; /* <-- Cambia 'auto' por un valor fijo como 110px o 100px */
+    background-size: 480px 100%; 
     background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
-    transition: background-image 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/* Clases para alternar el ancho manteniendo la altura completa */
+.wall-width-full {
+    left: 8.5%;
+    width: 83%;
+}
+
+.wall-width-partial {
+    left: 28%;
+    width: 44%;
 }
 
 .wall-led-light {
@@ -445,30 +455,28 @@ body {
     }
     
     .central-panel.vertical { 
-        width: 30% !important;   
+        width: 30% !important;    
         height: 72% !important;  
-        top: 16% !important;     
+        top: 16% !important;      
     }
 
     .central-panel.horizontal { 
-        width: 45% !important;   
+        width: 45% !important;    
         height: 48% !important;  
-        top: 30% !important;     
+        top: 30% !important;      
     }
 
-    /* WALL PANEL DE FONDO EN MÓVIL (Con cover para cobertura total) */
+    /* WALL PANEL DE FONDO EN MÓVIL */
    .full-background-wall {
     position: absolute;
     top: 0%;    
-    left: 8.5%;   
-    width: 83%;   
     height: 100%;  
     background-color: transparent; 
     background-size: auto 100%; 
     background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
-    transition: background-image 0.3s ease;
+    transition: all 0.3s ease;
 }
 
     .wall-led-light {
