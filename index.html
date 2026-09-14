@@ -1,175 +1,589 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador y Calculadora - Wall Panel & Acabados</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- ================= 1. PORTADA DE INICIO ================= -->
-    <div id="home-screen" class="screen active">
-        <div class="home-hero">
-            <div class="home-content">
-                <h1>Diseña y Calcula tus Wall Panels</h1>
-                <p>Transforma tus espacios con estilo moderno y descubre la cantidad exacta de material que necesitas.</p>
-                <div class="home-buttons">
-                    <button class="main-action-btn primary" onclick="switchScreen('simulator')">Comenzar Simulador</button>
-                    <button class="main-action-btn secondary" onclick="switchScreen('calculator')">Calculadora de Materiales</button>
-                </div>
-            </div>
-        </div>
-    </div>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
 
-    <!-- ================= 2. CALCULADORA DE MATERIALES ================= -->
-    <div id="calculator-screen" class="screen">
-        <div class="calc-container">
-            <button class="back-home-btn" onclick="switchScreen('home')">← Volver al Inicio</button>
-            <h2>Calculadora de Materiales</h2>
-            <p class="calc-subtitle">Diseño: 1 Lámina central de PVC (2.97 m²) + Wall Panels WPC (0.46 m² c/u)</p>
-            
-            <div class="calc-form">
-                <div class="input-group">
-                    <label for="wallHeight">Alto de la pared (metros):</label>
-                    <input type="number" id="wallHeight" step="0.01" placeholder="Ej. 2.60">
-                </div>
-                <div class="input-group">
-                    <label for="wallWidth">Ancho de la pared (metros):</label>
-                    <input type="number" id="wallWidth" step="0.01" placeholder="Ej. 3.50">
-                </div>
-                <button class="calc-btn" onclick="calculatePanels()">Calcular Materiales</button>
-            </div>
+/* --- CONTROL DE PANTALLAS --- */
+.screen {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-            <div id="calc-results" class="calc-results hidden">
-                <h3>Resultado de tu cotización:</h3>
-                <p>Área total de la pared: <span id="res-area">0</span> m²</p>
-                <p id="res-panels" style="color: #4da6ff; margin: 10px 0;">-</p>
-                <div class="highlight-box">
-                    <p>💡 <strong>Total sugerido (con 5% extra para cortes):</strong></p>
-                    <p style="margin: 5px 0; font-size: 13px; color: #ddd;">• 1 Lámina de PVC Central</p>
-                    <h2 id="res-panels-extra" style="font-size: 20px;">0 piezas</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+.screen.active {
+    display: flex;
+}
 
-    <!-- ================= 3. SIMULADOR ================= -->
-    <div id="simulator-screen" class="screen">
-        <!-- Aviso para rotar dispositivo en móviles -->
-        <div id="rotate-device-warning">
-            <div class="rotate-icon">📱 🔄</div>
-            <h3>Gira tu dispositivo</h3>
-            <p>Para una mejor experiencia y ver la sala completa con todos los paneles, por favor coloca tu celular en horizontal.</p>
-        </div>
+/* --- PORTADA DE INICIO CON IMAGEN DE FONDO --- */
+#home-screen.active {
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('fondo-portada.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
-        <button id="sim-back-btn" onclick="switchScreen('home')">Inicio</button>
-        <button id="mobile-toggle-btn" onclick="toggleMobileCatalog()">Menú de Catálogo</button>
+.home-content {
+    background-color: rgba(26, 26, 26, 0.85);
+    border: 1px solid #333;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
 
-        <aside id="catalog-sidebar">
-            <div class="catalog-section">
-                <div class="catalog-header-row">
-                    <h2>Catálogo de Acabados</h2>
-                    <button id="close-catalog-btn" onclick="toggleMobileCatalog()">✕</button>
-                </div>
-                
-                <div class="catalog-category">
-                    <label>Panel Central (Mármol)</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn tex-btn active" onclick="changeTexture('blanco', this)">Blanco</button>
-                        <button class="catalog-btn tex-btn" onclick="changeTexture('gris', this)">Gris</button>
-                        <button class="catalog-btn tex-btn" onclick="changeTexture('negro', this)">Negro</button>
-                        <button class="catalog-btn tex-btn" onclick="changeTexture('none', this)">Liso</button>
-                    </div>
-                </div>
+.home-content h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #fff;
+}
 
-                <div class="catalog-category">
-                    <label>Orientación del Centro</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn orient-btn active" onclick="setOrientation('vertical', this)">Vertical</button>
-                        <button class="catalog-btn orient-btn" onclick="setOrientation('horizontal', this)">Horizontal</button>
-                    </div>
-                </div>
+.home-content p {
+    font-size: 16px;
+    color: #aaa;
+    margin-bottom: 30px;
+}
 
-                <div class="catalog-category">
-                    <label>Pared (Wall Panels WPC)</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn wpc-btn active" onclick="changeBackgroundWall('wpcarena', this)">Arena</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcgris', this)">Gris</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcnegro', this)">Negro</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcwengue', this)">Wengué</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcblanco', this)">Blanco</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcmaderanegro', this)">Madera Negro</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('wpcmarron', this)">Marron</button>
-                        <button class="catalog-btn wpc-btn" onclick="changeBackgroundWall('none', this)">Pared Lisa (Pintura)</button>
-                    </div>
-                </div>
+.home-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
 
-                <div class="catalog-category">
-                    <label>Ancho del Wall Panel</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn width-btn active" onclick="setWallWidth('full', this)">Ancho Completo</button>
-                        <button class="catalog-btn width-btn" onclick="setWallWidth('partial', this)">Sección Parcial</button>
-                        <button class="catalog-btn width-btn" onclick="setWallWidth('left-only', this)">Solo Izquierdo</button>
-                    </div>
-                </div>
+.main-action-btn {
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
 
-                <div class="catalog-category">
-                    <label>Color de Pintura (Fondo)</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn paint-btn active" onclick="setPaintColor('#ffffff', this)">Blanco</button>
-                        <button class="catalog-btn paint-btn" onclick="setPaintColor('#d3d3d3', this)">Gris Claro</button>
-                        <button class="catalog-btn paint-btn" onclick="setPaintColor('#2b2b2b', this)">Gris Oscuro</button>
-                        <button class="catalog-btn paint-btn" onclick="setPaintColor('#f4ecd8', this)">Beige / Arena</button>
-                    </div>
-                </div>
+.main-action-btn.primary {
+    background-color: #007acc;
+    color: white;
+}
 
-                <div class="catalog-category">
-                    <label>Luces Panel Central</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn panel-led-btn active" onclick="togglePanelLed('none', this)">Apagadas</button>
-                        <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('warm', this)">Cálida</button>
-                        <button class="catalog-btn panel-led-btn" onclick="togglePanelLed('cool', this)">Fría</button>
-                    </div>
-                </div>
+.main-action-btn.secondary {
+    background-color: #333;
+    color: white;
+}
 
-                <div class="catalog-category">
-                    <label>Luces Laterales (WPC)</label>
-                    <div class="catalog-options">
-                        <button class="catalog-btn side-led-btn active" onclick="toggleSideLed('none', this)">Apagadas</button>
-                        <button class="catalog-btn side-led-btn" onclick="toggleSideLed('warm', this)">Cálida</button>
-                        <button class="catalog-btn side-led-btn" onclick="toggleSideLed('cool', this)">Fría</button>
-                    </div>
-                </div>
-                <div class="catalog-category">
-    <label>Color del Mueble TV</label>
-    <div class="catalog-options">
-        <button class="catalog-btn furniture-btn active" onclick="setFurnitureColor('original', this)">Original</button>
-        <button class="catalog-btn furniture-btn" onclick="setFurnitureColor('white', this)">Blanco</button>
-        <button class="catalog-btn furniture-btn" onclick="setFurnitureColor('dark', this)">Nogal Oscuro</button>
-        <button class="catalog-btn furniture-btn" onclick="setFurnitureColor('wood', this)">Roble Claro</button>
-    </div>
-</div>
+.main-action-btn:hover {
+    transform: translateY(-2px);
+}
 
-            </div>
-        </aside>
+/* --- CALCULADORA DE MATERIALES ESTILOS --- */
+#calculator-screen.active {
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    overflow-y: auto;
+}
 
-        <div id="simulator-viewport">
-            <div class="room-scene" id="roomScene">
-                <div class="full-background-wall wall-width-full" id="fullBackgroundWall"></div>
-                
-                <div class="wall-ambient-glow" id="wallAmbientGlow"></div>
+.calc-container {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    position: relative;
+}
 
-                <div class="wall-led-light left-long" id="leftLong"></div>
-                <div class="wall-led-light left-short" id="leftShort"></div>
-                <div class="wall-led-light right-long" id="rightLong"></div>
-                <div class="wall-led-light right-short" id="rightShort"></div>
-                <div class="central-panel vertical" id="centralPanel"></div>
-                <div class="foreground-overlay"></div>
-            </div>
-        </div>
-    </div>
+.back-home-btn {
+    background: none;
+    border: none;
+    color: #007acc;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.calc-container h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.calc-subtitle {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+.calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group label {
+    font-size: 13px;
+    color: #ccc;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+}
+
+.calc-btn {
+    background-color: #007acc;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.calc-btn:hover { background-color: #005999; }
+
+.calc-results {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.calc-results.hidden { display: none; }
+
+.highlight-box {
+    background-color: #15222e;
+    border: 1px solid #007acc;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* --- SIMULADOR PANTALLA --- */
+#simulator-screen.active {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#catalog-sidebar {
+    width: 320px;
+    min-width: 320px;
+    background-color: #1a1a1a;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 25px;
+    overflow-y: auto;
+    z-index: 10;
+    height: 100vh;
+}
+
+.catalog-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.catalog-header-row h2 {
+    font-size: 18px;
+    color: #e0e0e0;
+}
+
+#close-catalog-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.catalog-category {
+    margin-bottom: 15px;
+}
+
+.catalog-category label {
+    font-size: 13px;
+    color: #aaa;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.catalog-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.catalog-btn {
+    padding: 10px;
+    background-color: #2a2a2a;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.catalog-btn:hover { background-color: #3a3a3a; }
+.catalog-btn.active { border-color: #007acc; background-color: #223a4c; }
+
+#simulator-viewport {
+    flex: 1;
+    position: relative;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+/* --- ESCENA (PC) --- */
+.room-scene {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('Base.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.full-background-wall {
+    position: absolute;
+    top: 8.5%;    
+    height: 82%;  
+    background-color: transparent; 
+    background-size: 480px 100%; 
+    background-repeat: repeat-x; 
+    background-position: center;
+    z-index: 0; 
+    transition: all 0.3s ease;
+}
+
+/* --- EFECTO DE LUZ AMBIENTAL Y SOMBRAS EN LA PARED (NEUTRO) --- */
+.wall-ambient-glow {
+    position: absolute;
+    top: 8.5%;
+    left: 8.5%;
+    width: 83%;
+    height: 82%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    mix-blend-mode: darken;
+}
+
+.wall-ambient-glow.glow-warm {
+    opacity: 1;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 30%, rgba(100, 100, 100, 0.2) 65%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.wall-ambient-glow.glow-cool {
+    opacity: 1;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 30%, rgba(120, 120, 120, 0.2) 65%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.wall-width-full {
+    left: 8.5%;
+    width: 83%;
+}
+
+.wall-width-partial {
+    left: 28%;
+    width: 44%;
+}
+
+.wall-width-left-only {
+    left: 8.5%;
+    width: 40%; 
+}
+
+.wall-led-light {
+    position: absolute;
+    width: 6px; 
+    background-color: transparent;
+    z-index: 6; 
+    pointer-events: none;
+    transition: all 0.3s ease;
+    opacity: 0; 
+    border-radius: 3px;
+}
+
+.wall-led-light.left-long { left: 15%; top: 21%; height: 65%; }
+.wall-led-light.left-short { left: 21%; top: 31%; height: 55%; }
+.wall-led-light.right-long { right: 15%; top: 21%; height: 65%; }
+.wall-led-light.right-short { right: 21%; top: 31%; height: 55%; }
+
+.central-panel {
+    position: absolute;
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 3; 
+    transition: all 0.3s ease;
+}
+
+.central-panel.vertical { width: 34%; height: 72%; top: 16%; }
+.central-panel.horizontal { width: 52%; height: 42%; top: 30%; }
+
+.foreground-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('mueble-tv.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 5; 
+}
+
+.central-panel.led-warm {
+    box-shadow: 0 0 6px 3px rgba(255, 255, 220, 0.95), 0 0 25px 8px rgba(255, 225, 120, 0.65), 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.central-panel.led-cool {
+    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.wall-led-light.side-led-warm {
+    background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(255, 240, 180, 0.9), 0 0 30px 10px rgba(255, 215, 100, 0.7) !important;
+    opacity: 1 !important;
+}
+
+.wall-led-light.side-led-cool {
+    background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(220, 240, 255, 0.9), 0 0 30px 10px rgba(180, 220, 255, 0.8) !important;
+    opacity: 1 !important;
+}
+
+#sim-back-btn {
+    position: absolute;
+    top: 15px;
+    left: 340px;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#mobile-toggle-btn {
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* --- DISEÑO RESPONSIVO MÓVIL --- */
+@media (max-width: 768px) {
+    #catalog-sidebar {
+        position: fixed;
+        left: -100%;
+        width: 85%;
+        max-width: 300px;
+        transition: left 0.3s ease;
+        height: 100vh;
+        z-index: 1000;
+        box-shadow: 5px 0 20px rgba(0,0,0,0.7);
+    }
+    #catalog-sidebar.mobile-open { left: 0; }
+    
+    #mobile-toggle-btn { 
+        display: block; 
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+        z-index: 100;
+    }
+    
+    #close-catalog-btn { display: block; }
+    
+    #sim-back-btn { 
+        position: absolute;
+        top: 10px;
+        left: auto !important;
+        right: 10px !important;
+        padding: 8px 12px;
+        font-size: 12px;
+        z-index: 100;
+    }
+
+    .room-scene {
+        background-size: cover; 
+        background-position: center;
+        background-color: #0b0b0b; 
+    }
+    
+    #simulator-viewport {
+        overflow: hidden; 
+    }
+    
+    .central-panel.vertical { 
+        width: 30% !important;    
+        height: 72% !important;  
+        top: 16% !important;      
+    }
+
+    .central-panel.horizontal { 
+        width: 45% !important;    
+        height: 48% !important;  
+        top: 30% !important;      
+    }
+
+    .full-background-wall {
+        position: absolute;
+        top: 0%;    
+        height: 100%;  
+        background-color: transparent; 
+        background-size: auto 100%; 
+        background-repeat: repeat-x; 
+        background-position: center;
+        z-index: 0; 
+        transition: all 0.3s ease;
+    }
+
+    .wall-led-light {
+        width: 3px !important;
+        border-radius: 1.5px !important;
+    }
+
+    .wall-led-light.left-long { left: 15% !important; top: 25% !important; height: 70% !important; }
+    .wall-led-light.left-short { left: 20% !important; top: 40% !important; height: 55% !important; }
+    .wall-led-light.right-long { right: 15% !important; top: 25% !important; height: 70% !important; }
+    .wall-led-light.right-short { right: 20% !important; top: 40% !important; height: 55% !important; }
+
+    .wall-led-light.side-led-warm {
+        background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
+        opacity: 1 !important;
+    }
+
+    .wall-led-light.side-led-cool {
+        background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(220, 240, 255, 0.9), 0 0 15px 5px rgba(180, 220, 255, 0.6) !important;
+        opacity: 1 !important;
+    }
+
+/* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
+#rotate-device-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(18, 18, 18, 0.95);
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+#rotate-device-warning .rotate-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    animation: rotateIconAnim 2s infinite ease-in-out;
+}
+
+#rotate-device-warning h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#rotate-device-warning p {
+    font-size: 14px;
+    color: #aaa;
+    max-width: 280px;
+}
+
+@keyframes rotateIconAnim {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+    body.in-simulator #rotate-device-warning {
+        display: flex !important;
+    }/* --- FILTROS DE COLOR PARA EL MUEBLE TV --- */
+.foreground-overlay {
+    transition: filter 0.3s ease, brightness 0.3s ease;
+}
+
+.furniture-white {
+    filter: brightness(1.8) grayscale(0.8) contrast(1.1);
+}
+
+.furniture-dark {
+    filter: brightness(0.4) contrast(1.3) sepia(0.3);
+}
+
+.furniture-wood {
+    filter: sepia(0.8) brightness(0.85) hue-rotate(-10deg) saturate(1.5);
+}
+}
