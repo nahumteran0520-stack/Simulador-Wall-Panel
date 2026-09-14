@@ -237,4 +237,28 @@ document.addEventListener("DOMContentLoaded", () => {
             registrarAccionEnSheet("Selección en Simulador", `Wall Panel: ${nombreProducto}`);
         });
     });
-});
+// Función para cambiar el color del mueble de TV
+function setFurnitureColor(colorStyle, btn) {
+    document.querySelectorAll('.furniture-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const overlay = document.querySelector('.foreground-overlay');
+    if (!overlay) return;
+
+    // Removemos todos los filtros previos
+    overlay.classList.remove('furniture-white', 'furniture-dark', 'furniture-wood');
+
+    // Aplicamos el filtro correspondiente
+    if (colorStyle === 'white') {
+        overlay.classList.add('furniture-white');
+    } else if (colorStyle === 'dark') {
+        overlay.classList.add('furniture-dark');
+    } else if (colorStyle === 'wood') {
+        overlay.classList.add('furniture-wood');
+    }
+    // Si es 'original', no se le añade ninguna clase extra.
+
+    // Registrar en analíticas si usas tu Google Sheet
+    registrarAccionEnSheet("Selección en Simulador", `Mueble TV: ${colorStyle}`);
+}
+
