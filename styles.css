@@ -286,20 +286,44 @@ body {
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #ffffff; /* Color de pintura base por defecto */
+    background-color: #ffffff;
     transition: background-color 0.3s ease;
 }
 
 .full-background-wall {
     position: absolute;
     top: 8.5%;    
-    height: 82%;  /* ¡La altura se mantiene intacta como pediste! */
+    height: 82%;  
     background-color: transparent; 
     background-size: 480px 100%; 
     background-repeat: repeat-x; 
     background-position: center;
     z-index: 0; 
     transition: all 0.3s ease;
+}
+
+/* --- EFECTO DE LUZ AMBIENTAL Y SOMBRAS EN LA PARED --- */
+.wall-ambient-glow {
+    position: absolute;
+    top: 8.5%;
+    left: 8.5%;
+    width: 83%;
+    height: 82%;
+    pointer-events: none;
+    z-index: 2; /* Detrás del panel central (3) pero encima de la pared (0) */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    mix-blend-mode: overlay;
+}
+
+.wall-ambient-glow.glow-warm {
+    opacity: 1;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 235, 160, 0.9) 0%, rgba(190, 130, 40, 0.4) 40%, rgba(20, 10, 0, 0.85) 100%);
+}
+
+.wall-ambient-glow.glow-cool {
+    opacity: 1;
+    background: radial-gradient(circle at 50% 50%, rgba(220, 245, 255, 0.95) 0%, rgba(90, 160, 220, 0.45) 40%, rgba(5, 20, 40, 0.9) 100%);
 }
 
 /* Clases para alternar el ancho manteniendo la altura completa */
@@ -312,10 +336,10 @@ body {
     left: 28%;
     width: 44%;
 }
-/* Agrega esta clase junto a las demás clases de ancho de pared */
+
 .wall-width-left-only {
     left: 8.5%;
-    width: 38%; /* Ajusta este porcentaje si prefieres que abarque un poco más o menos del lado izquierdo */
+    width: 38%; 
 }
 
 .wall-led-light {
@@ -471,18 +495,17 @@ body {
         top: 30% !important;      
     }
 
-    /* WALL PANEL DE FONDO EN MÓVIL */
-   .full-background-wall {
-    position: absolute;
-    top: 0%;    
-    height: 100%;  
-    background-color: transparent; 
-    background-size: auto 100%; 
-    background-repeat: repeat-x; 
-    background-position: center;
-    z-index: 0; 
-    transition: all 0.3s ease;
-}
+    .full-background-wall {
+        position: absolute;
+        top: 0%;    
+        height: 100%;  
+        background-color: transparent; 
+        background-size: auto 100%; 
+        background-repeat: repeat-x; 
+        background-position: center;
+        z-index: 0; 
+        transition: all 0.3s ease;
+    }
 
     .wall-led-light {
         width: 3px !important;
