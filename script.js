@@ -103,12 +103,17 @@ function togglePanelLed(ledType, btn) {
     btn.classList.add('active');
     
     const panel = document.getElementById('centralPanel');
+    const ambientGlow = document.getElementById('wallAmbientGlow');
+    
     panel.classList.remove('led-warm', 'led-cool');
+    if (ambientGlow) ambientGlow.classList.remove('glow-warm', 'glow-cool');
     
     if (ledType === 'warm') {
         panel.classList.add('led-warm');
+        if (ambientGlow) ambientGlow.classList.add('glow-warm');
     } else if (ledType === 'cool') {
         panel.classList.add('led-cool');
+        if (ambientGlow) ambientGlow.classList.add('glow-cool');
     }
 }
 
