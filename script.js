@@ -15,7 +15,6 @@ function changeBackgroundWall(wallType, btn) {
     }
 }
 
-// Función para alternar el Ancho del Wall Panel (Completo o Sección Parcial)
 // Función para alternar el Ancho del Wall Panel (Completo, Sección Parcial o Solo Izquierdo)
 function setWallWidth(mode, btn) {
     document.querySelectorAll('.width-btn').forEach(b => b.classList.remove('active'));
@@ -23,15 +22,28 @@ function setWallWidth(mode, btn) {
 
     const backgroundWall = document.getElementById('fullBackgroundWall');
     
+    // Elementos de luces derechas
+    const rightLong = document.getElementById('rightLong');
+    const rightShort = document.getElementById('rightShort');
+    
     // Removemos todas las clases de ancho primero
     backgroundWall.classList.remove('wall-width-full', 'wall-width-partial', 'wall-width-left-only');
     
     if (mode === 'full') {
         backgroundWall.classList.add('wall-width-full');
+        // Mostrar luces derechas
+        if(rightLong) rightLong.style.display = 'block';
+        if(rightShort) rightShort.style.display = 'block';
     } else if (mode === 'partial') {
         backgroundWall.classList.add('wall-width-partial');
+        // Mostrar luces derechas
+        if(rightLong) rightLong.style.display = 'block';
+        if(rightShort) rightShort.style.display = 'block';
     } else if (mode === 'left-only') {
         backgroundWall.classList.add('wall-width-left-only');
+        // Ocultar luces derechas porque no hay WPC de ese lado
+        if(rightLong) rightLong.style.display = 'none';
+        if(rightShort) rightShort.style.display = 'none';
     }
 }
 
