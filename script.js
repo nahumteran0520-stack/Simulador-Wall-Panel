@@ -16,18 +16,22 @@ function changeBackgroundWall(wallType, btn) {
 }
 
 // Función para alternar el Ancho del Wall Panel (Completo o Sección Parcial)
+// Función para alternar el Ancho del Wall Panel (Completo, Sección Parcial o Solo Izquierdo)
 function setWallWidth(mode, btn) {
     document.querySelectorAll('.width-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     const backgroundWall = document.getElementById('fullBackgroundWall');
     
+    // Removemos todas las clases de ancho primero
+    backgroundWall.classList.remove('wall-width-full', 'wall-width-partial', 'wall-width-left-only');
+    
     if (mode === 'full') {
-        backgroundWall.classList.remove('wall-width-partial');
         backgroundWall.classList.add('wall-width-full');
     } else if (mode === 'partial') {
-        backgroundWall.classList.remove('wall-width-full');
         backgroundWall.classList.add('wall-width-partial');
+    } else if (mode === 'left-only') {
+        backgroundWall.classList.add('wall-width-left-only');
     }
 }
 
