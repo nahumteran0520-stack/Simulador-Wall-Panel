@@ -313,7 +313,19 @@ body {
     z-index: 2; /* Detrás del panel central (3) pero encima de la pared (0) */
     opacity: 0;
     transition: opacity 0.4s ease;
-    mix-blend-mode: overlay;
+    mix-blend-mode: multiply; /* Evita que tiñe los colores y solo genera sombras y profundidad */
+}
+
+.wall-ambient-glow.glow-warm {
+    opacity: 1;
+    /* Degradado enfocado puramente en sombras perimetrales y volumen, sin tinte amarillo central */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 20%, rgba(120, 90, 40, 0.25) 60%, rgba(40, 25, 10, 0.65) 100%);
+}
+
+.wall-ambient-glow.glow-cool {
+    opacity: 1;
+    /* Degradado de sombras neutras/frías para luz blanca/azulada */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 20%, rgba(50, 90, 120, 0.25) 60%, rgba(10, 25, 40, 0.65) 100%);
 }
 
 .wall-ambient-glow.glow-warm {
