@@ -1,550 +1,219 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
+let currentTexture = 'blanco'; 
+let currentOrientation = 'vertical'; 
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #ffffff;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* --- CONTROL DE PANTALLAS --- */
-.screen {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.screen.active {
-    display: flex;
-}
-
-/* --- PORTADA DE INICIO CON IMAGEN DE FONDO --- */
-#home-screen.active {
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('fondo-portada.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.home-content {
-    background-color: rgba(26, 26, 26, 0.85);
-    border: 1px solid #333;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 600px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px);
-}
-
-.home-content h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.home-content p {
-    font-size: 16px;
-    color: #aaa;
-    margin-bottom: 30px;
-}
-
-.home-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-.main-action-btn {
-    padding: 12px 24px;
-    font-size: 15px;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-}
-
-.main-action-btn.primary {
-    background-color: #007acc;
-    color: white;
-}
-
-.main-action-btn.secondary {
-    background-color: #333;
-    color: white;
-}
-
-.main-action-btn:hover {
-    transform: translateY(-2px);
-}
-
-/* --- CALCULADORA DE MATERIALES ESTILOS --- */
-#calculator-screen.active {
-    justify-content: center;
-    align-items: center;
-    background-color: #121212;
-    overflow-y: auto;
-}
-
-.calc-container {
-    background-color: #1a1a1a;
-    padding: 40px;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    border: 1px solid #333;
-    position: relative;
-}
-
-.back-home-btn {
-    background: none;
-    border: none;
-    color: #007acc;
-    font-weight: 600;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.calc-container h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
-}
-
-.calc-subtitle {
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 25px;
-}
-
-.calc-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.input-group label {
-    font-size: 13px;
-    color: #ccc;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    border-radius: 6px;
-    color: white;
-    font-size: 15px;
-}
-
-.calc-btn {
-    background-color: #007acc;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
-}
-
-.calc-btn:hover { background-color: #005999; }
-
-.calc-results {
-    margin-top: 25px;
-    padding: 20px;
-    background-color: #222;
-    border-radius: 8px;
-    border: 1px solid #444;
-}
-
-.calc-results.hidden { display: none; }
-
-.highlight-box {
-    background-color: #15222e;
-    border: 1px solid #007acc;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 15px;
-    text-align: center;
-}
-
-/* --- SIMULADOR PANTALLA --- */
-#simulator-screen.active {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-#catalog-sidebar {
-    width: 320px;
-    min-width: 320px;
-    background-color: #1a1a1a;
-    border-right: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 25px;
-    overflow-y: auto;
-    z-index: 10;
-    height: 100vh;
-}
-
-.catalog-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-}
-
-.catalog-header-row h2 {
-    font-size: 18px;
-    color: #e0e0e0;
-}
-
-#close-catalog-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.catalog-category {
-    margin-bottom: 15px;
-}
-
-.catalog-category label {
-    font-size: 13px;
-    color: #aaa;
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.catalog-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.catalog-btn {
-    padding: 10px;
-    background-color: #2a2a2a;
-    color: white;
-    border: 2px solid transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.catalog-btn:hover { background-color: #3a3a3a; }
-.catalog-btn.active { border-color: #007acc; background-color: #223a4c; }
-
-#simulator-viewport {
-    flex: 1;
-    position: relative;
-    background: #121212;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    height: 100vh;
-    width: 100%;
-}
-
-/* --- ESCENA (PC) --- */
-.room-scene {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-image: url('Base.jpg');
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #ffffff; /* Color de pintura base por defecto */
-    transition: background-color 0.3s ease;
-}
-
-.full-background-wall {
-    position: absolute;
-    top: 8.5%;    
-    height: 82%;  /* ¡La altura se mantiene intacta como pediste! */
-    background-color: transparent; 
-    background-size: 480px 100%; 
-    background-repeat: repeat-x; 
-    background-position: center;
-    z-index: 0; 
-    transition: all 0.3s ease;
-}
-
-/* Clases para alternar el ancho manteniendo la altura completa */
-.wall-width-full {
-    left: 8.5%;
-    width: 83%;
-}
-
-.wall-width-partial {
-    left: 28%;
-    width: 44%;
-}
-
-.wall-led-light {
-    position: absolute;
-    width: 6px; 
-    background-color: transparent;
-    z-index: 6; 
-    pointer-events: none;
-    transition: all 0.3s ease;
-    opacity: 0; 
-    border-radius: 3px;
-}
-
-/* Medidas precisas para las luces en PC */
-.wall-led-light.left-long { left: 15%; top: 21%; height: 65%; }
-.wall-led-light.left-short { left: 21%; top: 31%; height: 55%; }
-.wall-led-light.right-long { right: 15%; top: 21%; height: 65%; }
-.wall-led-light.right-short { right: 21%; top: 31%; height: 55%; }
-
-.central-panel {
-    position: absolute;
-    background-color: #ffffff;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    z-index: 3; 
-    transition: all 0.3s ease;
-}
-
-.central-panel.vertical { width: 34%; height: 72%; top: 16%; }
-.central-panel.horizontal { width: 52%; height: 42%; top: 30%; }
-
-.foreground-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('mueble-tv.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: 5; 
-}
-
-.central-panel.led-warm {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 220, 0.95), 0 0 25px 8px rgba(255, 225, 120, 0.65), 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.central-panel.led-cool {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* --- LUCES LATERALES PC --- */
-.wall-led-light.side-led-warm {
-    background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
-    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(255, 240, 180, 0.9), 0 0 30px 10px rgba(255, 215, 100, 0.7) !important;
-    opacity: 1 !important;
-}
-
-.wall-led-light.side-led-cool {
-    background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
-    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1), 0 0 15px 5px rgba(220, 240, 255, 0.9), 0 0 30px 10px rgba(180, 220, 255, 0.8) !important;
-    opacity: 1 !important;
-}
-
-#sim-back-btn {
-    position: absolute;
-    top: 15px;
-    left: 340px;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: 1px solid #444;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-#mobile-toggle-btn {
-    display: none;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 100;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-/* --- DISEÑO RESPONSIVO MÓVIL --- */
-@media (max-width: 768px) {
-    #catalog-sidebar {
-        position: fixed;
-        left: -100%;
-        width: 85%;
-        max-width: 300px;
-        transition: left 0.3s ease;
-        height: 100vh;
-        z-index: 1000;
-        box-shadow: 5px 0 20px rgba(0,0,0,0.7);
-    }
-    #catalog-sidebar.mobile-open { left: 0; }
+function changeBackgroundWall(wallType, btn) {
+    document.querySelectorAll('.wpc-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     
-    #mobile-toggle-btn { 
-        display: block; 
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        padding: 8px 12px;
-        font-size: 12px;
-        z-index: 100;
+    const backgroundWall = document.getElementById('fullBackgroundWall');
+    
+    if (wallType === 'none') {
+        backgroundWall.style.backgroundImage = 'none';
+        backgroundWall.style.backgroundColor = '#ffffff'; 
+    } else {
+        backgroundWall.style.backgroundImage = `url('${wallType}.jpg')`;
+    }
+}
+
+// Función para alternar el Ancho del Wall Panel (Completo o Sección Parcial)
+function setWallWidth(mode, btn) {
+    document.querySelectorAll('.width-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const backgroundWall = document.getElementById('fullBackgroundWall');
+    
+    if (mode === 'full') {
+        backgroundWall.classList.remove('wall-width-partial');
+        backgroundWall.classList.add('wall-width-full');
+    } else if (mode === 'partial') {
+        backgroundWall.classList.remove('wall-width-full');
+        backgroundWall.classList.add('wall-width-partial');
+    }
+}
+
+// Función para cambiar el color de pintura de la pared de fondo
+function setPaintColor(colorCode, btn) {
+    document.querySelectorAll('.paint-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const roomScene = document.getElementById('roomScene');
+    if (roomScene) {
+        roomScene.style.backgroundColor = colorCode;
+    }
+}
+
+function changeTexture(textureName, btn) {
+    document.querySelectorAll('.tex-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    currentTexture = textureName;
+    updatePanelBackground(); 
+}
+
+function setOrientation(orientation, btn) {
+    document.querySelectorAll('.orient-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    currentOrientation = orientation;
+    
+    const panel = document.getElementById('centralPanel');
+    panel.classList.remove('vertical', 'horizontal');
+    panel.classList.add(orientation);
+    
+    updatePanelBackground(); 
+}
+
+function updatePanelBackground() {
+    const panel = document.getElementById('centralPanel');
+    
+    if (currentTexture === 'none') {
+        panel.style.backgroundImage = 'none';
+        panel.style.backgroundColor = '#ffffff'; 
+        return;
     }
     
-    #close-catalog-btn { display: block; }
+    panel.style.backgroundColor = '#ffffff'; 
+
+    let filename = currentTexture;
+    if (currentOrientation === 'horizontal') {
+        filename = currentTexture + '-h'; 
+    }
+
+    panel.style.backgroundImage = `url('${filename}.jpg')`;
+}
+
+function togglePanelLed(ledType, btn) {
+    document.querySelectorAll('.panel-led-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     
-    #sim-back-btn { 
-        position: absolute;
-        top: 10px;
-        left: auto !important;
-        right: 10px !important;
-        padding: 8px 12px;
-        font-size: 12px;
-        z-index: 100;
-    }
-
-    .room-scene {
-        background-size: cover; 
-        background-position: center;
-        background-color: #0b0b0b; 
-    }
+    const panel = document.getElementById('centralPanel');
+    panel.classList.remove('led-warm', 'led-cool');
     
-    #simulator-viewport {
-        overflow: hidden; 
+    if (ledType === 'warm') {
+        panel.classList.add('led-warm');
+    } else if (ledType === 'cool') {
+        panel.classList.add('led-cool');
     }
+}
+
+function toggleSideLed(ledType, btn) {
+    document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     
-    .central-panel.vertical { 
-        width: 30% !important;    
-        height: 72% !important;  
-        top: 16% !important;      
-    }
-
-    .central-panel.horizontal { 
-        width: 45% !important;    
-        height: 48% !important;  
-        top: 30% !important;      
-    }
-
-    /* WALL PANEL DE FONDO EN MÓVIL */
-   .full-background-wall {
-    position: absolute;
-    top: 0%;    
-    height: 100%;  
-    background-color: transparent; 
-    background-size: auto 100%; 
-    background-repeat: repeat-x; 
-    background-position: center;
-    z-index: 0; 
-    transition: all 0.3s ease;
+    const lights = [
+        document.getElementById('leftLong'),
+        document.getElementById('leftShort'),
+        document.getElementById('rightLong'),
+        document.getElementById('rightShort')
+    ];
+    
+    lights.forEach(light => {
+        if (!light) return;
+        light.classList.remove('side-led-warm', 'side-led-cool');
+        
+        if (ledType === 'warm') {
+            light.classList.add('side-led-warm');
+        } else if (ledType === 'cool') {
+            light.classList.add('side-led-cool');
+        }
+    });
 }
 
-    .wall-led-light {
-        width: 3px !important;
-        border-radius: 1.5px !important;
+function toggleMobileCatalog() {
+    const sidebar = document.getElementById('catalog-sidebar');
+    sidebar.classList.toggle('mobile-open');
+}
+
+function switchScreen(screenName) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    
+    if (screenName === 'simulator') {
+        document.body.classList.add('in-simulator');
+    } else {
+        document.body.classList.remove('in-simulator');
     }
 
-    .wall-led-light.left-long { left: 15% !important; top: 25% !important; height: 70% !important; }
-    .wall-led-light.left-short { left: 20% !important; top: 40% !important; height: 55% !important; }
-    .wall-led-light.right-long { right: 15% !important; top: 25% !important; height: 70% !important; }
-    .wall-led-light.right-short { right: 20% !important; top: 40% !important; height: 55% !important; }
-
-    .wall-led-light.side-led-warm {
-        background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
-        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(255, 240, 180, 0.8), 0 0 15px 5px rgba(255, 215, 100, 0.5) !important;
-        opacity: 1 !important;
-    }
-
-    .wall-led-light.side-led-cool {
-        background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,1) 50%, rgba(255,255,255,0.4)) !important;
-        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 1), 0 0 8px 3px rgba(220, 240, 255, 0.9), 0 0 15px 5px rgba(180, 220, 255, 0.6) !important;
-        opacity: 1 !important;
+    if (screenName === 'home') {
+        document.getElementById('home-screen').classList.add('active');
+    } else if (screenName === 'calculator') {
+        document.getElementById('calculator-screen').classList.add('active');
+    } else if (screenName === 'simulator') {
+        document.getElementById('simulator-screen').classList.add('active');
     }
 }
 
-/* --- AVISO DE ROTACIÓN PARA MÓVILES --- */
-#rotate-device-warning {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(18, 18, 18, 0.95);
-    z-index: 9999;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
+function calculatePanels() {
+    registrarAccionEnSheet("Uso de Calculadora", "Cálculo de Materiales");
+    
+    const heightInput = document.getElementById('wallHeight').value;
+    const widthInput = document.getElementById('wallWidth').value;
 
-#rotate-device-warning .rotate-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-    animation: rotateIconAnim 2s infinite ease-in-out;
-}
+    const height = parseFloat(heightInput);
+    const width = parseFloat(widthInput);
 
-#rotate-device-warning h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-#rotate-device-warning p {
-    font-size: 14px;
-    color: #aaa;
-    max-width: 280px;
-}
-
-@keyframes rotateIconAnim {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(90deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@media (max-width: 768px) and (orientation: portrait) {
-    body.in-simulator #rotate-device-warning {
-        display: flex !important;
+    if (isNaN(height) || isNaN(width) || height <= 0 || width <= 0) {
+        alert('Por favor, ingresa medidas válidas mayores a cero.');
+        return;
     }
+
+    const totalArea = height * width;
+    const pvcSheetArea = 2.97;
+
+    if (totalArea <= pvcSheetArea) {
+        alert('La pared es muy pequeña para esta configuración (debe ser mayor al área de la lámina central de PVC de 2.97 m²).');
+        return;
+    }
+
+    const remainingArea = totalArea - pvcSheetArea;
+    const wallPanelCoverage = 0.46;
+    const exactWallPanels = remainingArea / wallPanelCoverage;
+    const roundedWallPanels = Math.ceil(exactWallPanels); 
+
+    const panelsWithWaste = Math.ceil(roundedWallPanels * 1.05);
+
+    document.getElementById('res-area').textContent = totalArea.toFixed(2);
+    document.getElementById('res-panels').textContent = `1 Lámina de PVC Central (2.97 m²) + ${roundedWallPanels} Wall Panels (${remainingArea.toFixed(2)} m² restantes)`;
+    document.getElementById('res-panels-extra').textContent = panelsWithWaste + ' piezas';
+
+    document.getElementById('calc-results').classList.remove('hidden');
 }
+
+// --- CONFIGURACIÓN DE GOOGLE SHEETS ---
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwN4ZJe2ZJ3tBU2VFbCouyhLrTz1W0vtnvAMvAtNSQsRu3630BgpnaDk8eNUZk4vCDtwQ/exec";
+
+function registrarAccionEnSheet(accion, producto = "N/A") {
+    fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            accion: accion,
+            producto: producto
+        })
+    }).catch(error => console.error("Error al registrar estadística:", error));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. REGISTRAR APERTURA DE CALCULADORA
+    document.querySelector("button[onclick*=\"calculator\"]")?.addEventListener("click", () => {
+        registrarAccionEnSheet("Uso de Calculadora", "Apertura de Calculadora");
+    });
+
+    // 2. REGISTRAR PANEL SPC
+    document.querySelectorAll(".tex-btn").forEach(boton => {
+        boton.addEventListener("click", (e) => {
+            let nombreProducto = e.target.innerText.trim();
+            registrarAccionEnSheet("Selección en Simulador", `Panel SPC: ${nombreProducto}`);
+        });
+    });
+
+    // 3. REGISTRAR WALL PANEL
+    document.querySelectorAll(".wpc-btn").forEach(boton => {
+        boton.addEventListener("click", (e) => {
+            let nombreProducto = e.target.innerText.trim();
+            registrarAccionEnSheet("Selección en Simulador", `Wall Panel: ${nombreProducto}`);
+        });
+    });
+});
