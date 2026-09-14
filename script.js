@@ -116,7 +116,6 @@ function togglePanelLed(ledType, btn) {
         if (ambientGlow) ambientGlow.classList.add('glow-cool');
     }
 }
-
 function toggleSideLed(ledType, btn) {
     document.querySelectorAll('.side-led-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
