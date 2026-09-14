@@ -497,17 +497,17 @@ body {
         top: 30% !important;      
     }
 
-    .full-background-wall {
-        position: absolute;
-        top: 0%;    
-        height: 100%;  
-        background-color: transparent; 
-        background-size: auto 100%; 
-        background-repeat: repeat-x; 
-        background-position: center;
-        z-index: 0; 
-        transition: all 0.3s ease;
-    }
+    full-background-wall {
+    position: absolute;
+    top: 0%;    
+    height: 100%;  
+    background-color: transparent; 
+    background-size: 480px 100%; 
+    background-repeat: repeat-x; 
+    background-position: center;
+    z-index: 0; 
+    transition: all 0.3s ease;
+}
 
     .wall-led-light {
         width: 3px !important;
