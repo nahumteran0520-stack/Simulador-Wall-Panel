@@ -105,6 +105,25 @@
                     </div>
                 </div>
 
+                <!-- NUEVOS CONTROLES: Ancho del WPC y Color de Pintura -->
+                <div class="catalog-category">
+                    <label>Ancho del Wall Panel</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn width-btn active" onclick="setWallWidth('full', this)">Ancho Completo</button>
+                        <button class="catalog-btn width-btn" onclick="setWallWidth('partial', this)">Sección Parcial</button>
+                    </div>
+                </div>
+
+                <div class="catalog-category">
+                    <label>Color de Pintura (Fondo)</label>
+                    <div class="catalog-options">
+                        <button class="catalog-btn paint-btn active" onclick="setPaintColor('#ffffff', this)">Blanco</button>
+                        <button class="catalog-btn paint-btn" onclick="setPaintColor('#d3d3d3', this)">Gris Claro</button>
+                        <button class="catalog-btn paint-btn" onclick="setPaintColor('#2b2b2b', this)">Gris Oscuro</button>
+                        <button class="catalog-btn paint-btn" onclick="setPaintColor('#f4ecd8', this)">Beige / Arena</button>
+                    </div>
+                </div>
+
                 <div class="catalog-category">
                     <label>Luces Panel Central</label>
                     <div class="catalog-options">
@@ -128,7 +147,7 @@
 
         <div id="simulator-viewport">
             <div class="room-scene" id="roomScene">
-                <div class="full-background-wall" id="fullBackgroundWall"></div>
+                <div class="full-background-wall wall-width-full" id="fullBackgroundWall"></div>
                 <div class="wall-led-light left-long" id="leftLong"></div>
                 <div class="wall-led-light left-short" id="leftShort"></div>
                 <div class="wall-led-light right-long" id="rightLong"></div>
