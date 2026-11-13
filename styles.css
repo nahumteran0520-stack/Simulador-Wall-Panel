@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9; /* Fondo general con un tono sutil muy limpio */
+    background-color: #f4f6f9;
     color: #0072CE;
     height: 100vh;
     overflow: hidden;
@@ -22,38 +22,39 @@ body {
     display: flex;
 }
 
-/* --- PORTADA DE INICIO --- */
+/* --- PORTADA DE INICIO (Cuadro Amarillo EPA, Bordes Blancos y Letras Azules) --- */
 #home-screen.active {
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('fondo-portada.jpg');
+    background: linear-gradient(rgba(0, 114, 206, 0.08), rgba(0, 114, 206, 0.08)), url('fondo-portada.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .home-content {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    background-color: #FFCC00; /* Amarillo Corporativo EPA */
+    border: 4px solid #ffffff; /* Bordes blancos limpios */
     padding: 45px;
-    border-radius: 16px;
+    border-radius: 18px;
     text-align: center;
     max-width: 620px;
-    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.1);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
 }
 
 .home-content h1 {
     font-size: 38px;
     margin-bottom: 15px;
-    color: #0072CE;
-    font-weight: 700;
+    color: #0072CE; /* Letras azules corporativas */
+    font-weight: 800;
 }
 
 .home-content p {
     font-size: 16px;
-    color: #475569;
+    color: #004c99; /* Azul fuerte para perfecta legibilidad sobre amarillo */
     margin-bottom: 35px;
     line-height: 1.5;
+    font-weight: 600;
 }
 
 .home-buttons {
@@ -62,46 +63,32 @@ body {
     justify-content: center;
 }
 
-/* --- BOTONES GENERALES (Efecto Moderno y Elegante) --- */
-.main-action-btn, 
-.calc-btn, 
-.catalog-btn {
-    background: linear-gradient(to bottom, #ffd633, #e6b800) !important; /* Degradado amarillo elegante */
-    color: #ffffff !important; /* Letras blancas */
-    border: 1px solid #ccaa00 !important;
+.home-content .main-action-btn {
+    background-color: #0072CE !important; /* Botones en azul corporativo para resaltar */
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
     font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 10px rgba(230, 184, 0, 0.3);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
 }
 
-.main-action-btn:hover, 
-.calc-btn:hover, 
-.catalog-btn:hover {
-    background: linear-gradient(to bottom, #ffdf4d, #d4a700) !important;
+.home-content .main-action-btn:hover {
+    background-color: #005bb5 !important;
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(230, 184, 0, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón activo seleccionado */
-.catalog-btn.active { 
-    background: linear-gradient(to bottom, #0072CE, #005bb5) !important; /* Se destaca con azul corporativo al estar activo */
-    border-color: #004c99 !important;
-    color: #ffffff !important; 
-    box-shadow: 0 4px 12px rgba(0, 114, 206, 0.35);
-}
-
-.main-action-btn.secondary {
-    background: #ffffff !important;
+.home-content .main-action-btn.secondary {
+    background-color: #ffffff !important;
     color: #0072CE !important;
     border: 2px solid #0072CE !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
 }
 
-.main-action-btn.secondary:hover {
-    background: #eef5ff !important;
+.home-content .main-action-btn.secondary:hover {
+    background-color: #f1f5f9 !important;
 }
 
 /* --- CALCULADORA DE MATERIALES --- */
@@ -184,6 +171,16 @@ body {
     box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.15);
 }
 
+.calc-btn {
+    background: linear-gradient(to bottom, #ffd633, #e6b800) !important;
+    color: #ffffff !important;
+    border: 1px solid #ccaa00 !important;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
+}
+
 .calc-results {
     margin-top: 25px;
     padding: 20px;
@@ -259,6 +256,17 @@ body {
     padding: 9px;
     font-size: 12px;
     border-radius: 6px;
+    background: linear-gradient(to bottom, #ffd633, #e6b800) !important;
+    color: #ffffff !important;
+    border: 1px solid #ccaa00 !important;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.catalog-btn.active { 
+    background: linear-gradient(to bottom, #0072CE, #005bb5) !important;
+    border-color: #004c99 !important;
+    color: #ffffff !important; 
 }
 
 #simulator-viewport {
