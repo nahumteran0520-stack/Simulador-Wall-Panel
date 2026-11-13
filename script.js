@@ -16,34 +16,48 @@ function changeBackgroundWall(wallType, btn) {
 }
 
 // Función para alternar el Ancho del Wall Panel (Completo, Sección Parcial o Solo Izquierdo)
+// Función para alternar el Ancho del Wall Panel
 function setWallWidth(mode, btn) {
     document.querySelectorAll('.width-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     const backgroundWall = document.getElementById('fullBackgroundWall');
     
-    // Elementos de luces derechas
+    // Elementos de luces
+    const leftLong = document.getElementById('leftLong');
+    const leftShort = document.getElementById('leftShort');
     const rightLong = document.getElementById('rightLong');
     const rightShort = document.getElementById('rightShort');
     
     // Removemos todas las clases de ancho primero
-    backgroundWall.classList.remove('wall-width-full', 'wall-width-partial', 'wall-width-left-only');
+    backgroundWall.classList.remove('wall-width-full', 'wall-width-partial', 'wall-width-left-only', 'wall-width-right-only');
     
     if (mode === 'full') {
         backgroundWall.classList.add('wall-width-full');
-        // Mostrar luces derechas
+        if(leftLong) leftLong.style.display = 'block';
+        if(leftShort) leftShort.style.display = 'block';
         if(rightLong) rightLong.style.display = 'block';
         if(rightShort) rightShort.style.display = 'block';
     } else if (mode === 'partial') {
         backgroundWall.classList.add('wall-width-partial');
-        // Mostrar luces derechas
+        if(leftLong) leftLong.style.display = 'block';
+        if(leftShort) leftShort.style.display = 'block';
         if(rightLong) rightLong.style.display = 'block';
         if(rightShort) rightShort.style.display = 'block';
     } else if (mode === 'left-only') {
         backgroundWall.classList.add('wall-width-left-only');
-        // Ocultar luces derechas porque no hay WPC de ese lado
+        // Mostrar izquierdas, ocultar derechas
+        if(leftLong) leftLong.style.display = 'block';
+        if(leftShort) leftShort.style.display = 'block';
         if(rightLong) rightLong.style.display = 'none';
         if(rightShort) rightShort.style.display = 'none';
+    } else if (mode === 'right-only') {
+        backgroundWall.classList.add('wall-width-right-only');
+        // Ocultar izquierdas, mostrar derechas
+        if(leftLong) leftLong.style.display = 'none';
+        if(leftShort) leftShort.style.display = 'none';
+        if(rightLong) rightLong.style.display = 'block';
+        if(rightShort) rightShort.style.display = 'block';
     }
 }
 
