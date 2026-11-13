@@ -2,8 +2,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffff; /* Fondo blanco limpio */
-    color: #0072CE; /* Textos generales en azul corporativo */
+    background-color: #f4f6f9; /* Fondo general con un tono sutil muy limpio */
+    color: #0072CE;
     height: 100vh;
     overflow: hidden;
 }
@@ -22,11 +22,11 @@ body {
     display: flex;
 }
 
-/* --- PORTADA DE INICIO CON FONDO BLANCO --- */
+/* --- PORTADA DE INICIO --- */
 #home-screen.active {
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('fondo-portada.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('fondo-portada.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,24 +34,26 @@ body {
 
 .home-content {
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 40px;
-    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 45px;
+    border-radius: 16px;
     text-align: center;
-    max-width: 600px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    max-width: 620px;
+    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.1);
 }
 
 .home-content h1 {
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 15px;
-    color: #0072CE; /* Azul corporativo */
+    color: #0072CE;
+    font-weight: 700;
 }
 
 .home-content p {
     font-size: 16px;
-    color: #0072CE; /* Azul corporativo */
-    margin-bottom: 30px;
+    color: #475569;
+    margin-bottom: 35px;
+    line-height: 1.5;
 }
 
 .home-buttons {
@@ -60,78 +62,92 @@ body {
     justify-content: center;
 }
 
-/* --- BOTONES GENERALES: Fondo Amarillo, Texto Blanco --- */
+/* --- BOTONES GENERALES (Efecto Moderno y Elegante) --- */
 .main-action-btn, 
 .calc-btn, 
 .catalog-btn {
-    background-color: #FFCC00 !important; /* Amarillo corporativo EPA */
-    color: #ffffff !important; /* Letras blancas dentro de los botones */
-    border: 1px solid #e6b800 !important;
+    background: linear-gradient(to bottom, #ffd633, #e6b800) !important; /* Degradado amarillo elegante */
+    color: #ffffff !important; /* Letras blancas */
+    border: 1px solid #ccaa00 !important;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(230, 184, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
 .main-action-btn:hover, 
 .calc-btn:hover, 
 .catalog-btn:hover {
-    background-color: #e6b800 !important;
+    background: linear-gradient(to bottom, #ffdf4d, #d4a700) !important;
     transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(230, 184, 0, 0.4);
 }
 
-/* Botón activo seleccionado (resalta con borde o tono fuerte) */
+/* Botón activo seleccionado */
 .catalog-btn.active { 
-    background-color: #cca300 !important;
-    border-color: #0072CE !important;
+    background: linear-gradient(to bottom, #0072CE, #005bb5) !important; /* Se destaca con azul corporativo al estar activo */
+    border-color: #004c99 !important;
     color: #ffffff !important; 
+    box-shadow: 0 4px 12px rgba(0, 114, 206, 0.35);
 }
 
 .main-action-btn.secondary {
-    background-color: #0072CE !important; /* Excepción para el secundario si deseas contraste */
-    color: white !important;
-    border: none !important;
+    background: #ffffff !important;
+    color: #0072CE !important;
+    border: 2px solid #0072CE !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.main-action-btn.secondary:hover {
+    background: #eef5ff !important;
 }
 
 /* --- CALCULADORA DE MATERIALES --- */
 #calculator-screen.active {
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #f4f6f9;
     overflow-y: auto;
 }
 
 .calc-container {
     background-color: #ffffff;
     padding: 40px;
-    border-radius: 12px;
+    border-radius: 16px;
     width: 100%;
-    max-width: 500px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    border: 1px solid #e0e0e0;
+    max-width: 520px;
+    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.08);
+    border: 1px solid #e2e8f0;
     position: relative;
 }
 
 .back-home-btn {
     background: none;
     border: none;
-    color: #0072CE; /* Azul exterior */
+    color: #0072CE;
     font-weight: 600;
     cursor: pointer;
     margin-bottom: 20px;
     font-size: 14px;
+    transition: opacity 0.2s;
 }
+
+.back-home-btn:hover { opacity: 0.75; }
 
 .calc-container h2, 
 .catalog-header-row h2 {
     font-size: 24px;
     margin-bottom: 8px;
-    color: #0072CE; /* Azul exterior */
+    color: #0072CE;
+    font-weight: 700;
 }
 
 .calc-subtitle, 
 .catalog-category label {
     font-size: 13px;
-    color: #0072CE; /* Azul exterior en las etiquetas */
+    color: #334155;
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
@@ -145,7 +161,7 @@ body {
 
 .input-group label {
     font-size: 13px;
-    color: #0072CE; /* Azul exterior */
+    color: #1e293b;
     display: block;
     margin-bottom: 5px;
     font-weight: 600;
@@ -153,21 +169,28 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #ffffff;
-    border: 1px solid #0072CE;
-    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
     color: #0072CE;
     font-size: 15px;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #0072CE;
+    box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.15);
 }
 
 .calc-results {
     margin-top: 25px;
     padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #0072CE;
-    color: #0072CE;
+    background-color: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
 }
 
 .calc-results.hidden { display: none; }
@@ -176,10 +199,10 @@ body {
     background-color: #fffbeb;
     border: 1px solid #FFCC00;
     padding: 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-top: 15px;
     text-align: center;
-    color: #0072CE;
+    color: #b45309;
 }
 
 /* --- SIMULADOR PANTALLA --- */
@@ -194,26 +217,27 @@ body {
 }
 
 #catalog-sidebar {
-    width: 320px;
-    min-width: 320px;
-    background-color: #ffffff; /* Sidebar blanco */
-    border-right: 1px solid #e0e0e0;
+    width: 330px;
+    min-width: 330px;
+    background-color: #ffffff;
+    border-right: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    gap: 25px;
+    gap: 20px;
     overflow-y: auto;
     z-index: 10;
     height: 100vh;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.03);
 }
 
 .catalog-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #close-catalog-btn {
@@ -228,7 +252,13 @@ body {
 .catalog-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
+}
+
+.catalog-btn {
+    padding: 9px;
+    font-size: 12px;
+    border-radius: 6px;
 }
 
 #simulator-viewport {
@@ -320,9 +350,10 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
     z-index: 3; 
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .central-panel.vertical { width: 34%; height: 72%; top: 16%; }
@@ -343,11 +374,11 @@ body {
 }
 
 .central-panel.led-warm {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 220, 0.95), 0 0 25px 8px rgba(255, 225, 120, 0.65), 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 8px 4px rgba(255, 255, 220, 0.95), 0 0 30px 10px rgba(255, 225, 120, 0.65), 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .central-panel.led-cool {
-    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.95), 0 0 25px 8px rgba(220, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.95), 0 0 30px 10px rgba(220, 240, 255, 0.8), 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .wall-led-light.side-led-warm {
@@ -365,15 +396,16 @@ body {
 #sim-back-btn {
     position: absolute;
     top: 15px;
-    left: 340px;
+    left: 350px;
     z-index: 100;
     background-color: #0072CE;
     color: white;
     border: none;
-    padding: 8px 14px;
+    padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 114, 206, 0.2);
 }
 
 #mobile-toggle-btn {
@@ -400,7 +432,7 @@ body {
         transition: left 0.3s ease;
         height: 100vh;
         z-index: 1000;
-        box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+        box-shadow: 5px 0 25px rgba(0,0,0,0.15);
     }
     #catalog-sidebar.mobile-open { left: 0; }
     
@@ -415,7 +447,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.96);
     z-index: 9999;
     flex-direction: column;
     justify-content: center;
@@ -425,7 +457,7 @@ body {
 }
 
 #rotate-device-warning h3 { color: #0072CE; }
-#rotate-device-warning p { color: #0072CE; }
+#rotate-device-warning p { color: #475569; }
 
 @media (max-width: 768px) and (orientation: portrait) {
     body.in-simulator #rotate-device-warning {
